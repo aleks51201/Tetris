@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class KillFather : MonoBehaviour
 {
+    public LayerMask Mask;
     public GameObject Fig;
-    void Kill()
+    public void Kill()
     {
         int childrens = Fig.transform.childCount;
         for (int i = childrens-1; i >= 0; i--)
         {
             var child = Fig.transform.GetChild(i);
-            child.GetComponent<Rigidbody2D>().isKinematic = false;
-            child.GetComponent<Collider2D>().enabled = true;
-            child.transform.parent = null;
+            if(child.name == "Ghost")
+            {
+                Destroy(child.gameObject);
+            }
+            else
+            {
+                child.GetComponent<Rigidbody2D>().isKinematic = false;
+                child.GetComponent<Collider2D>().enabled = true;
+                child.gameObject.layer = 6;
+                child.transform.parent = null;
+            }
+            
         }
         Destroy(Fig);
     }

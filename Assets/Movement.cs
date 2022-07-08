@@ -5,48 +5,88 @@ using System;
 
 public class Movement : MonoBehaviour
 {
+    public LayerMask Mask;
     public GameObject Fig;
     public GameObject FigGhost;
-
-    //private GhostCallOut GG = new GhostCallOut ();
-    
+    Collider2D FigCollider;
+    public bool Active = true;
+    Rigidbody2D rb;
+    KillFather KillF;
+    public bool MoveLeft, MoveRight = true;
     void Start()
     {
-        
+        rb = Fig.GetComponent<Rigidbody2D>();
+        FigCollider = Fig.GetComponent<Collider2D>();
+        KillF = Fig.GetComponent<KillFather>();
     }
     void Move(float way)
     {
-        Vector2 positionOffset = new Vector2(way, 0);
-        Vector2 originalPosition = Fig.transform.position;
-        Quaternion originalRotation = Fig.transform.rotation;
-        Vector2 newPosition = originalPosition + positionOffset;
-        GameObject Cool = Instantiate(FigGhost, newPosition, originalRotation);
-        
-        Debug.Log(Cool.GetComponent< GhostCallOut >().He);
-        if (Cool.GetComponent<GhostCallOut>().He)
+        Fig.transform.Translate(new Vector3(way, 0, 0),Space.World);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Figure")
         {
-            Fig.transform.position = newPosition;
-            Destroy(Cool);
+            Active = false;
+            KillF.Kill();
         }
-        
-            Destroy(Cool);
-        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.name == "RightWall")
+        {
+            MoveRight = false;
+            Debug.Log("Тутовый");
+        }
+        if (collision.transform.name == "LeftWall")
+        {
+            MoveLeft = false;
+        }
     }
 
-    // Update is called once per frame
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.name == "RightWall")
+        {
+            MoveRight = true;
+        }
+        if (collision.transform.name == "LeftWall")
+        {
+            MoveLeft = true;
+        }
+    }
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        /*Debug.Log(FigCollider.GetContacts);*/
+        if (Active)
         {
-            float Call = Input.GetAxisRaw("Horizontal");
-            if (Call != 0)
+            if (Input.GetKeyDown(KeyCode.A) && MoveLeft)
             {
+                float Call = Input.GetAxisRaw("Horizontal");
                 Move(Call);
             }
-        }
+            if (Input.GetKeyDown(KeyCode.D) && MoveRight)
+            {
+                float Call = Input.GetAxisRaw("Horizontal");
+                Move(Call);
+            }
 
-        if (Input.GetKeyDown(KeyCode.S)){
-            Fig.transform.Rotate(new Vector3(0f,0f,1), 90 , Space.Self);
+
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Transform ghost = Fig.transform.GetChild(0);
+                Collider2D gh = ghost.GetComponent<Collider2D>();
+                if (gh.IsTouchingLayers(Mask))
+                {
+                    Debug.Log("He");
+                }
+                else
+                {
+                    Fig.transform.Rotate(new Vector3(0f, 0f, 1), 90, Space.Self);
+                }
+            }
         }
     }
 }

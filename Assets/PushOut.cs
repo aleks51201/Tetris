@@ -10,7 +10,7 @@ public class PushOut : MonoBehaviour
     {
         
     }
-    private void OnCollisionStay2D(Collision2D collision)
+/*    private void OnCollisionStay2D(Collision2D collision)
     {
 
         if(collision.gameObject.name == "LeftWall")
@@ -31,5 +31,5 @@ public class PushOut : MonoBehaviour
             Debug.Log(NewPos);
             Fig.transform.position = NewPos;
         }
-    }
+    }*/
 }
