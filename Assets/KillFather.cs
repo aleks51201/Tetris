@@ -25,7 +25,7 @@ public class KillFather : MonoBehaviour
             }
             
         }
-        Destroy(Fig);
+        //Destroy(Fig);
     }
 
     void Update()
