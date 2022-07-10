@@ -9,10 +9,10 @@ public class KillFather : MonoBehaviour
     public void Kill()
     {
         int childrens = Fig.transform.childCount;
-        for (int i = childrens-1; i >= 0; i--)
+        for (int i = childrens - 1; i >= 0; i--)
         {
             var child = Fig.transform.GetChild(i);
-            if(child.name == "Ghost")
+            if (child.name == "Ghost")
             {
                 Destroy(child.gameObject);
             }
@@ -20,12 +20,14 @@ public class KillFather : MonoBehaviour
             {
                 child.GetComponent<Rigidbody2D>().isKinematic = false;
                 child.GetComponent<Collider2D>().enabled = true;
+                child.GetComponent<Collider2D>().enabled = true;
                 child.gameObject.layer = 6;
+                
                 child.transform.parent = null;
             }
-            
+
         }
-        //Destroy(Fig);
+        Destroy(Fig);
     }
 
     void Update()

@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 5507755166274468816}
   - component: {fileID: 2325785515874130257}
   - component: {fileID: 6758802158980170314}
+  - component: {fileID: 5161051769427220093}
   m_Layer: 0
   m_Name: FigureL
   m_TagString: Figure
@@ -205,6 +206,21 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &5161051769427220093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282206318598379046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a03c9867a9f9d54c81622390f715a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Batya: {fileID: 0}
+  BlockMoveRight: []
+  BlockMoveLeft: []
 --- !u!1001 &1338505258820121023
 PrefabInstance:
   m_ObjectHideFlags: 0

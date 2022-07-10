@@ -101,8 +101,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
-  m_EdgeRadius: 0
+  m_Size: {x: 1.901, y: 1.901}
+  m_EdgeRadius: 0.03
 --- !u!114 &8064266452454361733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a03c9867a9f9d54c81622390f715a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Batya: {fileID: 1680394688453374878}
+  BlockMoveRight: []
+  BlockMoveLeft: []
 --- !u!50 &5667162011655434775
 Rigidbody2D:
   serializedVersion: 4
@@ -127,10 +130,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 1
+  m_Mass: 100
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.7
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -147,7 +150,7 @@ GameObject:
   - component: {fileID: 5723922913791267175}
   - component: {fileID: 5282930193075389620}
   - component: {fileID: 2049072729717292124}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,14 +228,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
+    - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_EdgeRadius
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4546347005269940928, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
@@ -292,6 +303,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563448165462641344, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563448165462641344, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_TagString
       value: Figure
       objectReference: {fileID: 0}
@@ -322,12 +337,38 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 3
   m_AngularDrag: 5
-  m_GravityScale: 1
+  m_GravityScale: 0.8
   m_Material: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!61 &1020506565440912341
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172848315323202241}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.98, y: 0.98}
+  m_EdgeRadius: 0.03
 --- !u!254 &88208528226228773
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -375,14 +416,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
+    - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_EdgeRadius
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4546347005269940928, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
@@ -442,6 +491,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4563448165462641344, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563448165462641344, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_TagString
       value: Figure
       objectReference: {fileID: 0}
@@ -467,12 +520,38 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 3
   m_AngularDrag: 5
-  m_GravityScale: 1
+  m_GravityScale: 0.8
   m_Material: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!61 &8021464968581629397
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013049612394668929}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.98, y: 0.98}
+  m_EdgeRadius: 0.03
 --- !u!254 &2126357445798142848
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -525,14 +604,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
+    - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_EdgeRadius
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4546347005269940928, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
@@ -592,6 +679,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4563448165462641344, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563448165462641344, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_TagString
       value: Figure
       objectReference: {fileID: 0}
@@ -617,12 +708,38 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 3
   m_AngularDrag: 5
-  m_GravityScale: 1
+  m_GravityScale: 0.8
   m_Material: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!61 &1763644627755336072
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013049612535068164}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.98, y: 0.98}
+  m_EdgeRadius: 0.03
 --- !u!254 &2214100781708296324
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -675,14 +792,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
+    - target: {fileID: 4467448758589942360, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_EdgeRadius
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4546347005269940928, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
@@ -742,6 +867,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4563448165462641344, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563448165462641344, guid: 821686bfbf019fe4eb64d71bef0231d2, type: 3}
       propertyPath: m_TagString
       value: Figure
       objectReference: {fileID: 0}
@@ -767,12 +896,38 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 3
   m_AngularDrag: 5
-  m_GravityScale: 1
+  m_GravityScale: 0.8
   m_Material: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!61 &3372655911990674268
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921250802502869925}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.98, y: 0.98}
+  m_EdgeRadius: 0.03
 --- !u!254 &4634935592719404614
 RelativeJoint2D:
   m_ObjectHideFlags: 0

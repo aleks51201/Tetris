@@ -30,7 +30,7 @@ public class LineDetection : MonoBehaviour
                 HowFull.Add(i);
             } 
         }
-        if(HowFull.Count >= 10)
+        if(HowFull.Count >= 20)
         {
             for(int i = 0; i < HowFull.Count; i++)
             {

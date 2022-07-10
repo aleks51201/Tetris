@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Threading;
 
 public class Movement : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class Movement : MonoBehaviour
     Rigidbody2D rb;
     KillFather KillF;
     public bool MoveLeft, MoveRight = true;
+    MakeThemHard Hard;
     void Start()
     {
+        Hard = Fig.GetComponent<MakeThemHard>();
         rb = Fig.GetComponent<Rigidbody2D>();
         FigCollider = Fig.GetComponent<Collider2D>();
         KillF = Fig.GetComponent<KillFather>();
@@ -22,14 +25,20 @@ public class Movement : MonoBehaviour
     void Move(float way)
     {
         Fig.transform.Translate(new Vector3(way, 0, 0),Space.World);
+        /*yield return new WaitForFixedUpdate();*/
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.transform.tag == "Figure")
+        if (rb.velocity.y > -0.05f)
         {
             Active = false;
             KillF.Kill();
         }
+        /*        if(collision.transform.tag == "Figure")
+                {
+                    Active = false;
+                    KillF.Kill();
+                }*/
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,15 +70,25 @@ public class Movement : MonoBehaviour
         /*Debug.Log(FigCollider.GetContacts);*/
         if (Active)
         {
-            if (Input.GetKeyDown(KeyCode.A) && MoveLeft)
+            
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 float Call = Input.GetAxisRaw("Horizontal");
-                Move(Call);
+                if (Hard.CouldI("left"))
+                {
+                    
+                    Move(Call);
+                }
+                
             }
-            if (Input.GetKeyDown(KeyCode.D) && MoveRight)
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 float Call = Input.GetAxisRaw("Horizontal");
-                Move(Call);
+                if (Hard.CouldI("right"))
+                {
+                    
+                    Move(Call);
+                }
             }
 
 
