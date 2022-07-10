@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Conrol : MonoBehaviour
 {
+<<<<<<< Updated upstream
     private IMove figure;   
+=======
+    private IControlable figure;
+    private ICreatable tetrominoCreate;
+>>>>>>> Stashed changes
 
     void Update()
     {
@@ -24,7 +29,15 @@ public class Conrol : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
+<<<<<<< Updated upstream
             figure.Create();
+=======
+            tetrominoCreate.Create();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //Kill();
+>>>>>>> Stashed changes
         }
     }
 }
