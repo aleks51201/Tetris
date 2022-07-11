@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class LineDetection : MonoBehaviour
 {
-    // Start is called before the first frame update
     public RaycastHit2D[] Hitted;
-    Vector3 OriginPlace;
+    Vector3 OriginPlace, CurrentPlace;
     public GameObject RaycatsEmpty;
-    int Mask;
+    int Mask, Points;
     List <RaycastHit2D> HowFull = new () ;
     private void Start()
     {
         OriginPlace = RaycatsEmpty.transform.position;
+        CurrentPlace = OriginPlace;
         Mask = LayerMask.GetMask("Detection");
-        Debug.Log(Mask);
     }
-    // Update is called once per frame
     void FixedUpdate()
     {
-        Hitted = Physics2D.RaycastAll(OriginPlace, Vector2.right, 10, Mask);
-        Debug.DrawRay(OriginPlace, Vector2.right,Color.red,Mathf.Infinity);
-        Debug.Log("Объекты " + Hitted.Length);
+        Hitted = Physics2D.RaycastAll(CurrentPlace, Vector2.right, 10, Mask);
         foreach (RaycastHit2D i in Hitted)
         {
-            Debug.Log("Слои "+i.transform.gameObject.layer);
             if(i.transform.tag == "Figure")
             {
                 HowFull.Add(i);
@@ -37,8 +32,15 @@ public class LineDetection : MonoBehaviour
                 
                 Destroy(HowFull[i].transform.gameObject);
             }
+            Points += 100;
+        }else if(HowFull.Count > 0)
+        {
+            CurrentPlace = CurrentPlace + new Vector3(0f, 1f, 0f);
         }
-        Debug.Log("Всего фигур " + HowFull.Count);
+        else
+        {
+            CurrentPlace = OriginPlace;
+        }
         HowFull.Clear();
 
     }

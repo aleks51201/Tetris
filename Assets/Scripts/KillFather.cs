@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class KillFather : MonoBehaviour
 {
-    public LayerMask Mask;
-    public GameObject Fig;
-    public void Kill()
+    SpawnFigure SpawnFig;
+
+    private void Start()
+    {
+    }
+    public void Kill(GameObject Fig)
     {
         int childrens = Fig.transform.childCount;
         for (int i = childrens - 1; i >= 0; i--)
@@ -28,13 +31,8 @@ public class KillFather : MonoBehaviour
 
         }
         Destroy(Fig);
+        
     }
+    
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Kill();
-        }
-    }
 }

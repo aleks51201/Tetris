@@ -8,38 +8,39 @@ public class Movement : MonoBehaviour
 {
     public LayerMask Mask;
     public GameObject Fig;
-    public GameObject FigGhost;
     Collider2D FigCollider;
     public bool Active = true;
     Rigidbody2D rb;
     KillFather KillF;
     public bool MoveLeft, MoveRight = true;
     MakeThemHard Hard;
+    public GameObject GameManage;
+    SpawnFigure SpawnFig;
     void Start()
     {
         Hard = Fig.GetComponent<MakeThemHard>();
         rb = Fig.GetComponent<Rigidbody2D>();
         FigCollider = Fig.GetComponent<Collider2D>();
         KillF = Fig.GetComponent<KillFather>();
+        Fig.GetComponent<ColorMe>().LetsColor();
+        GameManage = GameObject.Find("GameManage");
+        SpawnFig = GameManage.GetComponent<SpawnFigure>();
     }
     void Move(float way)
     {
         Fig.transform.Translate(new Vector3(way, 0, 0),Space.World);
-        /*yield return new WaitForFixedUpdate();*/
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (rb.velocity.y > -0.05f)
+        if (rb.velocity.y > -0.05f && Active)
         {
             Active = false;
-            KillF.Kill();
+            SpawnFig.CoolFunc(Fig);
+            /*StartCoroutine(SpawnFig.ReCreateFigure(Fig));*/
+            
         }
-        /*        if(collision.transform.tag == "Figure")
-                {
-                    Active = false;
-                    KillF.Kill();
-                }*/
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.name == "RightWall")
