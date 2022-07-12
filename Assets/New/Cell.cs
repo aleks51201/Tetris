@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-<<<<<<< Updated upstream
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-=======
     public GameObject childCell;
 
     public void IsRigidBody2DKinematic(bool isKinematic)
@@ -33,5 +19,4 @@ public class Cell : MonoBehaviour
         this.childCell.layer = nummerateLayer;
     }
 
->>>>>>> Stashed changes
 }

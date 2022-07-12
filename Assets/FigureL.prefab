@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5126781749461953260}
+  - component: {fileID: 8557097439974638268}
   - component: {fileID: -4635389270947529928}
   - component: {fileID: 5507755166274468816}
+  - component: {fileID: 4487967849439111558}
   - component: {fileID: 2325785515874130257}
   - component: {fileID: 3578171059624624791}
   - component: {fileID: 3599704837406477978}
-  - component: {fileID: 8557097439974638268}
   - component: {fileID: 6758802158980170314}
   m_Layer: 0
   m_Name: FigureL
@@ -42,6 +43,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8557097439974638268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282206318598379046}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0fc369e1f1a014c9737f2a5fc2e3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fig: {fileID: 7282206318598379046}
 --- !u!114 &-4635389270947529928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,7 +63,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7282206318598379046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bfb4d611e38a8a44b21d2d057e52c1b, type: 3}
   m_Name: 
@@ -62,13 +76,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7282206318598379046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b75d2b6e59c68174d932d22b77ca9d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Fig: {fileID: 7282206318598379046}
   FigGhost: {fileID: 7282206318598379046, guid: d50ae7199dce1ac40afebe0ebc8aaf39, type: 3}
+--- !u!114 &4487967849439111558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282206318598379046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd06bcac0f00ad94cad0c05acbb74037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tetromino: {fileID: 7282206318598379046}
+  figureSpawnPosition: {x: 5, y: 20}
 --- !u!50 &2325785515874130257
 Rigidbody2D:
   serializedVersion: 4
@@ -142,19 +170,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8557097439974638268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7282206318598379046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c0fc369e1f1a014c9737f2a5fc2e3b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Fig: {fileID: 7282206318598379046}
 --- !u!68 &6758802158980170314
 EdgeCollider2D:
   m_ObjectHideFlags: 0

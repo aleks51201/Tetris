@@ -1,37 +1,31 @@
-<<<<<<< Updated upstream
-using System.Collections;
-=======
->>>>>>> Stashed changes
 using System.Collections.Generic;
 using UnityEngine;
 
 
-<<<<<<< Updated upstream
-public class Field: MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-=======
 public class Field : MonoBehaviour, ICreatable
 {
+    [Header("Teromino list")]
     public GameObject[] tetrominoCollection;
+
+    [Header("Figure start position")]
     public Vector2 figureSpawnPosition;
+
+    [Header("Detector start position")]
     public Vector3 detectorStartPosition;
+
+    [Header("Layer lvl")]
     public string maskName;
+
+    [Header("Field size")]
     private int widthField = 10;
     private int heightField = 20;
+
+    //public GameObject currentTetromino { get; private set; }
+
     private IGetFigureCellCoordinate coordinate;
     private List<Vector3> rightNeighbours = new();
     private List<Vector3> leftNeighbours = new();
+    
 
     private RaycastHit2D[] GetDetectionObject(Vector3 detectorPosition)
     {
@@ -98,13 +92,24 @@ public class Field : MonoBehaviour, ICreatable
         int index = randomValue.Next(0, tetrominoCollection.Length);
         return tetrominoCollection[index];
     }
+
+    public delegate void CreateHandler(GameObject newTetromino);
+    public event CreateHandler OnCreateTetrominoEvent;
     public void Create()
     {
-        Instantiate(RandomFigureSelection(this.tetrominoCollection), figureSpawnPosition, Quaternion.identity);
+       GameObject currentTetromino = Instantiate(RandomFigureSelection(this.tetrominoCollection), figureSpawnPosition, Quaternion.identity);
+        OnCreateTetrominoEvent?.Invoke(currentTetromino);
+    }
+    void Test(GameObject asd)
+    {
+
     }
 
+    private void Start()
+    {
 
-
+        
+    }
 
     private void FixedUpdate()
     {
@@ -120,5 +125,4 @@ public class Field : MonoBehaviour, ICreatable
     }
 
 
->>>>>>> Stashed changes
 }
