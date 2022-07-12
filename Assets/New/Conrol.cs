@@ -16,39 +16,36 @@ public class Conrol : MonoBehaviour
         field = gameField.GetComponent<Field>();
         field.OnCreateTetrominoEvent += OnCreateTetromino;
     }
-    private void FixedUpdate()
-    {
-        
-    }
-
-
     private void OnCreateTetromino(GameObject newTetromino)
     {
-        Debug.Log("create tetr") ;
         this.inGameTetromino = newTetromino;
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        if (inGameTetromino != null)
         {
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            {
+                float Call = Input.GetAxisRaw("Horizontal");
+                if (Call != 0)
+                {
+                    IControlable figure = inGameTetromino.GetComponent<IControlable>();
+                    if (this.inGameTetromino != null)
+                        figure.Move(Call);
+                }
+            }
 
-            float Call = Input.GetAxisRaw("Horizontal");
-            if (Call != 0)
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 IControlable figure = inGameTetromino.GetComponent<IControlable>();
                 if (this.inGameTetromino != null)
-                    figure.Move(Call);
+                    figure.Rotate();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            /*figure.Rotate();*/
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            ICreatable tetrominoCreate = gameField.GetComponent<ICreatable>();
+            ICreatable tetrominoCreate = gameField?.GetComponent<ICreatable>();
             if (tetrominoCreate != null)
             {
                 tetrominoCreate.Create();
@@ -58,6 +55,10 @@ public class Conrol : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //Kill();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            //Acceleration();
         }
     }
 }

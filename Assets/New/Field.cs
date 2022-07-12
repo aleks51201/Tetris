@@ -20,11 +20,13 @@ public class Field : MonoBehaviour, ICreatable
     private int widthField = 10;
     private int heightField = 20;
 
+  
+
     //public GameObject currentTetromino { get; private set; }
 
     private IGetFigureCellCoordinate coordinate;
-    private List<Vector3> rightNeighbours = new();
-    private List<Vector3> leftNeighbours = new();
+    private GameObject currentTetromino;
+
     
 
     private RaycastHit2D[] GetDetectionObject(Vector3 detectorPosition)
@@ -34,22 +36,26 @@ public class Field : MonoBehaviour, ICreatable
 
     private int GetLayerMask(string maskName)
     {
-        return LayerMask.GetMask(name);
+        return LayerMask.GetMask(maskName);
     }
 
     private void PatroDetector(Vector2 detectorStartPosition)
     {
-        Vector2 offsetPosition = new(0, 1);
+       // Vector2 offsetPosition=new Vector2();
         Vector2 newPosition;
-        for(int i= 0; i< this.widthField; i++)
+        for(int i= 0; i< this.heightField; i++)
         {
-            newPosition = detectorStartPosition + offsetPosition;
+            newPosition = detectorStartPosition + new Vector2 (0,i);
+            if (GetDetectionObject(newPosition).Length == 0)
+                break;
             CheckLineFull(GetDetectionObject(newPosition));
         }
     }
     private void CheckLineFull(RaycastHit2D[] detectedObject)
     {
+        Debug.Log(detectedObject.Length);
         if (detectedObject.Length >= widthField * 2)//???? '2'
+            
             DestroyObject(detectedObject);
     }
 
@@ -61,31 +67,7 @@ public class Field : MonoBehaviour, ICreatable
         }
     }
 
-    private void SetNeighborsCoordinates(Collider2D collider)
-    {
-        Vector3 unallocatedCoordinate = collider.transform.position;
-        Vector3 rightCoord = unallocatedCoordinate;
-        Vector3 leftCoord = unallocatedCoordinate;
 
-        foreach (Vector3 childCoordinate in coordinate.GetCoodinate())
-        {
-            if (childCoordinate.x <= unallocatedCoordinate.x && rightCoord != childCoordinate)
-            {
-                rightNeighbours.Add(childCoordinate);
-                //leftCoord = unallocatedCoordinate; ?????
-            }
-            else if (childCoordinate.x >= unallocatedCoordinate.x && leftCoord != childCoordinate)
-            {
-                leftNeighbours.Add(unallocatedCoordinate);
-                //leftCoord = unallocatedCoordinate; ????
-            }
-        }
-    }
-    private void RemoveNeighborsCoordinates(Collider2D collider)
-    {
-        rightNeighbours.RemoveAll(i => i == collider.transform.position);
-        leftNeighbours.RemoveAll(i => i == collider.transform.position);
-    }
     private GameObject RandomFigureSelection(GameObject[] tetrominoCollection)
     {
         System.Random randomValue = new();
@@ -97,32 +79,16 @@ public class Field : MonoBehaviour, ICreatable
     public event CreateHandler OnCreateTetrominoEvent;
     public void Create()
     {
-       GameObject currentTetromino = Instantiate(RandomFigureSelection(this.tetrominoCollection), figureSpawnPosition, Quaternion.identity);
+        currentTetromino = Instantiate(RandomFigureSelection(this.tetrominoCollection), figureSpawnPosition, Quaternion.identity);
         OnCreateTetrominoEvent?.Invoke(currentTetromino);
     }
-    void Test(GameObject asd)
-    {
 
-    }
-
-    private void Start()
-    {
-
-        
-    }
 
     private void FixedUpdate()
     {
         PatroDetector(this.detectorStartPosition);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        SetNeighborsCoordinates(collision);
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        RemoveNeighborsCoordinates(collision);
-    }
+
 
 
 }

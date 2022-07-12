@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -53,8 +53,7 @@ public class NewBehaviourScript1 : MonoBehaviour
         transform.position = new Vector2(x1, y1);
 
         Debug.Log(transform.position + "ROUND");
-        transform.GetComponent<Collider2D>().IsTouching
+        //transform.GetComponent<Collider2D>().IsTouching=true; 
 
     }
 }
-*/
