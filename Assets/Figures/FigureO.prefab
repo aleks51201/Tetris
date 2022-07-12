@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 174012603974856190}
   - component: {fileID: 1055294028172661146}
-  - component: {fileID: 96609886021305508}
   - component: {fileID: 29695783227214042}
   - component: {fileID: 8064266452454361733}
   - component: {fileID: 5667162011655434775}
@@ -49,7 +48,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680394688453374878}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b75d2b6e59c68174d932d22b77ca9d14, type: 3}
   m_Name: 
@@ -61,22 +60,7 @@ MonoBehaviour:
   Active: 1
   MoveLeft: 1
   MoveRight: 1
---- !u!114 &96609886021305508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1680394688453374878}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bfb4d611e38a8a44b21d2d057e52c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mask:
-    serializedVersion: 2
-    m_Bits: 64
-  Fig: {fileID: 1680394688453374878}
+  InQueue: 1
   GameManage: {fileID: 0}
 --- !u!61 &29695783227214042
 BoxCollider2D:
@@ -134,7 +118,7 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 2
   m_AngularDrag: 0.05
-  m_GravityScale: 0.7
+  m_GravityScale: 0.8
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

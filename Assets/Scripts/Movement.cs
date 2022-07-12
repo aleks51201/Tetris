@@ -9,10 +9,10 @@ public class Movement : MonoBehaviour
     public LayerMask Mask;
     public GameObject Fig;
     Collider2D FigCollider;
-    public bool Active = true;
+    public bool Active = false;
     Rigidbody2D rb;
     KillFather KillF;
-    public bool MoveLeft, MoveRight = true;
+    public bool MoveLeft, MoveRight, InQueue = true;
     MakeThemHard Hard;
     public GameObject GameManage;
     SpawnFigure SpawnFig;
@@ -22,7 +22,6 @@ public class Movement : MonoBehaviour
         rb = Fig.GetComponent<Rigidbody2D>();
         FigCollider = Fig.GetComponent<Collider2D>();
         KillF = Fig.GetComponent<KillFather>();
-        Fig.GetComponent<ColorMe>().LetsColor();
         GameManage = GameObject.Find("GameManage");
         SpawnFig = GameManage.GetComponent<SpawnFigure>();
     }
@@ -32,7 +31,7 @@ public class Movement : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (rb.velocity.y > -0.05f && Active)
+        if (rb.velocity.y > -0.05f && Active && !InQueue)
         {
             Active = false;
             SpawnFig.CoolFunc(Fig);
@@ -94,7 +93,7 @@ public class Movement : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 Transform ghost = Fig.transform.GetChild(0);
                 Collider2D gh = ghost.GetComponent<Collider2D>();
