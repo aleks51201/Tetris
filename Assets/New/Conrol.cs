@@ -7,15 +7,16 @@ public class Conrol : MonoBehaviour
     public GameObject gameField;
     private GameObject inGameTetromino;
     
-    private Field field;
 
-
-
-    private void Start()
+    private void OnEnable()
     {
-        field = gameField.GetComponent<Field>();
-        field.OnCreateTetrominoEvent += OnCreateTetromino;
+        BusEvent.OnSpawnTetrominoEvent += OnCreateTetromino;
     }
+    private void OnDisable()
+    {
+       BusEvent.OnSpawnTetrominoEvent -= OnCreateTetromino;
+    }
+
     private void OnCreateTetromino(GameObject newTetromino)
     {
         this.inGameTetromino = newTetromino;
@@ -34,12 +35,24 @@ public class Conrol : MonoBehaviour
                         figure.Move(Call);
                 }
             }
-
             if (Input.GetKeyDown(KeyCode.R))
             {
                 IControlable figure = inGameTetromino.GetComponent<IControlable>();
                 if (this.inGameTetromino != null)
-                    figure.Rotate();
+                    figure.Rotate(true);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                
+                IControlable figure = inGameTetromino.GetComponent<IControlable>();
+                if (this.inGameTetromino != null)
+                    figure.Acceleration(true);
+            }
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                IControlable figure = inGameTetromino.GetComponent<IControlable>();
+                if (this.inGameTetromino != null)
+                    figure.Acceleration(false);
             }
         }
 
@@ -56,9 +69,7 @@ public class Conrol : MonoBehaviour
         {
             //Kill();
         }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            //Acceleration();
-        }
+
+
     }
 }

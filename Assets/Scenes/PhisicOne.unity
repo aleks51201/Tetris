@@ -586,7 +586,11 @@ MonoBehaviour:
   - {fileID: 7282206318598379046, guid: 65b402b3db04b5644a55109fc9db918f, type: 3}
   figureSpawnPosition: {x: 5, y: 20}
   detectorStartPosition: {x: -1, y: 0, z: 0}
-  maskName: Detectiable
+  maskName:
+    serializedVersion: 2
+    m_Bits: 64
+  figureQueueSpawnPosition: {x: 15, y: 5}
+  sizeQueue: 3
 --- !u!1 &898163379
 GameObject:
   m_ObjectHideFlags: 0

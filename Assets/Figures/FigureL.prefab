@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5126781749461953260}
   - component: {fileID: 2325785515874130257}
   - component: {fileID: 6758802158980170314}
-  - component: {fileID: 5013023189527991298}
+  - component: {fileID: 8597350386794211332}
   m_Layer: 0
   m_Name: FigureL
   m_TagString: Untagged
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0.8
@@ -168,7 +168,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &5013023189527991298
+--- !u!114 &8597350386794211332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,8 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetromino: {fileID: 7282206318598379046}
-  rightNeighbours: []
-  leftNeighbours: []
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &616666355041846313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_BodyType
@@ -354,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 3041842001664945333}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_BodyType
@@ -492,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_BodyType
@@ -625,7 +626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_BodyType

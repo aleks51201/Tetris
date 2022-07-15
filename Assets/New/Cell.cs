@@ -6,17 +6,24 @@ public class Cell : MonoBehaviour
 {
     public GameObject childCell;
 
-    private Figure tetromino;
-    private void Start()
+    private void OnEnable()
     {
-        tetromino = childCell.transform.parent.GetComponent<Figure>();
-        tetromino.OnDeleteTetrominoEvent += OnDeleteTetromino;
+       BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
     }
-    private void OnDeleteTetromino()
+    private void OnDisable()
     {
-        IsRigidBody2DKinematic(false);
-        IsColider2DEnaled(true);
-        SetLayer(6);
+        
+    }
+    private void OnDeleteTetromino(GameObject tetromino)
+    {
+        if (childCell.transform.IsChildOf(tetromino.transform))
+        {
+            Debug.Log(childCell.transform.IsChildOf(tetromino.transform));
+            IsRigidBody2DKinematic(false);
+            IsColider2DEnaled(true);
+            SetLayer(6);
+            BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        }
     }
 
     public void IsRigidBody2DKinematic(bool isKinematic)

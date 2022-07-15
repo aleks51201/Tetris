@@ -2,5 +2,6 @@
 public interface IControlable
 {
     public void Move(float direct);
-    public void Rotate();
+    public void Acceleration(bool toggle);
+    public void Rotate(bool toggle);
 }
