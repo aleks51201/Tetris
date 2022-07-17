@@ -1109,10 +1109,7 @@ MonoBehaviour:
   KillF: {fileID: 1579774200}
   IsGameOn: 1
   Fig:
-  - {fileID: 7282206318598379046, guid: e9bd39850c682ad479cb5a99bacb3262, type: 3}
-  - {fileID: 7282206318598379046, guid: 332e0d4b3c8c89c43a0be787d35f8aaf, type: 3}
   - {fileID: 1680394688453374878, guid: b5ca7765218bd0a4fa1e67ee5a7fd63e, type: 3}
-  - {fileID: 7282206318598379046, guid: 65b402b3db04b5644a55109fc9db918f, type: 3}
   Queue: []
 --- !u!4 &1579774202
 Transform:
