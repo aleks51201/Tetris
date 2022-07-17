@@ -5,12 +5,14 @@ class QueueField
 {
     int queueLength = 0;
     public Queue<GameObject> queueOfTetromino;
+    private float shift;
 
 
-    public QueueField(int count)
+    public QueueField(int count,float shift)
     {
         this.queueLength = count;
         this.queueOfTetromino = new Queue<GameObject>(count+1);
+        this.shift = shift;
     }
 
     public void AddObject(GameObject tetromino)
