@@ -146,9 +146,10 @@ public class Figure : MonoBehaviour, IControlable
 
     public void ColorationCell()
     {
+        Color hue = RandomColorFigureGame();
         foreach (Transform cell in GetAllChildCell())
         {
-            cell.GetComponent<SpriteRenderer>().color = RandomColorFigureGame();
+            cell.GetComponent<SpriteRenderer>().color = hue;
         }
     }
 
