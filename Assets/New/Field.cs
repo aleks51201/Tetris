@@ -25,7 +25,10 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
     [SerializeField]
     private int sizeQueue;
     [SerializeField]
+    private float queueShift;
+    [SerializeField]
     private Vector2 figureStashSpawnPosition;
+    
 
     private QueueField queueField;
     private Stash gameStash;
@@ -135,7 +138,7 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
 
     private void Start()
     {
-        queueField = new QueueField(sizeQueue);
+        queueField = new QueueField(sizeQueue, queueShift);
         Create();
         gameStash = new Stash(figureStashSpawnPosition, figureSpawnPosition);
     }
