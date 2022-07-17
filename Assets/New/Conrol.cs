@@ -46,17 +46,17 @@ public class Conrol : MonoBehaviour
                 
                 IControlable figure = inGameTetromino.GetComponent<IControlable>();
                 if (this.inGameTetromino != null)
-                    figure.Acceleration(true);
+                    figure.Acceleration(1);
             }
             if (Input.GetKeyUp(KeyCode.S))
             {
                 IControlable figure = inGameTetromino.GetComponent<IControlable>();
                 if (this.inGameTetromino != null)
-                    figure.Acceleration(false);
+                    figure.Acceleration(-1);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+/*        if (Input.GetKeyDown(KeyCode.C))
         {
             ICreatable tetrominoCreate = gameField?.GetComponent<ICreatable>();
             if (tetrominoCreate != null)
@@ -64,11 +64,21 @@ public class Conrol : MonoBehaviour
                 tetrominoCreate.Create();
             }
             
+        }*/
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ISwitchTetromino tetrominoSwitch = gameField?.GetComponent<ISwitchTetromino>();
+            if (tetrominoSwitch != null)
+            {
+                tetrominoSwitch.SwitchTetromino();
+            }
+            
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //Kill();
         }
+
 
 
     }

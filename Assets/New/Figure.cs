@@ -7,7 +7,7 @@ using UnityEngine;
 public class Figure : MonoBehaviour, IControlable
 {
     [System.NonSerialized] public float inputX;
-    [System.NonSerialized] public bool accelerate;
+    [System.NonSerialized] public sbyte accelerate;
     [System.NonSerialized] public bool rotate;
     [SerializeField] public GameObject tetromino;
     [SerializeField] private LayerMask layerMask;
@@ -17,6 +17,7 @@ public class Figure : MonoBehaviour, IControlable
 
     private Dictionary<Type, FigureBaseState> statesMap;
     private FigureBaseState currentState;
+    
 
 
     private bool isDelete = true;
@@ -104,17 +105,25 @@ public class Figure : MonoBehaviour, IControlable
         }   
     }
 
-    public void Acceleration(bool toggle)
+    public void Acceleration(sbyte toggle)
     {
         accelerate = toggle;
     }
 
     public void HandleAcceleration()
     {
-        if (accelerate)
+        if (accelerate==1)
+        {
             this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -6);
-        else
+            BusEvent.OnStartAccelerationEvent?.Invoke(GetCurrentPosition());
+            accelerate = 0;
+        }            
+        else if(accelerate == -1)
+        {
             this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -3);
+            BusEvent.OnEndAccelerationEvent?.Invoke(GetCurrentPosition());
+            accelerate = 0;
+        }
     }
 
     public void Rotate(bool toggle)

@@ -7,14 +7,19 @@ using UnityEngine;
 
 class FigureStashState : FigureBaseState
 {
+    private Figure tetr;
     public override void EnterState(Figure tetromino)
     {
-        
+        StartTetrominoSettigs(tetromino);
+        BusEvent.OnSwitchTerominoEvent += OnSwitchTetromino;
+        tetr=tetromino;
+       // Debug.Log($"figure {tetromino} enter FigureStashState"); 
     }
 
     public override void ExitState(Figure tetromino)
     {
-        
+        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
+       // Debug.Log($"figure {tetromino} exit FigureStashState");
     }
 
     public override void FixedUpdateState(Figure tetromino)
@@ -45,6 +50,18 @@ class FigureStashState : FigureBaseState
     public override void UpdateState(Figure tetromino)
     {
         
+    }
+
+    private void StartTetrominoSettigs(Figure tetromino)
+    {
+        tetromino.tetromino.GetComponent<Rigidbody2D>().isKinematic = true;
+        tetromino.tetromino.GetComponent<Collider2D>().enabled = false;
+        tetromino.tetromino.GetComponent<Rigidbody2D>().velocity =new Vector2(0, 0);
+    }
+    private void OnSwitchTetromino()
+    {
+        FigureBaseState state = this.tetr.GetState<FigureBoardState>();
+        tetr.SetState(state);
     }
 }
 

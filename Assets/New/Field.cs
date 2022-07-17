@@ -1,16 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 
-public class Field : MonoBehaviour, ICreatable
+public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
 {
     [Header("Teromino list")]
     public GameObject[] tetrominoCollection;
 
     [Header("Figure start position")]
     public Vector2 figureSpawnPosition;
-    
+
 
     [Header("Detector start position")]
     public Vector3 detectorStartPosition;
@@ -26,10 +24,13 @@ public class Field : MonoBehaviour, ICreatable
     private Vector2 figureQueueSpawnPosition;
     [SerializeField]
     private int sizeQueue;
+    [SerializeField]
+    private Vector2 figureStashSpawnPosition;
 
-
-   // private GameObject currentTetromino;
     private QueueField queueField;
+    private Stash gameStash;
+    private GameObject currentTetrominoInGame;
+    private Score gameScore = new();
 
 
 
@@ -41,15 +42,26 @@ public class Field : MonoBehaviour, ICreatable
 
     private void PatroDetector(Vector2 detectorStartPosition)
     {
-       // Vector2 offsetPosition=new Vector2();
         Vector2 newPosition;
-        for(int i= 0; i< this.heightField; i++)
+        int numLine = 0;
+        for (int i = 0; i < this.heightField; i++)
         {
-            newPosition = detectorStartPosition + new Vector2 (0,i);
+            newPosition = detectorStartPosition + new Vector2(0, i);
             if (GetDetectionObject(newPosition).Length == 0)
                 break;
-            CheckLineFull(GetDetectionObject(newPosition));
+            RaycastHit2D[] detectedObject = GetDetectionObject(newPosition);
+            CheckLineFull(detectedObject);
+            if (isLineFull(detectedObject))
+                numLine++;
         }
+        gameScore.AddPoint(numLine * 100);
+    }
+    private bool isLineFull(RaycastHit2D[] detectedObject)
+    {
+        if (detectedObject.Length >= widthField * 2)
+            return true;
+        else
+            return false;
     }
     private void CheckLineFull(RaycastHit2D[] detectedObject)
     {
@@ -71,31 +83,45 @@ public class Field : MonoBehaviour, ICreatable
         int index = randomValue.Next(0, tetrominoCollection.Length);
         return tetrominoCollection[index];
     }
-    
+
     public void Create()
     {
         GameObject currentTetromino = Instantiate(RandomFigureSelection(this.tetrominoCollection), figureQueueSpawnPosition, Quaternion.identity);
         queueField.AddObject(currentTetromino);
         BusEvent.OnCreateTetrominoEvent?.Invoke(currentTetromino);
     }
-    private void OnDeleteTetromino()
+    private void OnQueueFull()
     {
         SpawnTetromino();
         BusEvent.OnAddObjectToQueueEvent -= Create;
-        BusEvent.OnQueueFullEvent -= OnDeleteTetromino;
+        BusEvent.OnQueueFullEvent -= OnQueueFull;
     }
     private void SpawnTetromino()
     {
         Create();
-        GameObject tetromino = queueField.queueOfTetromino.Dequeue();
-        BusEvent.OnSpawnTetrominoEvent?.Invoke(tetromino);
-        tetromino.transform.position = figureSpawnPosition;
-
+        this.currentTetrominoInGame = queueField.queueOfTetromino.Dequeue();
+        BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
+        this.currentTetrominoInGame.transform.position = figureSpawnPosition;
+        Debug.Log("Score: "+gameScore.point);
+    }
+    public void SwitchTetromino()
+    {
+        if (gameStash.isItSwithcable) 
+        {
+            GameObject newTetromino = gameStash.SwitchTetromino(this.currentTetrominoInGame);
+            this.currentTetrominoInGame = newTetromino;
+            if (newTetromino == null)
+                SpawnTetromino();
+        }
     }
 
-    private void OnDeleteTetromino2(GameObject fig)
+    private void OnDeleteTetromino(GameObject fig)
     {
         SpawnTetromino();
+    }
+    private void OnLoseGame()
+    {
+        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
     }
     public bool IsLose(Collider2D collider)
     {
@@ -107,30 +133,22 @@ public class Field : MonoBehaviour, ICreatable
         PatroDetector(this.detectorStartPosition);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Figure"))
-        {
-            Debug.Log("end");
-            BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino2;
-        }
-    }
     private void Start()
     {
         queueField = new QueueField(sizeQueue);
         Create();
+        gameStash = new Stash(figureStashSpawnPosition, figureSpawnPosition);
     }
     private void OnEnable()
     {
         BusEvent.OnAddObjectToQueueEvent += Create;
-        BusEvent.OnQueueFullEvent += OnDeleteTetromino;
-        BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino2;
-
+        BusEvent.OnQueueFullEvent += OnQueueFull;
+        BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
+        BusEvent.OnLoseGameEvent += OnLoseGame;
     }
     private void OnDisable()
     {
-
-        
-
+        BusEvent.OnLoseGameEvent -= OnLoseGame;
     }
+
 }

@@ -10,15 +10,11 @@ public class Cell : MonoBehaviour
     {
        BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
     }
-    private void OnDisable()
-    {
-        
-    }
+
     private void OnDeleteTetromino(GameObject tetromino)
     {
         if (childCell.transform.IsChildOf(tetromino.transform))
         {
-            Debug.Log(childCell.transform.IsChildOf(tetromino.transform));
             IsRigidBody2DKinematic(false);
             IsColider2DEnaled(true);
             SetLayer(6);

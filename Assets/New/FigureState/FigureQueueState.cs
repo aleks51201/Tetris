@@ -16,11 +16,13 @@ class FigureQueueState : FigureBaseState
         figure = tetromino.tetromino;
         tetr = tetromino;
         BusEvent.OnSpawnTetrominoEvent += ToBoard;
+        //Debug.Log($"figure {tetromino} enter FigureQueueState");
     }
 
     public override void ExitState(Figure tetromino)
     {
         BusEvent.OnSpawnTetrominoEvent -= ToBoard;
+       // Debug.Log($"figure {tetromino} exit FigureQueueState");
     }
 
     public override void FixedUpdateState(Figure tetromino)
