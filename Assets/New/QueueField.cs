@@ -42,7 +42,7 @@ class QueueField
         {
             foreach (GameObject i in queueOfTetromino)
             {
-                DisplacementFigure(new Vector2(0,3),i);
+                DisplacementFigure(new Vector2(0, shift),i);
             }
         }
     }
