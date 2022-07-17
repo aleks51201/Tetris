@@ -12,14 +12,12 @@ class FigureStashState : FigureBaseState
     {
         StartTetrominoSettigs(tetromino);
         BusEvent.OnSwitchTerominoEvent += OnSwitchTetromino;
-        tetr=tetromino;
-       // Debug.Log($"figure {tetromino} enter FigureStashState"); 
+        tetr=tetromino;       
     }
 
     public override void ExitState(Figure tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
-       // Debug.Log($"figure {tetromino} exit FigureStashState");
+        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;       
     }
 
     public override void FixedUpdateState(Figure tetromino)

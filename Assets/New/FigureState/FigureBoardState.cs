@@ -10,14 +10,12 @@ class FigureBoardState : FigureBaseState
         BusEvent.OnSwitchTerominoEvent += OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         tetr = tetromino;
-        figure = tetromino.tetromino;
-        //Debug.Log($"figure {tetromino} enter FigureBoardState");
+        figure = tetromino.tetromino;        
     }
 
     public override void ExitState(Figure tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
-        //Debug.Log($"figure {tetromino} exit FigureBoardState");
+        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;        
     }
 
     public override void FixedUpdateState(Figure tetromino)
@@ -27,12 +25,12 @@ class FigureBoardState : FigureBaseState
 
     public override void OnCollisionEnter2DState(Figure tetromino, Collision2D collision)
     {
-        tetromino.DeletingAStopped();
+        
     }
 
     public override void OnCollisionStay2DState(Figure tetromino, Collision2D collision)
     {
-        
+        tetromino.DeletingAStopped();
     }
 
     public override void OnTriggerEnter2DState(Figure tetromino, Collider2D collision)

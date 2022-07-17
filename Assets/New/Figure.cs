@@ -114,13 +114,14 @@ public class Figure : MonoBehaviour, IControlable
     {
         if (accelerate==1)
         {
-            this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -6);
+            // this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -6);
+            this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -0.001f), ForceMode2D.Impulse);
             BusEvent.OnStartAccelerationEvent?.Invoke(GetCurrentPosition());
             accelerate = 0;
         }            
         else if(accelerate == -1)
         {
-            this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -3);
+            //this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -3);
             BusEvent.OnEndAccelerationEvent?.Invoke(GetCurrentPosition());
             accelerate = 0;
         }
