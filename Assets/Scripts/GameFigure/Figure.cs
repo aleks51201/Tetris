@@ -88,7 +88,14 @@ public class Figure : MonoBehaviour, IControlable
     {
         currentState.OnCollisionEnter2DState(this, collision);
     }
-
+    private void OnEnable()
+    {
+        currentState.OnEnableState(this); 
+    }
+    private void OnDisable()
+    {
+        currentState.OnDisableState(this); 
+    }
     public void Move(float direct)
     {
         this.inputX = direct;
@@ -203,7 +210,7 @@ public class Figure : MonoBehaviour, IControlable
                 return childObjects[i];
             }
         }
-        throw new NullReferenceException("Ghost not found");
+        throw new NullReferenceException($"Ghost not found {childObjects}");
     }
 
     public List<Transform> GetAllChildCell()

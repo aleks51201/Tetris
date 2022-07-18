@@ -28,10 +28,16 @@ public class UIControl : MonoBehaviour
     public void OnRestartButtonPressed() //перезапуск сцены
     {
         SceneTransition.SwitchScene("PhisicOne");
+
+        if (pauseGane != null)
+            pauseGane.ContinueGame();
     }
     public void OnMenuButtonPressed() //загрузка сцены меню
     {
          SceneTransition.SwitchScene("Menu");
+        
+        if (pauseGane != null)
+            pauseGane.ContinueGame();
     }
     public void OnContinueButtonPressed() // возобновление процесса игры 
     {

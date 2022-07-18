@@ -10,6 +10,8 @@ public abstract class FigureBaseState
     public abstract void OnTriggerExit2DState(Figure tetromino, Collider2D collision);
     public abstract void OnCollisionStay2DState(Figure tetromino, Collision2D collision);
     public abstract void OnCollisionEnter2DState(Figure tetromino, Collision2D collision);
+    public abstract void OnEnableState(Figure tetromino);
+    public abstract void OnDisableState(Figure tetromino);
     public abstract void ExitState(Figure tetromino);
 }
 

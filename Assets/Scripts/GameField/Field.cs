@@ -160,6 +160,11 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
     private void OnDisable()
     {
         BusEvent.OnLoseGameEvent -= OnLoseGame;
+
+        BusEvent.OnAddObjectToQueueEvent -= Create;
+        BusEvent.OnQueueFullEvent -= OnQueueFull;
+        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        BusEvent.OnLoseGameEvent -= OnLoseGame;
     }
 
 }
