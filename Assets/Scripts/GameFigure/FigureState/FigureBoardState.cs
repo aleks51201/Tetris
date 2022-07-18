@@ -10,12 +10,12 @@ class FigureBoardState : FigureBaseState
         BusEvent.OnSwitchTerominoEvent += OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         tetr = tetromino;
-        figure = tetromino.tetromino;        
+        figure = tetromino.tetromino;
     }
 
     public override void ExitState(Figure tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;        
+        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
     }
 
     public override void FixedUpdateState(Figure tetromino)
@@ -25,7 +25,7 @@ class FigureBoardState : FigureBaseState
 
     public override void OnCollisionEnter2DState(Figure tetromino, Collision2D collision)
     {
-        
+
     }
 
     public override void OnCollisionStay2DState(Figure tetromino, Collision2D collision)
@@ -36,12 +36,22 @@ class FigureBoardState : FigureBaseState
     public override void OnTriggerEnter2DState(Figure tetromino, Collider2D collision)
     {
         tetromino.SetNeighborsCoordinates(collision);
-        
+
     }
 
     public override void OnTriggerExit2DState(Figure tetromino, Collider2D collision)
     {
         tetromino.RemoveNeighborsCoordinates(collision);
+    }
+
+    public override void OnEnableState(Figure tetromino)
+    {
+    }
+
+    public override void OnDisableState(Figure tetromino)
+    {
+        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+        //BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
     }
 
     public override void UpdateState(Figure tetromino)
@@ -55,7 +65,7 @@ class FigureBoardState : FigureBaseState
         {
             tetromino.HandleRotate();
             tetromino.rotate = false;
-        }    
+        }
         tetromino.HandleAcceleration();
     }
     private void StartTetrominoSettigs(Figure tetromino)
@@ -71,11 +81,12 @@ class FigureBoardState : FigureBaseState
     }
     private void OnDeleteTetromino(GameObject figure)
     {
-        if (figure==this.figure)
+        if (figure == this.figure)
         {
             BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         }
     }
+
 }
 

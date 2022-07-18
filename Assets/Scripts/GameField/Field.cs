@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
+public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable 
 {
     [Header("Teromino list")]
     public GameObject[] tetrominoCollection;
@@ -130,6 +130,14 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
     {
         return collider.CompareTag("Figure");
     }
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void ContinueGame()
+    {
+        Time.timeScale = 1;
+    }
 
     private void FixedUpdate()
     {
@@ -139,7 +147,7 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
     private void Start()
     {
         queueField = new QueueField(sizeQueue, queueShift);
-        Create();
+       
         gameStash = new Stash(figureStashSpawnPosition, figureSpawnPosition);
     }
     private void OnEnable()
@@ -151,6 +159,11 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
     }
     private void OnDisable()
     {
+        BusEvent.OnLoseGameEvent -= OnLoseGame;
+
+        BusEvent.OnAddObjectToQueueEvent -= Create;
+        BusEvent.OnQueueFullEvent -= OnQueueFull;
+        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnLoseGameEvent -= OnLoseGame;
     }
 
