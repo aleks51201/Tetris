@@ -10,7 +10,8 @@ public class SceneTransition : MonoBehaviour
     public static void SwitchScene(string sceneName)
     {
         
-        instance.loadingSceneOperation = SceneManager.LoadSceneAsync(sceneName);
+        //instance.loadingSceneOperation = SceneManager.LoadSceneAsync(sceneName);
+        SceneManager.LoadSceneAsync(sceneName);
         //instance.loadingSceneOperation.allowSceneActivation = true;
     }
     void Start()
