@@ -11,7 +11,8 @@ public class UIControl : MonoBehaviour
 
     public void OnPlayButtonPressed() //начинает игровой цикл после попадания на сцену
     {
-        startGame.SetActive(false);
+        StartCoroutine(TurnOff(startGame, 0.55f));
+        startGame.GetComponent<Animator>().SetTrigger("StartDisappear");
         inGame.SetActive(true);
         
         if (createFigure != null)
@@ -19,8 +20,8 @@ public class UIControl : MonoBehaviour
     }
     public void OnPauseButtonPressed() //приостанавливает текущие процессы до возобновления по кнопке придолжить
     {
-
-        inGame.SetActive(false);
+        StartCoroutine(TurnOff(inGame, 0.75f));
+        inGame.GetComponent<Animator>().SetTrigger("InGameDisappear");
         pause.SetActive(true);
         if (pauseGane != null)
             pauseGane.PauseGame();
@@ -34,25 +35,32 @@ public class UIControl : MonoBehaviour
     }
     public void OnMenuButtonPressed() //загрузка сцены меню
     {
-         SceneTransition.SwitchScene("Menu");
+        welcomePanel.GetComponent<Animator>().SetTrigger("OnLoad");
+         SceneTransition.SwitchScene("Menu");  //дёргать после анимации 0.75f секунды
         
+
         if (pauseGane != null)
             pauseGane.ContinueGame();
     }
     public void OnContinueButtonPressed() // возобновление процесса игры 
     {
-        pause.SetActive(false);
+        StartCoroutine(TurnOff(pause, 0.75f));
+        pause.GetComponent<Animator>().SetTrigger("PauseDisappear");
         inGame.SetActive(true);
         if (pauseGane != null)
             pauseGane.ContinueGame();
     }
-    IEnumerator TurnOff()
+
+    IEnumerator TurnOff(GameObject Who, float Time)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(Time);
+        Who.SetActive(false);
     }
     private void Start()
     {
          createFigure = gameField.GetComponent<ICreatable>();
         pauseGane = gameField.GetComponent<IPauseable>();
+        //StartCoroutine(TurnOff(welcomePanel, 0.75f));
+        welcomePanel.GetComponent<Animator>().SetTrigger("AfterLoad");
     }
 }

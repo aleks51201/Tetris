@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4477079455984478975}
   - component: {fileID: 581594790885021899}
   - component: {fileID: 8020072974631172817}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ghost
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949509990211658837}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -0.5, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: -0.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5126781749461953260}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!68 &581594790885021899
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -49,15 +49,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5, y: -0.5}
+  - {x: -2.5, y: -0.5}
+  - {x: -2.5, y: 0.5}
   - {x: -0.5, y: 0.5}
-  - {x: -1.5, y: 0.5}
-  - {x: -1.5, y: 2.5}
-  - {x: -0.5, y: 2.5}
   - {x: -0.5, y: 1.5}
   - {x: 0.5, y: 1.5}
   - {x: 0.5, y: -0.5}
-  - {x: -0.5, y: -0.5}
+  - {x: -2.5, y: -0.5}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -94,9 +92,9 @@ GameObject:
   - component: {fileID: 5126781749461953260}
   - component: {fileID: 2325785515874130257}
   - component: {fileID: 6758802158980170314}
-  - component: {fileID: 7912011176378467431}
+  - component: {fileID: 8597350386794211332}
   m_Layer: 0
-  m_Name: FigureZ
+  m_Name: FigureJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,20 +157,18 @@ EdgeCollider2D:
   m_Offset: {x: 0.5, y: -0.5}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.5, y: 1.5}
-  - {x: 0.5, y: 1.5}
-  - {x: 0.5, y: 0.5}
-  - {x: -0.5, y: 0.5}
-  - {x: -0.5, y: -0.5}
   - {x: -2.5, y: -0.5}
   - {x: -2.5, y: 0.5}
-  - {x: -1.5, y: 0.5}
-  - {x: -1.5, y: 1.5}
+  - {x: -0.5, y: 0.5}
+  - {x: -0.5, y: 1.5}
+  - {x: 0.5, y: 1.5}
+  - {x: 0.5, y: -0.5}
+  - {x: -2.5, y: -0.5}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &7912011176378467431
+--- !u!114 &8597350386794211332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,11 +201,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LinearOffset.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_CorrectionScale
@@ -221,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 3041842001664945333}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_AutoConfigureOffset
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_Mass
@@ -314,7 +310,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7452184419499644812, guid: 2710408b5a546d148a176bab331b095f, type: 3}
   m_PrefabInstance: {fileID: 616666355041846313}
   m_PrefabAsset: {fileID: 0}
---- !u!255 &8155854759003899804
+--- !u!255 &1547748955043777672
 FixedJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,7 +328,7 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: 1, y: 0}
   m_DampingRatio: 1
   m_Frequency: 1000000
---- !u!114 &6988971166372422756
+--- !u!114 &5548650634197754430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,11 +358,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LinearOffset.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_CorrectionScale
@@ -376,10 +372,6 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 3041842001664945333}
-    - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
-      propertyPath: m_AutoConfigureOffset
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_Mass
       value: 1
@@ -466,7 +458,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7452184419499644812, guid: 2710408b5a546d148a176bab331b095f, type: 3}
   m_PrefabInstance: {fileID: 956293573256104603}
   m_PrefabAsset: {fileID: 0}
---- !u!255 &3771115543391936744
+--- !u!255 &8865210697802537837
 FixedJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,10 +473,10 @@ FixedJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 1, y: 0}
+  m_ConnectedAnchor: {x: -0, y: 1}
   m_DampingRatio: 1
   m_Frequency: 1000000
---- !u!114 &8534335779868093271
+--- !u!114 &4470845740214655662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -535,7 +527,7 @@ PrefabInstance:
       objectReference: {fileID: 5814484783777811755}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_AutoConfigureOffset
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_Mass
@@ -628,7 +620,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7452184419499644812, guid: 2710408b5a546d148a176bab331b095f, type: 3}
   m_PrefabInstance: {fileID: 6488555260149284867}
   m_PrefabAsset: {fileID: 0}
---- !u!255 &1345136607038608034
+--- !u!255 &205368272334806897
 FixedJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -646,7 +638,7 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: -1, y: 0}
   m_DampingRatio: 1
   m_Frequency: 1000000
---- !u!114 &4639022451316352945
+--- !u!114 &5789105941828034188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -676,11 +668,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LinearOffset.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LinearOffset.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_CorrectionScale
@@ -692,7 +684,7 @@ PrefabInstance:
       objectReference: {fileID: 6159387322424132505}
     - target: {fileID: 1798468453486646890, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_AutoConfigureOffset
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6359053892831529218, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_Mass
@@ -716,11 +708,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7433256404648167308, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7433256404648167308, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7433256404648167308, guid: 2710408b5a546d148a176bab331b095f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -780,7 +772,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7452184419499644812, guid: 2710408b5a546d148a176bab331b095f, type: 3}
   m_PrefabInstance: {fileID: 8217150662527673783}
   m_PrefabAsset: {fileID: 0}
---- !u!255 &4352458920383465310
+--- !u!255 &246976943923861462
 FixedJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -795,10 +787,10 @@ FixedJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0, y: 1}
+  m_ConnectedAnchor: {x: 1, y: 0}
   m_DampingRatio: 1
   m_Frequency: 1000000
---- !u!114 &2330799692299024060
+--- !u!114 &1475736628948133036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
