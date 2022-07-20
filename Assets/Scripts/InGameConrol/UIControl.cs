@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UIControl : MonoBehaviour
 {
@@ -14,7 +12,7 @@ public class UIControl : MonoBehaviour
         StartCoroutine(TurnOff(startGame, 0.55f));
         startGame.GetComponent<Animator>().SetTrigger("StartDisappear");
         inGame.SetActive(true);
-        
+
         if (createFigure != null)
             createFigure.Create();
     }
@@ -34,7 +32,7 @@ public class UIControl : MonoBehaviour
     }
     public void OnMenuButtonPressed() //загрузка сцены меню
     {
-         SceneTransition.SwitchScene("Menu");  //дёргать после анимации 0.75f секунды
+        SceneTransition.SwitchScene("Menu");  //дёргать после анимации 0.75f секунды
         if (pauseGane != null)
             pauseGane.ContinueGame();
     }
@@ -54,9 +52,8 @@ public class UIControl : MonoBehaviour
     }
     private void Start()
     {
-         createFigure = gameField.GetComponent<ICreatable>();
+        createFigure = gameField.GetComponent<ICreatable>();
         pauseGane = gameField.GetComponent<IPauseable>();
-        //StartCoroutine(TurnOff(welcomePanel, 0.75f));
         welcomePanel.GetComponent<Animator>().SetTrigger("AfterLoad");
     }
 }

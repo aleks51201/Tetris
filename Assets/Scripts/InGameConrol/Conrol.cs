@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Conrol : MonoBehaviour
 {
     public GameObject gameField;
     private GameObject inGameTetromino;
-    
+
 
     private void OnEnable()
     {
@@ -14,7 +13,7 @@ public class Conrol : MonoBehaviour
     }
     private void OnDisable()
     {
-       BusEvent.OnSpawnTetrominoEvent -= OnCreateTetromino;
+        BusEvent.OnSpawnTetrominoEvent -= OnCreateTetromino;
     }
 
     private void OnCreateTetromino(GameObject newTetromino)
@@ -43,7 +42,7 @@ public class Conrol : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                
+
                 IControlable figure = inGameTetromino.GetComponent<IControlable>();
                 if (this.inGameTetromino != null)
                     figure.Acceleration(1);
@@ -55,16 +54,6 @@ public class Conrol : MonoBehaviour
                     figure.Acceleration(-1);
             }
         }
-
-/*        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ICreatable tetrominoCreate = gameField?.GetComponent<ICreatable>();
-            if (tetrominoCreate != null)
-            {
-                tetrominoCreate.Create();
-            }
-            
-        }*/
         if (Input.GetKeyDown(KeyCode.F))
         {
             ISwitchTetromino tetrominoSwitch = gameField?.GetComponent<ISwitchTetromino>();
@@ -72,7 +61,7 @@ public class Conrol : MonoBehaviour
             {
                 tetrominoSwitch.SwitchTetromino();
             }
-            
+
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {

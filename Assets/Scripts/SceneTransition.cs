@@ -19,11 +19,6 @@ public class SceneTransition : MonoBehaviour
         instance = this;
         componentAnimator = GetComponent<Animator>();
     }
-
-    void Update()
-    {
-        
-    }
     public void OnAnimationOver()
     {
         loadingSceneOperation.allowSceneActivation = true; 
