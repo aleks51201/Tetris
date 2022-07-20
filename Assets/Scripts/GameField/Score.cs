@@ -4,8 +4,6 @@ class Score
 {
     public int point = 0;
     private Vector2 startPosition;
-    //private Vector2 endPosition;
-
 
     public Score()
     {
