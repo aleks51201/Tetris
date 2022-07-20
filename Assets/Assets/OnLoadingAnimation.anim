@@ -115,7 +115,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.75
-    functionName: ReadyToChange
+    functionName: OnAnimationOver
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: d35884598b99ff84198dfc1dbf168839, type: 3}
     floatParameter: 0
