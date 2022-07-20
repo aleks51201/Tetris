@@ -1,7 +1,8 @@
+using TMPro;
 using UnityEngine;
 
 
-public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable 
+public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
 {
     [Header("Teromino list")]
     public GameObject[] tetrominoCollection;
@@ -28,7 +29,11 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
     private float queueShift;
     [SerializeField]
     private Vector2 figureStashSpawnPosition;
-    
+    [SerializeField]
+    private TextMeshProUGUI scorePanel;
+    [SerializeField]
+    private GameObject losePanel;
+
 
     private QueueField queueField;
     private Stash gameStash;
@@ -105,11 +110,11 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
         this.currentTetrominoInGame = queueField.queueOfTetromino.Dequeue();
         BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
         this.currentTetrominoInGame.transform.position = figureSpawnPosition;
-        Debug.Log("Score: "+gameScore.point);
+        Debug.Log("Score: " + gameScore.point);
     }
     public void SwitchTetromino()
     {
-        if (gameStash.isItSwithcable) 
+        if (gameStash.isItSwithcable)
         {
             GameObject newTetromino = gameStash.SwitchTetromino(this.currentTetrominoInGame);
             this.currentTetrominoInGame = newTetromino;
@@ -125,6 +130,7 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
     private void OnLoseGame()
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        losePanel.SetActive(true);
     }
     public bool IsLose(Collider2D collider)
     {
@@ -138,16 +144,21 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
     {
         Time.timeScale = 1;
     }
+    private void ScoreUpdate()
+    {
+        scorePanel.text = $"{gameScore.point}";
+    }
 
     private void FixedUpdate()
     {
         PatroDetector(this.detectorStartPosition);
+        ScoreUpdate();
     }
 
     private void Start()
     {
         queueField = new QueueField(sizeQueue, queueShift);
-       
+
         gameStash = new Stash(figureStashSpawnPosition, figureSpawnPosition);
     }
     private void OnEnable()

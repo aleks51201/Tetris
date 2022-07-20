@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ public class Figure : MonoBehaviour, IControlable
 
     private Dictionary<Type, FigureBaseState> statesMap;
     private FigureBaseState currentState;
-    
+
 
 
     private bool isDelete = true;
@@ -57,7 +56,7 @@ public class Figure : MonoBehaviour, IControlable
     }
     private void Start()
     {
-        
+
     }
 
     private void Update()
@@ -90,11 +89,11 @@ public class Figure : MonoBehaviour, IControlable
     }
     private void OnEnable()
     {
-        currentState.OnEnableState(this); 
+        currentState.OnEnableState(this);
     }
     private void OnDisable()
     {
-        currentState.OnDisableState(this); 
+        currentState.OnDisableState(this);
     }
     public void Move(float direct)
     {
@@ -109,7 +108,7 @@ public class Figure : MonoBehaviour, IControlable
             Vector2 newPosition = GetCurrentPosition() + positionOffset;
 
             this.tetromino.transform.position = newPosition;
-        }   
+        }
     }
 
     public void Acceleration(sbyte toggle)
@@ -119,14 +118,14 @@ public class Figure : MonoBehaviour, IControlable
 
     public void HandleAcceleration()
     {
-        if (accelerate==1)
+        if (accelerate == 1)
         {
             // this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -6);
             this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -0.001f), ForceMode2D.Impulse);
             BusEvent.OnStartAccelerationEvent?.Invoke(GetCurrentPosition());
             accelerate = 0;
-        }            
-        else if(accelerate == -1)
+        }
+        else if (accelerate == -1)
         {
             //this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -3);
             BusEvent.OnEndAccelerationEvent?.Invoke(GetCurrentPosition());
@@ -176,7 +175,7 @@ public class Figure : MonoBehaviour, IControlable
             this.tetromino.transform.DetachChildren();
             Destroy(this.tetromino);
             isDelete = false;
-        }       
+        }
     }
 
     private void DestroyGhost()
