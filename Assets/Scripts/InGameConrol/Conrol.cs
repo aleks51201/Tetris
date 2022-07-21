@@ -5,14 +5,17 @@ public class Conrol : MonoBehaviour
 {
     public GameObject gameField;
     private GameObject inGameTetromino;
+    private bool isPaused = false;
 
 
     private void OnEnable()
     {
+        BusEvent.OnPauseEvent += OnPause;
         BusEvent.OnSpawnTetrominoEvent += OnCreateTetromino;
     }
     private void OnDisable()
     {
+        BusEvent.OnPauseEvent -= OnPause;
         BusEvent.OnSpawnTetrominoEvent -= OnCreateTetromino;
     }
 
@@ -20,8 +23,15 @@ public class Conrol : MonoBehaviour
     {
         this.inGameTetromino = newTetromino;
     }
+    private void OnPause(bool isPaused)
+    {
+        this.isPaused = isPaused;
+    }
+    
     void Update()
     {
+        if (isPaused)
+            return;
         if (inGameTetromino != null)
         {
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))

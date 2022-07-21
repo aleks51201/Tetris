@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 
-public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
+public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
 {
     [Header("Teromino list")]
     public GameObject[] tetrominoCollection;
@@ -30,7 +30,9 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
     [SerializeField]
     private Vector2 figureStashSpawnPosition;
     [SerializeField]
-    private TextMeshProUGUI scorePanel;
+    private TextMeshProUGUI loseScorePanel;
+    [SerializeField]
+    private TextMeshPro scorePanel;
     [SerializeField]
     private GameObject losePanel;
 
@@ -131,18 +133,37 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         losePanel.SetActive(true);
+        loseScorePanel.text = $"{gameScore.point}";
     }
     public bool IsLose(Collider2D collider)
     {
         return collider.CompareTag("Figure");
     }
-    public void PauseGame()
+    /*    public void SetPaused(bool isPaused)
+        {
+            if (isPaused)
+                Time.timeScale = 0;
+            else
+                Time.timeScale = 1;
+        }*//*
+        public void ContinueGame()
+        {
+            Time.timeScale = 1;
+        }*/
+    private void IsPaused(bool isPaused)
     {
-        Time.timeScale = 0;
-    }
-    public void ContinueGame()
-    {
-        Time.timeScale = 1;
+        Rigidbody2D tetromino = this.currentTetrominoInGame.GetComponent<Rigidbody2D>();
+        Vector2 currentVelocity = tetromino.velocity;
+        if (isPaused)
+        {
+            tetromino.isKinematic = true;
+            tetromino.velocity = new Vector2(0, 0);
+        }
+        else
+        {
+            tetromino.isKinematic = false;
+            tetromino.velocity = currentVelocity;
+        }
     }
     private void ScoreUpdate()
     {
@@ -167,15 +188,16 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino, IPauseable
         BusEvent.OnQueueFullEvent += OnQueueFull;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnLoseGameEvent += OnLoseGame;
+        BusEvent.OnPauseEvent += IsPaused;
     }
     private void OnDisable()
     {
         BusEvent.OnLoseGameEvent -= OnLoseGame;
-
         BusEvent.OnAddObjectToQueueEvent -= Create;
         BusEvent.OnQueueFullEvent -= OnQueueFull;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnLoseGameEvent -= OnLoseGame;
+        BusEvent.OnPauseEvent -= IsPaused;
     }
 
 }

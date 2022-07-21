@@ -38,6 +38,10 @@ public class MenuControls : MonoBehaviour
     {
         Loading.SetActive(true);
     }
+    public void OnModeChangeClisk()
+    {
+        SceneTransition.SwitchScene("PhisicOne");
+    }
 
     IEnumerator SetUnActive()
     {
