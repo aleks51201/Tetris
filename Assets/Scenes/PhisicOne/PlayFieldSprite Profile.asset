@@ -27,13 +27,12 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
-  <displayName>k__BackingField: 
   threshold:
     m_OverrideState: 0
     m_Value: 0.9
   intensity:
     m_OverrideState: 1
-    m_Value: 391.08
+    m_Value: 2
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -42,11 +41,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 0
-    m_Value:
-      r: 1
-      g: 1
-      b: 1
-      a: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
