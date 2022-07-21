@@ -13,5 +13,6 @@ public static class BusEvent
     public static Action<int> OnNewPointsEvent;
     public static Action<Vector2> OnStartAccelerationEvent;
     public static Action<Vector2> OnEndAccelerationEvent;
+    public static Action<bool> OnPauseEvent;
 }
 

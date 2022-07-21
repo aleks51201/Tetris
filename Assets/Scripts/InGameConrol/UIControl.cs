@@ -12,7 +12,6 @@ public class UIControl : MonoBehaviour
         StartCoroutine(TurnOff(startGame, 0.55f));
         startGame.GetComponent<Animator>().SetTrigger("StartDisappear");
         inGame.SetActive(true);
-
         if (createFigure != null)
             createFigure.Create();
     }
@@ -21,8 +20,7 @@ public class UIControl : MonoBehaviour
         StartCoroutine(TurnOff(inGame, 0.75f));
         inGame.GetComponent<Animator>().SetTrigger("InGameDisappear");
         pause.SetActive(true);
-        if (pauseGane != null)
-            pauseGane.PauseGame();
+        OnButtonClicked(true);
     }
     public void OnRestartButtonPressed() //перезапуск сцены
     {
@@ -41,10 +39,17 @@ public class UIControl : MonoBehaviour
         StartCoroutine(TurnOff(pause, 0.75f));
         pause.GetComponent<Animator>().SetTrigger("PauseDisappear");
         inGame.SetActive(true);
-        if (pauseGane != null)
-            pauseGane.ContinueGame();
+        OnButtonClicked(false);
     }
-
+    private void OnButtonClicked(bool isPaused)
+    {
+        //ProjectContext.Instance.PauseManager.SetPaused(isPaused);
+        BusEvent.OnPauseEvent?.Invoke(isPaused);
+    }
+    private void OnLose()
+    {
+        inGame.GetComponent<Animator>().SetTrigger("InGameDisappear");
+    }
     IEnumerator TurnOff(GameObject Who, float Time)
     {
         yield return new WaitForSeconds(Time);
@@ -55,5 +60,13 @@ public class UIControl : MonoBehaviour
         createFigure = gameField.GetComponent<ICreatable>();
         pauseGane = gameField.GetComponent<IPauseable>();
         welcomePanel.GetComponent<Animator>().SetTrigger("AfterLoad");
+    }
+    private void OnEnable()
+    {
+        BusEvent.OnLoseGameEvent += OnLose;
+    }
+    private void OnDisable()
+    {
+        BusEvent.OnLoseGameEvent -= OnLose;
     }
 }
