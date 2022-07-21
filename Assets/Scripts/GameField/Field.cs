@@ -76,9 +76,15 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
     private void CheckLineFull(RaycastHit2D[] detectedObject)
     {
         if (detectedObject.Length >= widthField * 2)//???? '2'
-            DestroyObject(detectedObject);
+            StartAnimation(detectedObject);
     }
-
+    private void StartAnimation(RaycastHit2D[] detectedObject)
+    {
+       foreach(RaycastHit2D cell in detectedObject)
+        {
+            cell.transform.GetComponent<Animator>().SetTrigger("Break");
+        }
+    }
     public void DestroyObject(RaycastHit2D[] listOfDetectionObject)
     {
         foreach (RaycastHit2D i in listOfDetectionObject)
@@ -139,17 +145,6 @@ public class Field : MonoBehaviour, ICreatable, ISwitchTetromino
     {
         return collider.CompareTag("Figure");
     }
-    /*    public void SetPaused(bool isPaused)
-        {
-            if (isPaused)
-                Time.timeScale = 0;
-            else
-                Time.timeScale = 1;
-        }*//*
-        public void ContinueGame()
-        {
-            Time.timeScale = 1;
-        }*/
     private void IsPaused(bool isPaused)
     {
         Rigidbody2D tetromino = this.currentTetrominoInGame.GetComponent<Rigidbody2D>();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class Figure : MonoBehaviour, IControlable
     [System.NonSerialized] public bool rotate;
     [SerializeField] public GameObject tetromino;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField]
+    private GameObject Particle;
 
     private List<GameObject> rightNeighbours = new();
     private List<GameObject> leftNeighbours = new();
@@ -166,15 +169,20 @@ public class Figure : MonoBehaviour, IControlable
         return colorArray[random.Next(0, colorArray.Length)];
     }
 
+    private void ParticleStart()
+    {
+        GameObject newParticle = Instantiate(Particle, GetCurrentPosition(), Quaternion.identity);
+    }
     private void Dissolve()
     {
         if (isDelete)
         {
+            ParticleStart();
+            isDelete = false;
             DestroyGhost();
             BusEvent.OnDeleteTetrominoEvent?.Invoke(this.tetromino);
             this.tetromino.transform.DetachChildren();
             Destroy(this.tetromino);
-            isDelete = false;
         }
     }
 
@@ -186,7 +194,7 @@ public class Figure : MonoBehaviour, IControlable
     public void DeletingAStopped()
     {
         if (this.tetromino.GetComponent<Rigidbody2D>().velocity.y > -0.5f && this.tetromino != null)
-            Dissolve();
+           Dissolve();
     }
 
     public Vector2 GetCurrentPosition()

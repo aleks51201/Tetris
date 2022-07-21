@@ -39,4 +39,8 @@ public class Cell : MonoBehaviour
         this.childCell.layer = nummerateLayer;
     }
 
+    public void DestoyCell()
+    {
+        Destroy(this.childCell);
+    }
 }
