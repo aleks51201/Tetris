@@ -63,7 +63,7 @@ class FigureStashState : FigureBaseState
 
     public override void OnDisableState(FigureFirstMode tetromino)
     {
-       // BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
+        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
     }
 }
 
