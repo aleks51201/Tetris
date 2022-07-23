@@ -51,7 +51,7 @@ class FigureBoardState : FigureBaseState
     public override void OnDisableState(FigureFirstMode tetromino)
     {
         BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
-        //BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
     }
 
     public override void UpdateState(FigureFirstMode tetromino)

@@ -72,7 +72,7 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
     }
     private void CheckLineFull(RaycastHit2D[] detectedObject)
     {
-        if (detectedObject.Length >= widthField * 2)//???? '2'
+        if (detectedObject.Length == widthField * 2)//???? '2'
             StartAnimation(detectedObject);
     }
     private void StartAnimation(RaycastHit2D[] detectedObject)
