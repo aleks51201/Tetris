@@ -171,14 +171,14 @@ public class FigureFirstMode : FigureBase
 
     private void ParticleStart()
     {
-        GameObject newParticle = Instantiate(Particle, GetCurrentPosition(), Quaternion.identity);
+        Instantiate(Particle, GetCurrentPosition(), Quaternion.identity);
     }
     private void Dissolve()
     {
         if (isDelete)
         {
-            ParticleStart();
             isDelete = false;
+            ParticleStart();
             DestroyGhost();
             BusEvent.OnDeleteTetrominoEvent?.Invoke(this.tetromino);
             this.tetromino.transform.DetachChildren();
@@ -186,15 +186,15 @@ public class FigureFirstMode : FigureBase
         }
     }
 
-    private void DestroyGhost()
-    {
-        Destroy(GetChildGhost().gameObject);
-    }
-
     public void DeletingAStopped()
     {
         if (this.tetromino.GetComponent<Rigidbody2D>().velocity.y > -0.5f && this.tetromino != null)
            Dissolve();
+    }
+
+    private void DestroyGhost()
+    {
+        Destroy(GetChildGhost().gameObject);
     }
 
     public Vector2 GetCurrentPosition()
