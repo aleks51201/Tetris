@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5126781749461953260}
   - component: {fileID: 2325785515874130257}
   - component: {fileID: 6758802158980170314}
-  - component: {fileID: 8597350386794211332}
+  - component: {fileID: 4090890696389586767}
   m_Layer: 0
   m_Name: FigureL
   m_TagString: Untagged
@@ -168,7 +168,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &8597350386794211332
+--- !u!114 &4090890696389586767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7282206318598379046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd06bcac0f00ad94cad0c05acbb74037, type: 3}
+  m_Script: {fileID: 11500000, guid: 441ce37ea4ed4284b8add34e3e4375da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tetromino: {fileID: 7282206318598379046}

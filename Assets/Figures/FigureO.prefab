@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1973464015535785011}
   - component: {fileID: 1828620543760245015}
   - component: {fileID: 6317667681756847066}
-  - component: {fileID: 2831387357108459741}
+  - component: {fileID: 3728190883397949061}
   m_Layer: 0
   m_Name: FigureO
   m_TagString: Untagged
@@ -86,7 +86,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!114 &2831387357108459741
+--- !u!114 &3728190883397949061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1033829597125089875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd06bcac0f00ad94cad0c05acbb74037, type: 3}
+  m_Script: {fileID: 11500000, guid: 441ce37ea4ed4284b8add34e3e4375da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tetromino: {fileID: 1033829597125089875}
