@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Cell : MonoBehaviour
@@ -8,7 +7,7 @@ public class Cell : MonoBehaviour
 
     private void OnEnable()
     {
-       BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
+        BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
     }
 
     private void OnDisable()
@@ -28,7 +27,7 @@ public class Cell : MonoBehaviour
 
     public void IsRigidBody2DKinematic(bool isKinematic)
     {
-        this.childCell.GetComponent<Rigidbody2D>().isKinematic= isKinematic;
+        this.childCell.GetComponent<Rigidbody2D>().isKinematic = isKinematic;
     }
     public void IsColider2DEnaled(bool isEnabled)
     {
@@ -42,5 +41,21 @@ public class Cell : MonoBehaviour
     public void DestoyCell()
     {
         Destroy(this.childCell);
+    }
+    private void ChangeLayerDependingOnVelocity()
+    {
+        bool cellKinematic = this.childCell.GetComponent<Rigidbody2D>().isKinematic;
+        if (!cellKinematic)
+        {
+            Vector2 cellVelocity = this.childCell.GetComponent<Rigidbody2D>().velocity;
+            if (cellVelocity.y < -0.5f)
+                this.childCell.layer = LayerMask.NameToLayer("Neon");
+            else if (cellVelocity.y >= -0.5f)
+                this.childCell.layer = LayerMask.NameToLayer("Detection");
+        }
+    }
+    private void FixedUpdate()
+    {
+        ChangeLayerDependingOnVelocity();
     }
 }
