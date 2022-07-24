@@ -11,6 +11,7 @@ class LineDetector
     private int widthField = 0;
     private int numObjectOnLine;
     private LayerMask maskName;
+    private int numLine = 0;
 
     public LineDetector(int heightField,int widthField,LayerMask detectorMaskName,int objectOnLine)
     {
@@ -24,21 +25,20 @@ class LineDetector
         return Physics2D.RaycastAll(detectorPosition, Vector2.right, this.widthField, maskName);
     }
 
-   public int PatrolDetector(Vector2 detectorStartPosition)
+   public void PatrolDetector(Vector2 detectorStartPosition)
     {
         Vector2 newPosition;
-        int numLine = 0;
+        this.numLine = 0;
         for (int i = 0; i < this.heightField; i++)
         {
             newPosition = detectorStartPosition + new Vector2(0, i);
             if (GetDetectionObject(newPosition).Length == 0)
                 break;
             RaycastHit2D[] detectedObject = GetDetectionObject(newPosition);
-            StartDestroyObject(detectedObject);
-            if (isLineFull(detectedObject))
-                numLine++;
+             if (isLineFull(detectedObject))
+                this.numLine++;
+           StartDestroyObject(detectedObject);
         }
-        return numLine;
     }
     private bool isLineFull(RaycastHit2D[] detectedObject)
     {

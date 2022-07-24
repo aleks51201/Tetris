@@ -26,7 +26,7 @@ class FigureSecondModeBoardState : FigureSecondModeBaseState
 
     public override void OnCollisionStay2DState(FigureSecondMode tetromino, Collision2D collision)
     {
-/*        tetromino.Disolve();*/
+        tetromino.DeletingAStopped();
     }
 
     public override void OnDisableState(FigureSecondMode tetromino)

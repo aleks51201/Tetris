@@ -99,6 +99,10 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
         }
     }
 
+    private protected void Scoring(RaycastHit2D[] detectedObjects)
+    {
+        gameScore.AddPoint(detectedObjects.Length / numObjectOnLine*100);
+    }
     private protected void OnDeleteTetromino(GameObject fig)
     {
         SpawnTetromino();

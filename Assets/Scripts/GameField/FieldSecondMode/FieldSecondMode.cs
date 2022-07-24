@@ -1,4 +1,5 @@
-﻿class FieldSecondMode : FieldBase
+﻿using UnityEngine;
+class FieldSecondMode : FieldBase
 {
     private void Update()
     {
@@ -24,6 +25,7 @@
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnPauseEvent += IsPaused;
         BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
+        BusEvent.OnLineIsFullEvent += Scoring;
         BusEvent.OnKeyDownEvent += SwitchTetromino;
 
     }
@@ -36,6 +38,7 @@
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnPauseEvent -= IsPaused;
         BusEvent.OnLineIsFullEvent -= StartDestroyAnimation;
+        BusEvent.OnLineIsFullEvent -= Scoring;
         BusEvent.OnKeyDownEvent -= SwitchTetromino;
     }
 
