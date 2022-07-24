@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 78455512854432470}
   - component: {fileID: 4389085655588910272}
   - component: {fileID: 7125628547904670746}
-  - component: {fileID: 8945202687196736424}
   - component: {fileID: 2526813615355793115}
   - component: {fileID: 5864670307504714469}
+  - component: {fileID: 8393194977585850586}
   m_Layer: 7
   m_Name: 0 1
   m_TagString: Figure
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 269571439937481294}
   m_Enabled: 0
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
+  m_Material: {fileID: 6200000, guid: 46c6d27b9aab29241a1b437fa06177e9, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -128,11 +128,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 800
-  m_LinearDrag: 3
+  m_Mass: 0.0001
+  m_LinearDrag: 2
   m_AngularDrag: 5
   m_GravityScale: 0.8
-  m_Material: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
+  m_Material: {fileID: 6200000, guid: 46c6d27b9aab29241a1b437fa06177e9, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -163,25 +163,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0.03
---- !u!254 &8945202687196736424
-RelativeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 269571439937481294}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_MaxForce: 10000
-  m_MaxTorque: 10000
-  m_CorrectionScale: 0.5
-  m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.5, y: 0.5}
-  m_AngularOffset: 0
 --- !u!95 &2526813615355793115
 Animator:
   serializedVersion: 4
@@ -215,3 +196,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   childCell: {fileID: 269571439937481294}
+--- !u!255 &8393194977585850586
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269571439937481294}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_DampingRatio: 0
+  m_Frequency: 0
