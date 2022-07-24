@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIControl : MonoBehaviour
 {
     public GameObject welcomePanel, inGame, pause, lose, startGame, gameField;
     ICreatable createFigure;
     IPauseable pauseGane;
+    private string currentSceneName;
 
     public void OnPlayButtonPressed() //начинает игровой цикл после попадания на сцену
     {
@@ -24,7 +26,7 @@ public class UIControl : MonoBehaviour
     }
     public void OnRestartButtonPressed() //перезапуск сцены
     {
-        SceneTransition.SwitchScene("PhisicOne");
+        SceneTransition.SwitchScene(currentSceneName);
         if (pauseGane != null)
             pauseGane.ContinueGame();
     }
@@ -60,6 +62,7 @@ public class UIControl : MonoBehaviour
         createFigure = gameField.GetComponent<ICreatable>();
         pauseGane = gameField.GetComponent<IPauseable>();
         welcomePanel.GetComponent<Animator>().SetTrigger("AfterLoad");
+        currentSceneName = SceneManager.GetActiveScene().name;
     }
     private void OnEnable()
     {

@@ -14,5 +14,12 @@ public static class BusEvent
     public static Action<Vector2> OnStartAccelerationEvent;
     public static Action<Vector2> OnEndAccelerationEvent;
     public static Action<bool> OnPauseEvent;
+    public static Action<RaycastHit2D[]> OnLineIsFullEvent;
+    public static Action<int> OnAddScoreEvent;
+
+    //input system
+    public static Action<KeyCode,float> OnKeyDownEvent;
+    public static Action<KeyCode,float> OnKeyUpEvent;
+    public static Action<KeyCode, float> OnKeyHoldEvent;
 }
 

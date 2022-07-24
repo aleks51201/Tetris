@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public interface IControlable
 {
-    public void Move(float direct);
-    public void Acceleration(sbyte toggle);
-    public void Rotate(bool toggle);
+    public void Move(KeyCode keyCode,float direct);
+    public void Acceleration(KeyCode keyCode,float direct);
+    public void Rotate(KeyCode keyCode,float direct);
 }

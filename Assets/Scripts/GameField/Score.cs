@@ -2,7 +2,7 @@
 
 class Score
 {
-    public int point = 0;
+    public int Point { get; private set; }
     private Vector2 startPosition;
 
     public Score()
@@ -13,7 +13,8 @@ class Score
 
     public void AddPoint(int points)
     {
-        this.point += points;
+        this.Point += points;
+        BusEvent.OnAddScoreEvent?.Invoke(this.Point);
     }
     private void OnStartAcceleration(Vector2 startPosition)
     {

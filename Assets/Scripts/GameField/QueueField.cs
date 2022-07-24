@@ -3,7 +3,7 @@ using UnityEngine;
 
 class QueueField
 {
-    int queueLength = 0;
+    private int queueLength = 0;
     public Queue<GameObject> queueOfTetromino;
     private float shift;
 
