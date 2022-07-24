@@ -11,7 +11,7 @@ public class FigureSecondMode : FigureBase
     [SerializeField]
     private ForceMode2D moveForceMode;
     [SerializeField]
-    [Range(0,1)]
+    [Min(0)]
     private float movePower;
 
     [Header("Rotate")]
@@ -24,7 +24,7 @@ public class FigureSecondMode : FigureBase
     [SerializeField]
     private ForceMode2D accelerateForceMode;
     [SerializeField]
-    [Range(0,1)]
+    [Min(0)]
     private float acceleratePower;
 
     private Dictionary<Type, FigureSecondModeBaseState> statesMap;

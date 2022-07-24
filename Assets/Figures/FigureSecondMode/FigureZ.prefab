@@ -50,10 +50,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 140.22
   m_LinearDrag: 2
   m_AngularDrag: 1
-  m_GravityScale: 0.8
+  m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: fc01784a963e6d54b9490dc8722a523a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -100,10 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04775d7fd2697b84aba26c887ebefc25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
   tetromino: {fileID: 2944621786190280042}
+  particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
   moveForceMode: 0
-  movePower: 0.021
+  movePower: 350
   rotateForceMode: 1
   torque: 10
   accelerateForceMode: 0

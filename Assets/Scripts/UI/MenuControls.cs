@@ -38,9 +38,13 @@ public class MenuControls : MonoBehaviour
     {
         Loading.SetActive(true);
     }
-    public void OnModeChangeClisk()
+     public void OnModeChangeFirstClisk()
     {
         SceneTransition.SwitchScene("PhisicOne");
+    }
+   public void OnModeChangeSecondClisk()
+    {
+        SceneTransition.SwitchScene("PhisicTwo");
     }
 
     IEnumerator SetUnActive()
