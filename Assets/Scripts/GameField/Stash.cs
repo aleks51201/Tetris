@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-class Stash
+public class Stash
 {
     private GameObject currentTetromino;
     private Vector2 stashPosition;
@@ -41,9 +41,6 @@ class Stash
         return outputFigure;
     }
     
-
-
-
     private void OnDeleteTetromino(GameObject _)
     {
         this.isItSwithcable = true;

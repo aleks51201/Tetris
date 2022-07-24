@@ -1,23 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-class FieldSecondMode: FieldBase
+﻿class FieldSecondMode : FieldBase
 {
-    [Header("Field size")]
-    [SerializeField]
-    private int fieldWidth;
-    [SerializeField]
-    private int fieldHeight;
+    private void Update()
+    {
+    }
+    private void FixedUpdate()
+    {
+        gameLineDetector.PatrolDetector(lineDetectorPosition);
+    }
+    private void Start()
+    {
+        gameStash = new(stashPosition, spawnPosition);
+        gameQueue = new(queueSize, queueShift);
+        gameScore = new();
+        gameLineDetector = new(this.fieldHeight, this.fieldWidth, this.maskName, this.numObjectOnLine);
+    }
 
-    [Header("Tetromino positions")]
-    [SerializeField]
-    private Vector2 spawnPosition;
-    [SerializeField]
-    private Vector2 queuePosition;
-    [SerializeField]
-    private Vector2 stashPosition;
+    private void OnEnable()
+    {
+        BusEvent.OnAddObjectToQueueEvent += Create;
+        BusEvent.OnQueueFullEvent += OnQueueFull;
+        BusEvent.OnAddScoreEvent += OnAddScore;
+        BusEvent.OnLoseGameEvent += OnLoseGame;
+        BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
+        BusEvent.OnPauseEvent += IsPaused;
+        BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
+        BusEvent.OnKeyDownEvent += SwitchTetromino;
+
+    }
+    private void OnDisable()
+    {
+        BusEvent.OnAddObjectToQueueEvent -= Create;
+        BusEvent.OnQueueFullEvent -= OnQueueFull;
+        BusEvent.OnAddScoreEvent -= OnAddScore;
+        BusEvent.OnLoseGameEvent -= OnLoseGame;
+        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        BusEvent.OnPauseEvent -= IsPaused;
+        BusEvent.OnLineIsFullEvent -= StartDestroyAnimation;
+        BusEvent.OnKeyDownEvent -= SwitchTetromino;
+    }
+
 }

@@ -6,21 +6,24 @@ class FigureBoardState : FigureBaseState
     private GameObject figure;
     public override void EnterState(FigureFirstMode tetromino)
     {
+        tetr = tetromino;
+        figure = tetromino.tetromino;
+
         StartTetrominoSettigs(tetromino);
         BusEvent.OnSwitchTerominoEvent += OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
-        tetr = tetromino;
-        figure = tetromino.tetromino;
+        BusEvent.OnKeyDownEvent += tetr.Move;
+        BusEvent.OnKeyDownEvent += tetr.Rotate;
+        BusEvent.OnKeyDownEvent += tetr.Acceleration;
     }
 
     public override void ExitState(FigureFirstMode tetromino)
     {
         BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
-    }
-
-    public override void FixedUpdateState(FigureFirstMode tetromino)
-    {
-
+        
+        BusEvent.OnKeyDownEvent -= tetr.Move;
+        BusEvent.OnKeyDownEvent -= tetr.Rotate;
+        BusEvent.OnKeyDownEvent -= tetr.Acceleration;
     }
 
     public override void OnCollisionEnter2DState(FigureFirstMode tetromino, Collision2D collision)
@@ -44,29 +47,18 @@ class FigureBoardState : FigureBaseState
         tetromino.RemoveNeighborsCoordinates(collision);
     }
 
-    public override void OnEnableState(FigureFirstMode tetromino)
-    {
-    }
-
     public override void OnDisableState(FigureFirstMode tetromino)
     {
         BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        
+        BusEvent.OnKeyDownEvent -= tetr.Move;
+        BusEvent.OnKeyDownEvent -= tetr.Rotate;
+        BusEvent.OnKeyDownEvent -= tetr.Acceleration;
     }
 
     public override void UpdateState(FigureFirstMode tetromino)
     {
-        if (tetromino.inputX != 0)
-        {
-            tetromino.HandleMove();
-            tetromino.inputX = 0;
-        }
-        if (tetromino.rotate)
-        {
-            tetromino.HandleRotate();
-            tetromino.rotate = false;
-        }
-        tetromino.HandleAcceleration();
     }
     private void StartTetrominoSettigs(FigureFirstMode tetromino)
     {

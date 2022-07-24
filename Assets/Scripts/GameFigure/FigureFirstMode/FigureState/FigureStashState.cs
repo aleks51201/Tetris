@@ -15,11 +15,6 @@ class FigureStashState : FigureBaseState
         BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
     }
 
-    public override void FixedUpdateState(FigureFirstMode tetromino)
-    {
-
-    }
-
     public override void OnCollisionEnter2DState(FigureFirstMode tetromino, Collision2D collision)
     {
 
@@ -55,10 +50,6 @@ class FigureStashState : FigureBaseState
     {
         FigureBaseState state = this.tetr.GetState<FigureBoardState>();
         tetr.SetState(state);
-    }
-
-    public override void OnEnableState(FigureFirstMode tetromino)
-    {
     }
 
     public override void OnDisableState(FigureFirstMode tetromino)

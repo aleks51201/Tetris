@@ -1,5 +1,6 @@
-﻿interface ISwitchTetromino
+﻿using UnityEngine;
+interface ISwitchTetromino
 {
-    public void SwitchTetromino();
+    public void SwitchTetromino(KeyCode keyCode,float _);
 }
 

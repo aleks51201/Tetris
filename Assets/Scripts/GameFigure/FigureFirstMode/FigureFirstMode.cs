@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class FigureFirstMode : FigureBase 
+public class FigureFirstMode : FigureBase
 {
-    [System.NonSerialized] public float inputX;
-    [System.NonSerialized] public sbyte accelerate;
-    [System.NonSerialized] public bool rotate;
-    [SerializeField] public GameObject tetromino;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField]
-    private GameObject Particle;
 
     private List<GameObject> rightNeighbours = new();
     private List<GameObject> leftNeighbours = new();
@@ -57,20 +50,11 @@ public class FigureFirstMode : FigureBase
         InitState();
         SetStateByDefault();
     }
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         currentState.UpdateState(this);
     }
 
-    private void FixedUpdate()
-    {
-        currentState.FixedUpdateState(this);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -90,62 +74,39 @@ public class FigureFirstMode : FigureBase
     {
         currentState.OnCollisionEnter2DState(this, collision);
     }
-    private void OnEnable()
-    {
-        currentState.OnEnableState(this);
-    }
     private void OnDisable()
     {
         currentState.OnDisableState(this);
     }
-    public override void Move(float direct)
+    public override void Move(KeyCode keyCode, float direct)
     {
-        this.inputX = direct;
-    }
-
-    public void HandleMove()
-    {
-        if (IsNeighborsEmpty(this.inputX))
+        if (keyCode != KeyCode.A)
+            return;
+        if (IsNeighborsEmpty(direct))
         {
-            Vector2 positionOffset = new Vector2(inputX, 0);
+            Vector2 positionOffset = new Vector2(direct, 0);
             Vector2 newPosition = GetCurrentPosition() + positionOffset;
 
             this.tetromino.transform.position = newPosition;
         }
     }
 
-    public override void Acceleration(sbyte toggle)
+
+    public override void Acceleration(KeyCode keyCode, float direct)
     {
-        accelerate = toggle;
+        if (keyCode != KeyCode.S)
+            return;
+        this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -0.001f), ForceMode2D.Impulse);
     }
 
-    public void HandleAcceleration()
+    public override void Rotate(KeyCode keyCode, float direct)
     {
-        if (accelerate == 1)
-        {
-            // this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -6);
-            this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -0.001f), ForceMode2D.Impulse);
-            BusEvent.OnStartAccelerationEvent?.Invoke(GetCurrentPosition());
-            accelerate = 0;
-        }
-        else if (accelerate == -1)
-        {
-            //this.tetromino.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -3);
-            BusEvent.OnEndAccelerationEvent?.Invoke(GetCurrentPosition());
-            accelerate = 0;
-        }
-    }
-
-    public override void Rotate(bool toggle)
-    {
-        this.rotate = toggle;
-    }
-
-    public void HandleRotate()
-    {
+        if (keyCode != KeyCode.R)
+            return;
         if (!IsRotateAllowed())
             this.tetromino.transform.Rotate(new Vector3(0f, 0f, 1), 90, Space.Self);
     }
+
 
     private bool IsRotateAllowed()
     {
@@ -153,7 +114,8 @@ public class FigureFirstMode : FigureBase
         return ghost.IsTouchingLayers(layerMask);
     }
 
-    public void ColorationCell()
+
+    public override void ColorationCell()
     {
         Color hue = RandomColorFigureGame();
         foreach (Transform cell in GetAllChildCell())
@@ -161,19 +123,15 @@ public class FigureFirstMode : FigureBase
             cell.GetComponent<SpriteRenderer>().color = hue;
         }
     }
-
-    private Color RandomColorFigureGame()
+    private protected override Color RandomColorFigureGame()
     {
         System.Random random = new();
         Color[] colorArray = ColorDataHolder.colorInGameFigure;
         return colorArray[random.Next(0, colorArray.Length)];
+
     }
 
-    private void ParticleStart()
-    {
-        Instantiate(Particle, GetCurrentPosition(), Quaternion.identity);
-    }
-    private void Dissolve()
+    private protected override void Dissolve()
     {
         if (isDelete)
         {
@@ -184,12 +142,12 @@ public class FigureFirstMode : FigureBase
             this.tetromino.transform.DetachChildren();
             Destroy(this.tetromino);
         }
-    }
 
+    }
     public void DeletingAStopped()
     {
         if (this.tetromino.GetComponent<Rigidbody2D>().velocity.y > -0.5f && this.tetromino != null)
-           Dissolve();
+            Dissolve();
     }
 
     private void DestroyGhost()
@@ -197,15 +155,12 @@ public class FigureFirstMode : FigureBase
         Destroy(GetChildGhost().gameObject);
     }
 
-    public Vector2 GetCurrentPosition()
+    public override Vector2 GetCurrentPosition()
     {
         return this.tetromino.transform.position;
+
     }
 
-    public Transform[] GetAllChildObject()
-    {
-        return this.tetromino.GetComponentsInChildren<Transform>()[1..^0];
-    }
 
     public Transform GetChildGhost()
     {
@@ -236,7 +191,7 @@ public class FigureFirstMode : FigureBase
         return childCells;
     }
 
-    public List<Vector3> GetCoodinate()
+    public override List<Vector3> GetChildCoordinate()
     {
         List<Vector3> coordinates = new();
         foreach (Transform child in GetAllChildCell())//?????
@@ -252,7 +207,7 @@ public class FigureFirstMode : FigureBase
         Vector3 rightNeighbor = unallocatedCoordinate;
         Vector3 leftNeighbor = unallocatedCoordinate;
 
-        foreach (Vector3 childCoordinate in GetCoodinate())
+        foreach (Vector3 childCoordinate in GetChildCoordinate())
         {
             if (childCoordinate.x <= unallocatedCoordinate.x)
             {
@@ -287,5 +242,6 @@ public class FigureFirstMode : FigureBase
                 throw new NullReferenceException("IsNeighborsEmpty: don't have any direction");
         }
     }
+
 }
 

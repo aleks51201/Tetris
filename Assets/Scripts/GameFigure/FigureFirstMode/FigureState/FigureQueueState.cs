@@ -17,12 +17,6 @@ class FigureQueueState : FigureBaseState
     {
         BusEvent.OnSpawnTetrominoEvent -= ToBoard;
     }
-
-    public override void FixedUpdateState(FigureFirstMode tetromino)
-    {
-
-    }
-
     public override void OnCollisionEnter2DState(FigureFirstMode tetromino, Collision2D collision)
     {
 
@@ -37,11 +31,6 @@ class FigureQueueState : FigureBaseState
     {
       //  BusEvent.OnSpawnTetrominoEvent -= ToBoard;
     }
-
-    public override void OnEnableState(FigureFirstMode tetromino)
-    {
-    }
-
     public override void OnTriggerEnter2DState(FigureFirstMode tetromino, Collider2D collision)
     {
 

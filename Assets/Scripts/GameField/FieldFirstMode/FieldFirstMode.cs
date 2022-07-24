@@ -73,9 +73,9 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
     private void CheckLineFull(RaycastHit2D[] detectedObject)
     {
         if (detectedObject.Length == widthField * 2)//???? '2'
-            StartAnimation(detectedObject);
+            StartDestroyAnimation(detectedObject);
     }
-    private void StartAnimation(RaycastHit2D[] detectedObject)
+    private void StartDestroyAnimation(RaycastHit2D[] detectedObject)
     {
        foreach(RaycastHit2D cell in detectedObject)
         {
@@ -115,10 +115,12 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
         this.currentTetrominoInGame = queueField.queueOfTetromino.Dequeue();
         BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
         this.currentTetrominoInGame.transform.position = figureSpawnPosition;
-        Debug.Log("Score: " + gameScore.point);
+        Debug.Log("Score: " + gameScore.Point);
     }
-    public void SwitchTetromino()
+    public void SwitchTetromino(KeyCode keyCode, float _)
     {
+        if (keyCode != KeyCode.F)
+            return;
         if (gameStash.isItSwithcable)
         {
             GameObject newTetromino = gameStash.SwitchTetromino(this.currentTetrominoInGame);
@@ -136,7 +138,7 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         losePanel.SetActive(true);
-        loseScorePanel.text = $"{gameScore.point}";
+        loseScorePanel.text = $"{gameScore.Point}";
     }
     public bool IsLose(Collider2D collider)
     {
@@ -159,7 +161,7 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
     }
     private void ScoreUpdate()
     {
-        scorePanel.text = $"{gameScore.point}";
+        scorePanel.text = $"{gameScore.Point}";
     }
 
     private void FixedUpdate()
@@ -180,6 +182,7 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnLoseGameEvent += OnLoseGame;
         BusEvent.OnPauseEvent += IsPaused;
+        BusEvent.OnKeyDownEvent += SwitchTetromino;
     }
     private void OnDisable()
     {
@@ -189,6 +192,7 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnLoseGameEvent -= OnLoseGame;
         BusEvent.OnPauseEvent -= IsPaused;
+        BusEvent.OnKeyDownEvent -= SwitchTetromino;
     }
 
 }
