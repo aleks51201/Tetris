@@ -45,39 +45,6 @@ public class FigureFirstMode : FigureBase
         SetState(stateByDefault);
     }
 
-    private void Awake()
-    {
-        InitState();
-        SetStateByDefault();
-    }
-    private void Update()
-    {
-        currentState.UpdateState(this);
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        currentState.OnTriggerEnter2DState(this, collision);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        currentState.OnTriggerExit2DState(this, collision);
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        currentState.OnCollisionStay2DState(this, collision);
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        currentState.OnCollisionEnter2DState(this, collision);
-    }
-    private void OnDisable()
-    {
-        currentState.OnDisableState(this);
-    }
     public override void Move(KeyCode keyCode, float direct)
     {
         if (keyCode != KeyCode.A)
@@ -191,9 +158,9 @@ public class FigureFirstMode : FigureBase
         return childCells;
     }
 
-    public override List<Vector3> GetChildCoordinate()
+    public override List<Vector2> GetChildCoordinate()
     {
-        List<Vector3> coordinates = new();
+        List<Vector2> coordinates = new();
         foreach (Transform child in GetAllChildCell())//?????
         {
             coordinates.Add(child.position);
@@ -241,6 +208,39 @@ public class FigureFirstMode : FigureBase
             default:
                 throw new NullReferenceException("IsNeighborsEmpty: don't have any direction");
         }
+    }
+    private void Awake()
+    {
+        InitState();
+        SetStateByDefault();
+    }
+    private void Update()
+    {
+        currentState.UpdateState(this);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        currentState.OnTriggerEnter2DState(this, collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        currentState.OnTriggerExit2DState(this, collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        currentState.OnCollisionStay2DState(this, collision);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        currentState.OnCollisionEnter2DState(this, collision);
+    }
+    private void OnDisable()
+    {
+        currentState.OnDisableState(this);
     }
 
 }

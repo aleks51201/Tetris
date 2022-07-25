@@ -119,9 +119,9 @@ public class FigureSecondMode : FigureBase
         return this.tetromino.transform.position;
     }
 
-    public override List<Vector3> GetChildCoordinate()
+    public override List<Vector2> GetChildCoordinate()
     {
-        List<Vector3> coordinates = new();
+        List<Vector2> coordinates = new();
         foreach (Transform child in GetAllChildObject())
         {
             coordinates.Add(child.position);

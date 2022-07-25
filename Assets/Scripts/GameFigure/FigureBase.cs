@@ -15,7 +15,7 @@ public abstract class FigureBase: MonoBehaviour,IControlable
     public abstract void ColorationCell();
     private protected abstract void Dissolve();
     public abstract Vector2 GetCurrentPosition();
-    public abstract List<Vector3> GetChildCoordinate();
+    public abstract List<Vector2> GetChildCoordinate();
     private protected abstract Color RandomColorFigureGame();
     private protected virtual void ParticleStart()
     {
