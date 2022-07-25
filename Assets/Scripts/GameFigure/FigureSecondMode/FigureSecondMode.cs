@@ -72,7 +72,7 @@ public class FigureSecondMode : FigureBase
         if (keyCode != KeyCode.R)
             return;
         Rigidbody2D body = this.tetromino.GetComponent<Rigidbody2D>();
-        float impulse = (torque* Mathf.Deg2Rad) * body.inertia;
+        float impulse = (torque* Mathf.Deg2Rad) * body.inertia*direct;
         body.AddTorque(impulse, rotateForceMode);
     }
 

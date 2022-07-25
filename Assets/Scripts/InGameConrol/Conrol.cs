@@ -45,9 +45,13 @@ public class Conrol : MonoBehaviour
                 BusEvent.OnKeyHoldEvent?.Invoke(KeyCode.A, call);
             }
         }
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.E))
         {
-            BusEvent.OnKeyHoldEvent?.Invoke(KeyCode.R, 0);
+            BusEvent.OnKeyHoldEvent?.Invoke(KeyCode.R, 1);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            BusEvent.OnKeyHoldEvent?.Invoke(KeyCode.R, -1);
         }
         if (Input.GetKey(KeyCode.S))
         {

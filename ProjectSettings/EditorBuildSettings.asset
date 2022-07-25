@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PhisicOne.unity
     guid: f4dc7195c443e504887c143893abf8f0
+  - enabled: 1
+    path: Assets/Scenes/PhisicTwo.unity
+    guid: 5e0e3581782e33a478fee6c7c2b4ba96
   m_configObjects: {}
