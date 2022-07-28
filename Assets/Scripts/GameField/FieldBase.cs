@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
@@ -35,13 +36,6 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     [SerializeField]
     private protected GameObject losePanel;
 
-    [Header("Line detector")]
-    [SerializeField]
-    private protected Vector2 lineDetectorPosition;
-    [SerializeField]
-    private protected LayerMask maskName;
-    [SerializeField]
-    private protected int numObjectOnLine;
 
 
     private protected GameObject currentTetrominoInGame;
@@ -49,6 +43,8 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     private protected QueueField gameQueue;
     private protected LineDetector gameLineDetector;
     private protected Score gameScore;
+
+    private protected abstract void SpawnTetromino();
 
     public void Create()
     {
@@ -70,15 +66,8 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
         BusEvent.OnAddObjectToQueueEvent -= Create;
         BusEvent.OnQueueFullEvent -= OnQueueFull;
     }
-    private protected void SpawnTetromino()
-    {
-        Create();
-        this.currentTetrominoInGame = gameQueue.queueOfTetromino.Dequeue();
-        BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
-        this.currentTetrominoInGame.transform.position = spawnPosition;
-    }
 
-    public void SwitchTetromino(KeyCode keyCode,float _)
+    public void SwitchTetromino(KeyCode keyCode, float _)
     {
         if (keyCode != KeyCode.F)
             return;
@@ -98,11 +87,15 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
             cell.transform.GetComponent<Animator>().SetTrigger("Break");
         }
     }
-
-    private protected void Scoring(RaycastHit2D[] detectedObjects)
+    private protected void StartDestroyAnimation(List<Transform> detectedObject)
     {
-        gameScore.AddPoint(detectedObjects.Length / numObjectOnLine*100);
+        foreach (Transform cell in detectedObject)
+        {
+            cell.GetComponent<Animator>().SetTrigger("Break");
+        }
+
     }
+
     private protected void OnDeleteTetromino(GameObject fig)
     {
         SpawnTetromino();

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-
-class FigureSecondModeQueueState : FigureSecondModeBaseState
+internal class FigureSecondModeQueueState : FigureSecondModeBaseState
 {
     private GameObject figure;
     private FigureSecondMode tetr;
@@ -26,7 +25,7 @@ class FigureSecondModeQueueState : FigureSecondModeBaseState
 
     public override void OnDisableState(FigureSecondMode tetromino)
     {
-      //  BusEvent.OnSpawnTetrominoEvent -= ToBoard;
+        BusEvent.OnSpawnTetrominoEvent -= ToBoard;
     }
 
     public override void UpdateState(FigureSecondMode tetromino)

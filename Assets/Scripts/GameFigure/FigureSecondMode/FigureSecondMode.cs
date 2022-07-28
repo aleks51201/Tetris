@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class FigureSecondMode : FigureBase
@@ -34,13 +31,15 @@ public class FigureSecondMode : FigureBase
 
     private void InitState()
     {
-        this.statesMap = new Dictionary<Type, FigureSecondModeBaseState>();
-        this.statesMap[typeof(FigureSecondModeQueueState)] = new FigureSecondModeQueueState();
-        this.statesMap[typeof(FigureSecondModeBoardState)] = new FigureSecondModeBoardState();
-        this.statesMap[typeof(FigureSecondModeStashState)] = new FigureSecondModeStashState();
+        this.statesMap = new Dictionary<Type, FigureSecondModeBaseState>
+        {
+            [typeof(FigureSecondModeQueueState)] = new FigureSecondModeQueueState(),
+            [typeof(FigureSecondModeBoardState)] = new FigureSecondModeBoardState(),
+            [typeof(FigureSecondModeStashState)] = new FigureSecondModeStashState()
+        };
     }
 
-    public  void SetState(FigureSecondModeBaseState newBehaviour)
+    public void SetState(FigureSecondModeBaseState newBehaviour)
     {
         if (this.currentState != null)
             this.currentState.ExitState(this);
@@ -50,37 +49,37 @@ public class FigureSecondMode : FigureBase
 
     public FigureSecondModeBaseState GetState<T>() where T : FigureSecondModeBaseState
     {
-        var type = typeof(T);
+        Type type = typeof(T);
         return this.statesMap[type];
     }
 
     private void SetStateByDefault()
     {
-        var stateByDefault = this.GetState<FigureSecondModeQueueState>();
+        FigureSecondModeBaseState stateByDefault = this.GetState<FigureSecondModeQueueState>();
         SetState(stateByDefault);
     }
 
-    public override void Move(KeyCode keyCode,float direct)
+    public override void Move(KeyCode keyCode, float direct)
     {
         if (keyCode != KeyCode.A)
             return;
-        this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(movePower*direct,0), moveForceMode);
+        this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(movePower * direct, 0), moveForceMode);
     }
 
-    public override void Rotate(KeyCode keyCode,float direct)
+    public override void Rotate(KeyCode keyCode, float direct)
     {
         if (keyCode != KeyCode.R)
             return;
         Rigidbody2D body = this.tetromino.GetComponent<Rigidbody2D>();
-        float impulse = (torque* Mathf.Deg2Rad) * body.inertia*direct;
+        float impulse = (torque * Mathf.Deg2Rad) * body.inertia * direct;
         body.AddTorque(impulse, rotateForceMode);
     }
 
-    public override void Acceleration(KeyCode keyCode,float direct)
+    public override void Acceleration(KeyCode keyCode, float direct)
     {
         if (keyCode != KeyCode.S)
             return;
-        this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,acceleratePower * -1), accelerateForceMode);
+        this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, acceleratePower * -1), accelerateForceMode);
     }
 
     public override void ColorationCell()

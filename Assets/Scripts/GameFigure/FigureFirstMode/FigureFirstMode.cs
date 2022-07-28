@@ -19,10 +19,12 @@ public class FigureFirstMode : FigureBase
 
     private void InitState()
     {
-        this.statesMap = new Dictionary<Type, FigureBaseState>();
-        this.statesMap[typeof(FigureQueueState)] = new FigureQueueState();
-        this.statesMap[typeof(FigureBoardState)] = new FigureBoardState();
-        this.statesMap[typeof(FigureStashState)] = new FigureStashState();
+        this.statesMap = new Dictionary<Type, FigureBaseState>
+        {
+            [typeof(FigureQueueState)] = new FigureQueueState(),
+            [typeof(FigureBoardState)] = new FigureBoardState(),
+            [typeof(FigureStashState)] = new FigureStashState()
+        };
     }
 
     public void SetState(FigureBaseState newBehaviour)
@@ -35,13 +37,13 @@ public class FigureFirstMode : FigureBase
 
     public FigureBaseState GetState<T>() where T : FigureBaseState
     {
-        var type = typeof(T);
+        Type type = typeof(T);
         return this.statesMap[type];
     }
 
     private void SetStateByDefault()
     {
-        var stateByDefault = this.GetState<FigureQueueState>();
+        FigureBaseState stateByDefault = this.GetState<FigureQueueState>();
         SetState(stateByDefault);
     }
 

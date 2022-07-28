@@ -77,7 +77,7 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
     }
     private void StartDestroyAnimation(RaycastHit2D[] detectedObject)
     {
-       foreach(RaycastHit2D cell in detectedObject)
+        foreach (RaycastHit2D cell in detectedObject)
         {
             cell.transform.GetComponent<Animator>().SetTrigger("Break");
         }

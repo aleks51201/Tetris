@@ -16,6 +16,8 @@ public static class BusEvent
     public static Action<bool> OnPauseEvent;
     public static Action<RaycastHit2D[]> OnLineIsFullEvent;
     public static Action<int> OnAddScoreEvent;
+    public static Action OnCollisionEnterEvent;
+    public static Action OnCellDestroyEvent;
 
     //input system
     public static Action<KeyCode,float> OnKeyDownEvent;

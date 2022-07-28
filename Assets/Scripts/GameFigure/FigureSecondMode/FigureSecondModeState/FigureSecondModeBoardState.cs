@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-class FigureSecondModeBoardState : FigureSecondModeBaseState
+internal class FigureSecondModeBoardState : FigureSecondModeBaseState
 {
-    FigureSecondMode tetr;
+    private FigureSecondMode tetr;
     private GameObject figure;
     public override void EnterState(FigureSecondMode tetromino)
     {
@@ -48,7 +48,7 @@ class FigureSecondModeBoardState : FigureSecondModeBaseState
     }
     private void OnSwitchTeromino()
     {
-       FigureSecondModeBaseState state = this.tetr.GetState<FigureSecondModeStashState>();
+        FigureSecondModeBaseState state = this.tetr.GetState<FigureSecondModeStashState>();
         tetr.SetState(state);
 
     }

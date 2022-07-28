@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class FigureBase: MonoBehaviour,IControlable
+public abstract class FigureBase : MonoBehaviour, IControlable
 {
-    [SerializeField] 
+    [SerializeField]
     public GameObject tetromino;
     [SerializeField]
     private protected GameObject particle;

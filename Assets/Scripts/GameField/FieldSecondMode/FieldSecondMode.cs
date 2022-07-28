@@ -1,6 +1,27 @@
 ﻿using UnityEngine;
-class FieldSecondMode : FieldBase
+
+internal class FieldSecondMode : FieldBase
 {
+    [Header("Line detector")]
+    [SerializeField]
+    private protected Vector2 lineDetectorPosition;
+    [SerializeField]
+    private protected LayerMask maskName;
+    [SerializeField]
+    private protected int numObjectOnLine;
+
+    private protected override void SpawnTetromino()
+    {
+        Create();
+        this.currentTetrominoInGame = gameQueue.queueOfTetromino.Dequeue();
+        BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
+        this.currentTetrominoInGame.transform.position = spawnPosition;
+    }
+    private protected void Scoring(RaycastHit2D[] detectedObjects)
+    {
+        gameScore.AddPoint(detectedObjects.Length / numObjectOnLine * 100);
+    }
+
     private void Update()
     {
     }

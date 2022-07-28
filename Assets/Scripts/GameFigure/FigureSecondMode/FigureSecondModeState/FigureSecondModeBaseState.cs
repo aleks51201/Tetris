@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public abstract class FigureSecondModeBaseState 
+public abstract class FigureSecondModeBaseState
 {
     public abstract void EnterState(FigureSecondMode tetromino);
     public abstract void UpdateState(FigureSecondMode tetromino);
