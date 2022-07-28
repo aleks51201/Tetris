@@ -14,7 +14,7 @@ public class FieldThirdMode : FieldBase
     private List<List<Transform>> matrixField = new();
     private int spawnSpace = 2;
     private float delay;
-        private List<Transform> detectedObjects;
+    private List<Transform> detectedObjects;
 
     private void CreateMatixField()
     {
@@ -111,30 +111,78 @@ public class FieldThirdMode : FieldBase
     {
         return detectedObject.Count / this.fieldWidth;
     }
-    private void MatrixShift(int shift)
+    private List<List<Transform>> CreateMatrix(int x, int y)
     {
-        Transform cell;
-        for(int i=0; i < matrixField.Count; i++)
+        List<List<Transform>> newList = new();
+        for (int i = 0; i < y + spawnSpace; i++)
         {
-            if (i < shift)
-                continue;
-            this.matrixField[i - shift] = this.matrixField[i];
-            for(int j=0; j < this.matrixField[i].Count; j++)
+            newList.Add(new List<Transform>());
+            for (int j = 0; j < x; j++)
             {
-                cell = this.matrixField[i][j];
-                if (cell == null)
-                    continue;
-                cell.position = new Vector2(j, i - shift);
+                newList[i].Add(null);
             }
         }
+
+        /*        for(int i=0; i < y; i++)
+                {
+                    newList[i] = new List<Transform>();
+                    for(int j = 0; j < x; j++)
+                    {
+                        newList[i][j] = null;
+                    }
+                }
+        */
+        return newList;
+    }
+
+    private void MatrixShift(int shift)
+    {
+        List<List<Transform>> newList = CreateMatrix(this.fieldWidth, this.fieldHeight);
+        /*        Transform cell;
+                for(int i=0; i < matrixField.Count; i++)
+                {
+                    if (i < shift)
+                        continue;
+                    this.matrixField[i - shift] = this.matrixField[i];
+                    for(int j=0; j < this.matrixField[i].Count; j++)
+                    {
+                        cell = this.matrixField[i][j];
+                        if (cell == null)
+                            continue;
+                        cell.position = new Vector2(j, i - shift);
+                    }
+                }
+        */
+        int l = 0;
+        for (int i = 0; i < this.matrixField.Count; i++)
+        {
+            int n = 0;
+            foreach (Transform array in this.matrixField[i])
+            {
+                if (array != null)
+                {
+                    n++;
+                    Vector2 oldPosition = array.position;
+                    Vector2 newPosition = new Vector2(oldPosition.x, l);
+                    array.position = newPosition;
+                }
+            }
+            if (n > 0)
+            {
+                newList[l] = matrixField[i];
+                l++;
+            }
+        }
+
+        matrixField = newList;
     }
     private void AddScore()
     {
-        gameScore.AddPoint(NumLine(LineDetector())*100);
+        gameScore.AddPoint(NumLine(LineDetector()) * 100);
     }
     private bool IsLineFull(List<Transform> lineForCheck)
     {
-        for(int i=0; i < lineForCheck.Count; i++)
+        for (int i = 0; i < lineForCheck.Count; i++)
         {
             if (lineForCheck[i] == null)
                 return false;
@@ -143,19 +191,36 @@ public class FieldThirdMode : FieldBase
     }
     private bool IsFullDetectedList(List<Transform> detectedObjects)
     {
-        return detectedObjects.Count>=this.fieldWidth && detectedObjects.Count % this.fieldWidth==0;
+        return detectedObjects.Count >= this.fieldWidth && detectedObjects.Count % this.fieldWidth == 0;
     }
 
     private IEnumerator AfterDestroyAnimation()
     {
         yield return new WaitForSeconds(0.9f);
-            MatrixShift(NumLine(detectedObjects));
-            AddScore();
+        MatrixShift(NumLine(detectedObjects));
+        AddScore();
+    }
+    private void PrintMatrixField()
+    {
+        string line = "";
+        for (int i = this.matrixField.Count - 1; i >= 0; i--)
+        {
+            for (int j = 0; j < this.matrixField[i].Count; j++)
+            {
+                if (this.matrixField[i][j] == null)
+                    line += 0;
+                else
+                    line += 1 + " ";
+            }
+            line += "\n";
+        }
+        Debug.Log(line);
     }
     private protected void EndContolTetromino()
     {
         AddMatrixTetromino(GetChildObject);
         detectedObjects = LineDetector();
+        PrintMatrixField();
         if (IsFullDetectedList(detectedObjects))
         {
             StartDestroyAnimation(detectedObjects);
