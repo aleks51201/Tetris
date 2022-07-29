@@ -46,6 +46,10 @@ public class MenuControls : MonoBehaviour
     {
         SceneTransition.SwitchScene("PhisicTwo");
     }
+   public void OnModeChangeThirdClisk()
+    {
+        SceneTransition.SwitchScene("MatrixOne");
+    }
 
     IEnumerator SetUnActive()
     {
