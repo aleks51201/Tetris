@@ -110,21 +110,7 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     {
         return collider.CompareTag("Figure");
     }
-    private protected void IsPaused(bool isPaused)
-    {
-        Rigidbody2D tetromino = this.currentTetrominoInGame.GetComponent<Rigidbody2D>();
-        Vector2 currentVelocity = tetromino.velocity;
-        if (isPaused)
-        {
-            tetromino.isKinematic = true;
-            tetromino.velocity = new Vector2(0, 0);
-        }
-        else
-        {
-            tetromino.isKinematic = false;
-            tetromino.velocity = currentVelocity;
-        }
-    }
+    private protected abstract void IsPaused(bool isPaused);
     private protected void OnAddScore(int point)
     {
         scorePanel.text = $"{point}";

@@ -36,6 +36,8 @@ public class Conrol : MonoBehaviour
     }*/
     private void FixedUpdate()
     {
+        if (isPaused)
+            return;
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -60,6 +62,9 @@ public class Conrol : MonoBehaviour
     }
     void Update()
     {
+        if (isPaused)
+            return;
+
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
             float call = Input.GetAxisRaw("Horizontal");
@@ -83,6 +88,10 @@ public class Conrol : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             BusEvent.OnKeyDownEvent?.Invoke(KeyCode.F, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BusEvent.OnKeyDownEvent?.Invoke(KeyCode.Escape, 0);
         }
 
 

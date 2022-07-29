@@ -21,6 +21,21 @@ internal class FieldSecondMode : FieldBase
     {
         gameScore.AddPoint(detectedObjects.Length / numObjectOnLine * 100);
     }
+    private protected override void IsPaused(bool isPaused)
+    {
+        Rigidbody2D tetromino = this.currentTetrominoInGame.GetComponent<Rigidbody2D>();
+        Vector2 currentVelocity = tetromino.velocity;
+        if (isPaused)
+        {
+            tetromino.isKinematic = true;
+            tetromino.velocity = new Vector2(0, 0);
+        }
+        else
+        {
+            tetromino.isKinematic = false;
+            tetromino.velocity = currentVelocity;
+        }
+    }
 
     private void Update()
     {

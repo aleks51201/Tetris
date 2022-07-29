@@ -122,37 +122,12 @@ public class FieldThirdMode : FieldBase
                 newList[i].Add(null);
             }
         }
-
-        /*        for(int i=0; i < y; i++)
-                {
-                    newList[i] = new List<Transform>();
-                    for(int j = 0; j < x; j++)
-                    {
-                        newList[i][j] = null;
-                    }
-                }
-        */
         return newList;
     }
 
     private void MatrixShift(int shift)
     {
         List<List<Transform>> newList = CreateMatrix(this.fieldWidth, this.fieldHeight);
-        /*        Transform cell;
-                for(int i=0; i < matrixField.Count; i++)
-                {
-                    if (i < shift)
-                        continue;
-                    this.matrixField[i - shift] = this.matrixField[i];
-                    for(int j=0; j < this.matrixField[i].Count; j++)
-                    {
-                        cell = this.matrixField[i][j];
-                        if (cell == null)
-                            continue;
-                        cell.position = new Vector2(j, i - shift);
-                    }
-                }
-        */
         int l = 0;
         for (int i = 0; i < this.matrixField.Count; i++)
         {
@@ -178,7 +153,7 @@ public class FieldThirdMode : FieldBase
     }
     private void AddScore()
     {
-        gameScore.AddPoint(NumLine(LineDetector()) * 100);
+        gameScore.AddPoint(NumLine(detectedObjects)* 100);
     }
     private bool IsLineFull(List<Transform> lineForCheck)
     {
@@ -284,6 +259,15 @@ public class FieldThirdMode : FieldBase
             return;
         this.delay = this.fallingDelay;
     }
+
+    private protected override void IsPaused(bool isPaused)
+    {
+        if (isPaused)
+            StopAllCoroutines();
+        else
+            StartCoroutine(Falling());
+    }
+    
     private void Start()
     {
         CreateMatixField();

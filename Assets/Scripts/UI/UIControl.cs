@@ -52,6 +52,12 @@ public class UIControl : MonoBehaviour
     {
         inGame.GetComponent<Animator>().SetTrigger("InGameDisappear");
     }
+    private void OnPause(KeyCode keyCode,float _)
+    {
+        if (keyCode != KeyCode.Escape)
+            return;
+        OnPauseButtonPressed();
+    }
     IEnumerator TurnOff(GameObject Who, float Time)
     {
         yield return new WaitForSeconds(Time);
@@ -67,9 +73,11 @@ public class UIControl : MonoBehaviour
     private void OnEnable()
     {
         BusEvent.OnLoseGameEvent += OnLose;
+        BusEvent.OnKeyDownEvent += OnPause;
     }
     private void OnDisable()
     {
         BusEvent.OnLoseGameEvent -= OnLose;
+        BusEvent.OnKeyDownEvent -= OnPause;
     }
 }
