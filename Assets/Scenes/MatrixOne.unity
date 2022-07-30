@@ -630,8 +630,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299390501}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0138, y: 0, z: 0}
-  m_LocalScale: {x: 1.0263484, y: 1, z: 1}
+  m_LocalPosition: {x: 0.2811, y: -0.0254, z: 0}
+  m_LocalScale: {x: 1.0256665, y: 1.0036, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1528745697}
@@ -1122,8 +1122,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 30.09497, y: 0}
+  m_SizeDelta: {x: 60.190117, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &521245529
 Animator:
@@ -1561,7 +1561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635553786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.74, y: -4.144, z: 0}
+  m_LocalPosition: {x: 6.13, y: -4.144, z: 0}
   m_LocalScale: {x: 0.51, y: 0.82, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   fieldHeight: 20
   spawnPosition: {x: 5, y: 20}
   stashPosition: {x: -6, y: 14}
-  queuePosition: {x: 15, y: 5}
+  queuePosition: {x: 15, y: 5.5}
   queueSize: 3
   queueShift: 5
   scorePanel: {fileID: 1623751935}
@@ -2140,7 +2140,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973027394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 14.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2154,8 +2154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 30.09497, y: 0}
+  m_SizeDelta: {x: 60.190117, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &973027396
 MonoBehaviour:
@@ -3017,8 +3017,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470122195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.3346, y: 1.7771435, z: 34.428448}
-  m_LocalScale: {x: 10.49249, y: 25, z: 1}
+  m_LocalPosition: {x: -4.8411, y: 1.9005, z: 34.428448}
+  m_LocalScale: {x: 11.479833, y: 25.2475, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 843668812}
@@ -3736,7 +3736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HELLO
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4012,7 +4012,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650030867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 14.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4022,8 +4022,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 30.09497, y: 0}
+  m_SizeDelta: {x: 60.190117, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1650030869
 MonoBehaviour:
@@ -4405,7 +4405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907281699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.74, y: -1.387, z: 0}
+  m_LocalPosition: {x: 6.13, y: -1.387, z: 0}
   m_LocalScale: {x: 0.51, y: 0.82, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4489,7 +4489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927677498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.74, y: 1.368, z: 0}
+  m_LocalPosition: {x: 6.13, y: 1.368, z: 0}
   m_LocalScale: {x: 0.51, y: 0.82, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
