@@ -1879,6 +1879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetrominoCollection:
   - {fileID: 2944621786190280042, guid: f0b7326da311c3f409355a63ff7fe32b, type: 3}
+  - {fileID: 2944621786190280042, guid: 5ba92f9d54cb268478d79208b41e9494, type: 3}
   fieldWidth: 10
   fieldHeight: 20
   spawnPosition: {x: 5, y: 20}
