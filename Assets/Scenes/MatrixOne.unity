@@ -1879,10 +1879,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetrominoCollection:
   - {fileID: 2944621786190280042, guid: f0b7326da311c3f409355a63ff7fe32b, type: 3}
+  - {fileID: 2944621786190280042, guid: 95039ac1d5896414ca530273c1d8b98a, type: 3}
+  - {fileID: 2944621786190280042, guid: 26e0a677d42365c43a59afcfeb7efb33, type: 3}
+  - {fileID: 2944621786190280042, guid: e72d4ee9a39273e44a288abca5835da8, type: 3}
+  - {fileID: 2944621786190280042, guid: 04db3c77276cfad49ba30cde105aadee, type: 3}
+  - {fileID: 2944621786190280042, guid: 237d355f4becab54b96ed5ad35278f64, type: 3}
+  - {fileID: 2944621786190280042, guid: 5ba92f9d54cb268478d79208b41e9494, type: 3}
   fieldWidth: 10
   fieldHeight: 20
   spawnPosition: {x: 5, y: 20}
-  stashPosition: {x: -5, y: 15}
+  stashPosition: {x: -6, y: 14}
   queuePosition: {x: 15, y: 5}
   queueSize: 3
   queueShift: 5

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetromino: {fileID: 2944621786190280042}
   particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
-  gameField: {fileID: 0}
+  field: {fileID: 0}
 --- !u!1001 &1569648520206930910
 PrefabInstance:
   m_ObjectHideFlags: 0
