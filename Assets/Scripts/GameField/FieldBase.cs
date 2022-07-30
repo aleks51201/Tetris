@@ -45,6 +45,7 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     private protected Score gameScore;
 
     private protected abstract void SpawnTetromino();
+    private protected abstract void IsPaused(bool isPaused);
 
     public void Create()
     {
@@ -87,33 +88,34 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
             cell.transform.GetComponent<Animator>().SetTrigger("Break");
         }
     }
+
     private protected void StartDestroyAnimation(List<Transform> detectedObject)
     {
         foreach (Transform cell in detectedObject)
         {
             cell.GetComponent<Animator>().SetTrigger("Break");
         }
-
     }
 
     private protected void OnDeleteTetromino(GameObject fig)
     {
         SpawnTetromino();
     }
+
     private protected void OnLoseGame()
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         losePanel.SetActive(true);
         loseScorePanel.text = $"{gameScore.Point}";
     }
+
     public bool IsLose(Collider2D collider)
     {
         return collider.CompareTag("Figure");
     }
-    private protected abstract void IsPaused(bool isPaused);
+
     private protected void OnAddScore(int point)
     {
         scorePanel.text = $"{point}";
     }
-
 }

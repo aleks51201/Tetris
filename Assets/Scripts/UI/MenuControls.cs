@@ -12,40 +12,49 @@ public class MenuControls : MonoBehaviour
     {
         Play.SetActive(true);
     }
+
     public void OnSettingsButtonClick()
     {
         Settings.SetActive(true);
     }
+
     public void OnExitButtonClick()
     {
         Application.Quit();
     }
+
     public void OnCrossButtonClick()
     {
         Settings.GetComponent<Animator>().SetTrigger("CrossPressed");
         StartCoroutine("SetUnActive");
     }
+
     public void OnLinkButtonClick()
     {
         Application.OpenURL("https://github.com/aleks51201/Tetris");
     }
+
     public void OnPlayBackButtonClick()
     {
         Play.GetComponent<Animator>().SetTrigger("Back");
         StartCoroutine("SetUnActive2");
     }
+
     public void OnModebuttonClick()
     {
         Loading.SetActive(true);
     }
+
      public void OnModeChangeFirstClisk()
     {
         SceneTransition.SwitchScene("PhisicOne");
     }
+
    public void OnModeChangeSecondClisk()
     {
         SceneTransition.SwitchScene("PhisicTwo");
     }
+
    public void OnModeChangeThirdClisk()
     {
         SceneTransition.SwitchScene("MatrixOne");
@@ -56,6 +65,7 @@ public class MenuControls : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Settings.SetActive(false);
     }
+
     IEnumerator SetUnActive2()
     {
         yield return new WaitForSeconds(1f);

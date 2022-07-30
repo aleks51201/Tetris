@@ -4,6 +4,7 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
 {
     private FigureThirdMode tetr;
     private GameObject figure;
+
     public override void EnterState(FigureThirdMode tetromino)
     {
         tetr = tetromino;
@@ -45,6 +46,7 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         FigureThirdModeBaseState state = this.tetr.GetState<FigureThirdModeStashState>();
         tetr.SetState(state);
     }
+
     private void OnDeleteTetromino(GameObject figure)
     {
         if (figure == this.figure)
@@ -53,6 +55,7 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         }
     }
+
     private void OnCollision()
     {
         tetr.Remove();

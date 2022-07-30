@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class Score
+internal class Score
 {
     public int Point { get; private set; }
     private Vector2 startPosition;
@@ -16,6 +16,7 @@ class Score
         this.Point += points;
         BusEvent.OnAddScoreEvent?.Invoke(this.Point);
     }
+
     private void OnStartAcceleration(Vector2 startPosition)
     {
         this.startPosition = startPosition;
@@ -26,10 +27,10 @@ class Score
         int distance = (int)DistanceCalculation(this.startPosition, endPosition);
         AddPoint(distance);
     }
+
     private float DistanceCalculation(Vector2 startPosition, Vector2 endPosition)
     {
         return (startPosition.y - endPosition.y) * 1;
     }
-
 }
 

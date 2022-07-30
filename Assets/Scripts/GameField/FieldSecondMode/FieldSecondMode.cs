@@ -17,10 +17,12 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
         this.currentTetrominoInGame.transform.position = spawnPosition;
     }
+
     private protected void Scoring(RaycastHit2D[] detectedObjects)
     {
         gameScore.AddPoint(detectedObjects.Length / numObjectOnLine * 100);
     }
+
     private protected override void IsPaused(bool isPaused)
     {
         Rigidbody2D tetromino = this.currentTetrominoInGame.GetComponent<Rigidbody2D>();
@@ -29,21 +31,21 @@ internal class FieldSecondMode : FieldBase
         {
             tetromino.isKinematic = true;
             tetromino.velocity = new Vector2(0, 0);
+            return;
         }
-        else
-        {
-            tetromino.isKinematic = false;
-            tetromino.velocity = currentVelocity;
-        }
+        tetromino.isKinematic = false;
+        tetromino.velocity = currentVelocity;
     }
 
     private void Update()
     {
     }
+
     private void FixedUpdate()
     {
         gameLineDetector.PatrolDetector(lineDetectorPosition);
     }
+
     private void Start()
     {
         gameStash = new(stashPosition, spawnPosition);
@@ -65,6 +67,7 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnKeyDownEvent += SwitchTetromino;
 
     }
+
     private void OnDisable()
     {
         BusEvent.OnAddObjectToQueueEvent -= Create;
@@ -77,5 +80,4 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnLineIsFullEvent -= Scoring;
         BusEvent.OnKeyDownEvent -= SwitchTetromino;
     }
-
 }

@@ -13,8 +13,6 @@ public class FigureFirstMode : FigureBase
     private Dictionary<Type, FigureBaseState> statesMap;
     private FigureBaseState currentState;
 
-
-
     private bool isDelete = true;
 
     private void InitState()
@@ -60,7 +58,6 @@ public class FigureFirstMode : FigureBase
         }
     }
 
-
     public override void Acceleration(KeyCode keyCode, float direct)
     {
         if (keyCode != KeyCode.S)
@@ -76,13 +73,11 @@ public class FigureFirstMode : FigureBase
             this.tetromino.transform.Rotate(new Vector3(0f, 0f, 1), 90, Space.Self);
     }
 
-
     private bool IsRotateAllowed()
     {
         Collider2D ghost = GetChildGhost().GetComponent<Collider2D>();
         return ghost.IsTouchingLayers(layerMask);
     }
-
 
     public override void ColorationCell()
     {
@@ -92,12 +87,12 @@ public class FigureFirstMode : FigureBase
             cell.GetComponent<SpriteRenderer>().color = hue;
         }
     }
+
     private protected override Color RandomColorFigureGame()
     {
         System.Random random = new();
         Color[] colorArray = ColorDataHolder.colorInGameFigure;
         return colorArray[random.Next(0, colorArray.Length)];
-
     }
 
     private protected override void Dissolve()
@@ -111,8 +106,8 @@ public class FigureFirstMode : FigureBase
             this.tetromino.transform.DetachChildren();
             Destroy(this.tetromino);
         }
-
     }
+
     public void DeletingAStopped()
     {
         if (this.tetromino.GetComponent<Rigidbody2D>().velocity.y > -0.5f && this.tetromino != null)
@@ -127,9 +122,7 @@ public class FigureFirstMode : FigureBase
     public override Vector2 GetCurrentPosition()
     {
         return this.tetromino.transform.position;
-
     }
-
 
     public Transform GetChildGhost()
     {
@@ -211,16 +204,17 @@ public class FigureFirstMode : FigureBase
                 throw new NullReferenceException("IsNeighborsEmpty: don't have any direction");
         }
     }
+
     private void Awake()
     {
         InitState();
         SetStateByDefault();
     }
+
     private void Update()
     {
         currentState.UpdateState(this);
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -236,14 +230,15 @@ public class FigureFirstMode : FigureBase
     {
         currentState.OnCollisionStay2DState(this, collision);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentState.OnCollisionEnter2DState(this, collision);
     }
+
     private void OnDisable()
     {
         currentState.OnDisableState(this);
     }
-
 }
 

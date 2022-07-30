@@ -16,10 +16,12 @@ public abstract class FigureBase : MonoBehaviour, IControlable
     public abstract Vector2 GetCurrentPosition();
     public abstract List<Vector2> GetChildCoordinate();
     private protected abstract Color RandomColorFigureGame();
+
     private protected virtual void ParticleStart()
     {
         Instantiate(particle, GetCurrentPosition(), Quaternion.identity);
     }
+
     public Transform[] GetAllChildObject()
     {
         return this.tetromino.GetComponentsInChildren<Transform>()[1..^0];

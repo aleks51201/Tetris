@@ -41,17 +41,19 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
     public override void UpdateState(FigureSecondMode tetromino)
     {
     }
+
     private void StartTetrominoSettigs(FigureSecondMode tetromino)
     {
         tetromino.tetromino.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         tetromino.tetromino.GetComponent<Collider2D>().enabled = true;
     }
+
     private void OnSwitchTeromino()
     {
         FigureSecondModeBaseState state = this.tetr.GetState<FigureSecondModeStashState>();
         tetr.SetState(state);
-
     }
+
     private void OnDeleteTetromino(GameObject figure)
     {
         if (figure == this.figure)
@@ -60,6 +62,5 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         }
     }
-
 }
 

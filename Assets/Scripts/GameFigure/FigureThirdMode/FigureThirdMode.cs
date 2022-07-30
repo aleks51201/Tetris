@@ -40,6 +40,7 @@ public class FigureThirdMode : FigureBase
         FigureThirdModeBaseState stateByDefault = this.GetState<FigureThirdModeQueueState>();
         SetState(stateByDefault);
     }
+
     private Vector2[] GetTetrominoCoordinates
     {
         get
@@ -106,6 +107,7 @@ public class FigureThirdMode : FigureBase
             cell.GetComponent<SpriteRenderer>().color = hue;
         }
     }
+
     private protected override Color RandomColorFigureGame()
     {
         System.Random random = new();
@@ -130,6 +132,7 @@ public class FigureThirdMode : FigureBase
         this.tetromino.transform.DetachChildren();
         Destroy(this.tetromino);
     }
+
     public void Remove()
     {
         Dissolve();
@@ -140,6 +143,7 @@ public class FigureThirdMode : FigureBase
         InitState();
         SetStateByDefault();
     }
+
     private void Start()
     {
     }
@@ -147,9 +151,11 @@ public class FigureThirdMode : FigureBase
     {
         currentState.UpdateState(this);
     }
+
     private void OnEnable()
     {
     }
+
     private void OnDisable()
     {
         currentState.OnDisableState(this);

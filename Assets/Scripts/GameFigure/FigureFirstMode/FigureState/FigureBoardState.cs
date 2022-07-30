@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-class FigureBoardState : FigureBaseState
+internal class FigureBoardState : FigureBaseState
 {
-    FigureFirstMode tetr;
+    private FigureFirstMode tetr;
     private GameObject figure;
     public override void EnterState(FigureFirstMode tetromino)
     {
@@ -20,7 +20,6 @@ class FigureBoardState : FigureBaseState
     public override void ExitState(FigureFirstMode tetromino)
     {
         BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
-        
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
@@ -28,7 +27,6 @@ class FigureBoardState : FigureBaseState
 
     public override void OnCollisionEnter2DState(FigureFirstMode tetromino, Collision2D collision)
     {
-
     }
 
     public override void OnCollisionStay2DState(FigureFirstMode tetromino, Collision2D collision)
@@ -51,7 +49,6 @@ class FigureBoardState : FigureBaseState
     {
         BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
-        
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
@@ -60,17 +57,20 @@ class FigureBoardState : FigureBaseState
     public override void UpdateState(FigureFirstMode tetromino)
     {
     }
+
     private void StartTetrominoSettigs(FigureFirstMode tetromino)
     {
         tetromino.tetromino.GetComponent<Rigidbody2D>().isKinematic = false;
         tetromino.tetromino.GetComponent<Collider2D>().enabled = true;
     }
+
     private void OnSwitchTeromino()
     {
         FigureBaseState state = this.tetr.GetState<FigureStashState>();
         tetr.SetState(state);
 
     }
+
     private void OnDeleteTetromino(GameObject figure)
     {
         if (figure == this.figure)
@@ -79,6 +79,5 @@ class FigureBoardState : FigureBaseState
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         }
     }
-
 }
 
