@@ -95,9 +95,7 @@ public class FieldThirdMode : FieldBase
         List<Transform> detectedObject = new();
         for (int i = 0; i < this.matrixField.Count; i++)
         {
-            if (this.matrixField.Count == 0)
-                break;
-            if (!IsLineFull(matrixField[i]))
+            if (!IsLineFull(this.matrixField[i]))
                 continue;
             foreach (Transform j in matrixField[i])
             {

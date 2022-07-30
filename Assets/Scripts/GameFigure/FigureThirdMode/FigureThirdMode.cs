@@ -67,7 +67,22 @@ public class FigureThirdMode : FigureBase
     {
         if (keyCode != KeyCode.R)
             return;
-        this.tetromino.transform.Rotate(new Vector3(0f, 0f, 1), 90, Space.Self);
+        Transform[] allChildObject = GetAllChildObject();
+        Vector2[] childLocalCoordinate = new Vector2[4];
+        Vector2 currenParentPosition = GetCurrentPosition();
+        Vector2 newPosition;
+        for (int i = 0; i < allChildObject.Length; i++)
+        {
+            newPosition = new(-allChildObject[i].localPosition.y, allChildObject[i].localPosition.x);
+            childLocalCoordinate[i] = newPosition + currenParentPosition;
+        }
+        if (field.CanTetrominoMove(childLocalCoordinate, new Vector2(0, 0)))
+        {
+            for (int i = 0; i < allChildObject.Length; i++)
+            {
+                allChildObject[i].localPosition = childLocalCoordinate[i] - currenParentPosition;
+            }
+        }
     }
 
     public override void Acceleration(KeyCode keyCode, float direct)
