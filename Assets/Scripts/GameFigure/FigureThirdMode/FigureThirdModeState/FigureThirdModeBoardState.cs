@@ -14,7 +14,9 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         BusEvent.OnCollisionEnterEvent += OnCollision;
         BusEvent.OnKeyDownEvent += tetr.Move;
         BusEvent.OnKeyDownEvent += tetr.Rotate;
-        BusEvent.OnKeyDownEvent += tetr.Acceleration;
+        BusEvent.OnKeyDownEvent += tetr.Accelerate;
+        BusEvent.OnKeyUpEvent += tetr.NormalAccelerate;
+        BusEvent.OnPauseEvent += tetr.IsPaused;
     }
 
     public override void ExitState(FigureThirdMode tetromino)
@@ -25,8 +27,10 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
+        BusEvent.OnKeyDownEvent += tetr.Accelerate;
+        BusEvent.OnKeyUpEvent += tetr.NormalAccelerate;
+        BusEvent.OnPauseEvent += tetr.IsPaused;
     }
-
     public override void OnDisableState(FigureThirdMode tetromino)
     {
         BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
@@ -35,6 +39,9 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
+        BusEvent.OnKeyDownEvent -= tetr.Accelerate;
+        BusEvent.OnKeyUpEvent -= tetr.NormalAccelerate;
+        BusEvent.OnPauseEvent -= tetr.IsPaused;
     }
 
     public override void UpdateState(FigureThirdMode tetromino)

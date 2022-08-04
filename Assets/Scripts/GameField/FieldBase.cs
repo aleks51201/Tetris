@@ -44,8 +44,18 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     private protected LineDetector gameLineDetector;
     private protected Score gameScore;
 
+    public int FieldWidth
+    {
+        get { return fieldWidth; }
+    }
+
+    public int FieldHeigh
+    {
+        get { return fieldHeight; }
+    }
+
     private protected abstract void SpawnTetromino();
-    private protected abstract void IsPaused(bool isPaused);
+    //private protected abstract void IsPaused(bool isPaused);
 
     public void Create()
     {
@@ -81,7 +91,7 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
         }
     }
 
-    private protected void StartDestroyAnimation(RaycastHit2D[] detectedObject)
+    public void StartDestroyAnimation(RaycastHit2D[] detectedObject)
     {
         foreach (RaycastHit2D cell in detectedObject)
         {
@@ -89,7 +99,7 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
         }
     }
 
-    private protected void StartDestroyAnimation(List<Transform> detectedObject)
+    public void StartDestroyAnimation(List<Transform> detectedObject)
     {
         foreach (Transform cell in detectedObject)
         {

@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class FieldThirdMode : FieldBase
 {
-    [Space]
-    [SerializeField]
-    [Min(0)]
-    private float fallingDelay;
-    [SerializeField]
-    private float accelerateFallinDelay;
-
     private protected List<List<Transform>> matrixField = new();
     private int spawnSpace = 2;
-    private float delay;
-    private List<Transform> detectedObjects;
+    [HideInInspector]
+    public List<Transform> detectedObjects;
+
+    public List<List<Transform>> MatrixField => matrixField;
+    public int SpawnSpace => spawnSpace;
 
     private protected List<List<Transform>> CreateMatrix(int x, int y)
     {
@@ -35,7 +31,7 @@ public class FieldThirdMode : FieldBase
         this.matrixField = CreateMatrix(this.fieldWidth, this.fieldHeight);
     }
 
-    private void AddMatrixTetromino(Transform[] figures)
+    public void AddMatrixTetromino(Transform[] figures)
     {
         int x;
         int y;
@@ -49,7 +45,7 @@ public class FieldThirdMode : FieldBase
         }
     }
 
-    private void RemoveMatrixTetromino(List<Transform> oldFigurePosition)
+    public void RemoveMatrixTetromino(List<Transform> oldFigurePosition)
     {
         int x;
         int y;
@@ -75,35 +71,9 @@ public class FieldThirdMode : FieldBase
         }
     }
 
-    private Transform[] GetChildObject => this.currentTetrominoInGame.GetComponent<FigureThirdMode>().GetAllChildObject();
+    private protected Transform[] GetChildObject => this.currentTetrominoInGame.GetComponent<FigureThirdMode>().GetAllChildObject();
 
-    private void FallTetromino()
-    {
-        Vector2 fallDisplacement = new Vector2(0, -1);
-        Vector2 oldPosition = this.currentTetrominoInGame.transform.position;
-        Vector2 newPosition = oldPosition + fallDisplacement;
-        this.currentTetrominoInGame.transform.position = newPosition;
-    }
-
-    public bool CanTetrominoMove(Vector2[] currentFigurePositions, Vector2 direction)
-    {
-        int x;
-        int y;
-        Vector2 newPosition;
-        foreach (Vector2 currentCellPosition in currentFigurePositions)
-        {
-            newPosition = currentCellPosition + direction;
-            x = (int)newPosition.x;
-            y = (int)newPosition.y;
-            if (0 > x || x >= this.fieldWidth || 0 > y || y >= this.fieldHeight + spawnSpace)
-                return false;
-            if (matrixField[y][x] != null)
-                return false;
-        }
-        return true;
-    }
-
-    private List<Transform> LineDetector()
+    public virtual List<Transform> LineDetector()
     {
         List<Transform> detectedObject = new();
         for (int i = 0; i < this.matrixField.Count; i++)
@@ -123,7 +93,7 @@ public class FieldThirdMode : FieldBase
         return detectedObject.Count / this.fieldWidth;
     }
 
-    private void MatrixShift()
+    private protected virtual void MatrixShift()
     {
         List<List<Transform>> newList = CreateMatrix(this.fieldWidth, this.fieldHeight);
         int j = 0;
@@ -163,11 +133,15 @@ public class FieldThirdMode : FieldBase
         return true;
     }
 
-    private bool IsFullDetectedList(List<Transform> detectedObjects)
+    public virtual bool IsFullDetectedList(List<Transform> detectedObjects)
     {
         return detectedObjects.Count >= this.fieldWidth && detectedObjects.Count % this.fieldWidth == 0;
     }
 
+    public void StartAfterDestroyAnimation()
+    {
+        StartCoroutine(AfterDestroyAnimation());
+    }
     private IEnumerator AfterDestroyAnimation()
     {
         yield return new WaitForSeconds(0.9f);
@@ -175,7 +149,7 @@ public class FieldThirdMode : FieldBase
         AddScore();
     }
 
-    private void PrintMatrixField()//?????
+    public void PrintMatrixField()//?????
     {
         string line = "";
         for (int i = this.matrixField.Count - 1; i >= 0; i--)
@@ -192,32 +166,6 @@ public class FieldThirdMode : FieldBase
         Debug.Log(line);
     }
 
-    private protected void EndContolTetromino()
-    {
-        AddMatrixTetromino(GetChildObject);
-        detectedObjects = LineDetector();
-        PrintMatrixField();
-        if (IsFullDetectedList(detectedObjects))
-        {
-            StartDestroyAnimation(detectedObjects);
-            RemoveMatrixTetromino(detectedObjects);
-            StartCoroutine(AfterDestroyAnimation());
-        }
-        BusEvent.OnCollisionEnterEvent?.Invoke();
-    }
-
-    private IEnumerator Falling()
-    {
-        yield return new WaitForSeconds(delay);
-        if (CanTetrominoMove(GetTetrominoCoordinates, new Vector2(0, -1)))
-        {
-            FallTetromino();
-            StartCoroutine(Falling());
-        }
-        else
-            EndContolTetromino();
-    }
-
     private protected override void SpawnTetromino()
     {
         Create();
@@ -225,31 +173,7 @@ public class FieldThirdMode : FieldBase
         BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
         this.currentTetrominoInGame.GetComponent<FigureThirdMode>().field = this;
         this.currentTetrominoInGame.transform.position = spawnPosition;
-        StartCoroutine(Falling());
-    }
-
-    private void Accelerate(KeyCode keyCode, float _)
-    {
-        if (keyCode != KeyCode.S)
-            return;
-        this.delay = this.accelerateFallinDelay;
-    }
-
-    private void NormalAccelerate(KeyCode keyCode, float _)
-    {
-        if (keyCode != KeyCode.S)
-            return;
-        this.delay = this.fallingDelay;
-    }
-
-    private protected override void IsPaused(bool isPaused)
-    {
-        if (isPaused)
-        {
-            StopAllCoroutines();
-            return;
-        }
-        StartCoroutine(Falling());
+        StartCoroutine(this.currentTetrominoInGame.GetComponent<FigureThirdMode>().Falling());
     }
 
     private void Start()
@@ -258,7 +182,6 @@ public class FieldThirdMode : FieldBase
         gameStash = new(stashPosition, spawnPosition);
         gameQueue = new(queueSize, queueShift);
         gameScore = new();
-        delay = fallingDelay;
     }
 
     private void OnEnable()
@@ -268,12 +191,8 @@ public class FieldThirdMode : FieldBase
         BusEvent.OnAddScoreEvent += OnAddScore;
         BusEvent.OnLoseGameEvent += OnLoseGame;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
-        BusEvent.OnPauseEvent += IsPaused;
         BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
-        //BusEvent.OnLineIsFullEvent += Scoring;
         BusEvent.OnKeyDownEvent += SwitchTetromino;
-        BusEvent.OnKeyDownEvent += Accelerate;
-        BusEvent.OnKeyUpEvent += NormalAccelerate;
     }
 
     private void OnDisable()
@@ -283,11 +202,7 @@ public class FieldThirdMode : FieldBase
         BusEvent.OnAddScoreEvent -= OnAddScore;
         BusEvent.OnLoseGameEvent -= OnLoseGame;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
-        BusEvent.OnPauseEvent -= IsPaused;
         BusEvent.OnLineIsFullEvent -= StartDestroyAnimation;
-        //BusEvent.OnLineIsFullEvent -= Scoring;
         BusEvent.OnKeyDownEvent -= SwitchTetromino;
-        BusEvent.OnKeyDownEvent -= Accelerate;
-        BusEvent.OnKeyUpEvent -= NormalAccelerate;
     }
 }

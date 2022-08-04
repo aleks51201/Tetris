@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2926816974039606634}
-  - component: {fileID: -7327928939427743487}
+  - component: {fileID: -2412019379193572283}
   m_Layer: 0
   m_Name: FigureO
   m_TagString: Figure
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7327928939427743487
+--- !u!114 &-2412019379193572283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,9 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a21201499a074f438e4e92076635aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetromino: {fileID: 2944621786190280042}
+  tetromino: {fileID: 2944621786190280042, guid: c144b90b2f908324ab22d141cf181a57, type: 3}
   particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
   field: {fileID: 0}
+  fallingDelay: 0.5
+  accelerateFallinDelay: 0.1
 --- !u!1001 &1569648520206930910
 PrefabInstance:
   m_ObjectHideFlags: 0

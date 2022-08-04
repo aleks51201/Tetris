@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,15 @@ public class FigureThirdMode : FigureBase
     [Space]
     [HideInInspector]
     public FieldThirdMode field;
+    [Space]
+    [SerializeField]
+    [Min(0)]
+    private float fallingDelay;
+    [SerializeField]
+    public float accelerateFallinDelay;
 
+
+    private float delay;
     private Dictionary<Type, FigureThirdModeBaseState> statesMap;
     private FigureThirdModeBaseState currentState;
 
@@ -57,7 +66,7 @@ public class FigureThirdMode : FigureBase
 
     public override void Move(KeyCode keyCode, float direct)
     {
-        if (keyCode != KeyCode.A || !field.CanTetrominoMove(GetTetrominoCoordinates, new Vector2(direct, 0)))
+        if (keyCode != KeyCode.A || !CanTetrominoMove(GetTetrominoCoordinates, new Vector2(direct, 0)))
             return;
         Vector2 positionOffset = new Vector2(direct, 0);
         Vector2 newPosition = GetCurrentPosition() + positionOffset;
@@ -77,7 +86,7 @@ public class FigureThirdMode : FigureBase
             newPosition = new(-allChildObject[i].localPosition.y, allChildObject[i].localPosition.x);
             childLocalCoordinate[i] = newPosition + currenParentPosition;
         }
-        if (field.CanTetrominoMove(childLocalCoordinate, new Vector2(0, 0)))
+        if (CanTetrominoMove(childLocalCoordinate, new Vector2(0, 0)))
         {
             for (int i = 0; i < allChildObject.Length; i++)
             {
@@ -138,6 +147,83 @@ public class FigureThirdMode : FigureBase
         Dissolve();
     }
 
+    private void FallTetromino()
+    {
+        Vector2 fallDisplacement = new Vector2(0, -1);
+        Vector2 oldPosition = this.tetromino.transform.position;
+        Vector2 newPosition = oldPosition + fallDisplacement;
+        this.tetromino.transform.position = newPosition;
+    }
+
+    public bool CanTetrominoMove(Vector2[] currentFigurePositions, Vector2 direction)
+    {
+        int x;
+        int y;
+        Vector2 newPosition;
+        foreach (Vector2 currentCellPosition in currentFigurePositions)
+        {
+            newPosition = currentCellPosition + direction;
+            x = (int)newPosition.x;
+            y = (int)newPosition.y;
+            if (0 > x || x >= field.FieldWidth || 0 > y || y >= field.FieldHeigh + field.SpawnSpace)
+                return false;
+            if (field.MatrixField[y][x] != null)
+                return false;
+        }
+        return true;
+    }
+
+    private protected void EndContolTetromino()
+    {
+        field.AddMatrixTetromino(GetAllChildObject());
+        field.detectedObjects = field.LineDetector();
+        field.PrintMatrixField();
+        if (field.IsFullDetectedList(field.detectedObjects))
+        {
+            field.StartDestroyAnimation(field.detectedObjects);
+            field.RemoveMatrixTetromino(field.detectedObjects);
+            field.StartAfterDestroyAnimation();
+        }
+        BusEvent.OnCollisionEnterEvent?.Invoke();
+    }
+
+    public IEnumerator Falling()
+    {
+        yield return new WaitForSeconds(delay);
+        if (CanTetrominoMove(GetTetrominoCoordinates, new Vector2(0, -1)))
+        {
+            FallTetromino();
+            StartCoroutine(Falling());
+        }
+        else
+            EndContolTetromino();
+    }
+
+    public void Accelerate(KeyCode keyCode, float _)
+    {
+        if (keyCode != KeyCode.S)
+            return;
+        this.delay = this.accelerateFallinDelay;
+    }
+
+    public void NormalAccelerate(KeyCode keyCode, float _)
+    {
+        if (keyCode != KeyCode.S)
+            return;
+        this.delay = this.fallingDelay;
+    }
+
+    public void IsPaused(bool isPaused)
+    {
+        if (isPaused)
+        {
+            StopAllCoroutines();
+            return;
+        }
+        StartCoroutine(Falling());
+    }
+
+
     private void Awake()
     {
         InitState();
@@ -146,6 +232,7 @@ public class FigureThirdMode : FigureBase
 
     private void Start()
     {
+        delay = fallingDelay;
     }
     private void Update()
     {
