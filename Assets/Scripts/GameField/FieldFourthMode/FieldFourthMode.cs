@@ -7,6 +7,7 @@ internal class FieldFourthMode : FieldThirdMode
     List<Vector2> savedCoordinate;
     private protected override void MatrixShift()
     {
+        CoordinateSort();
         foreach(Vector2 coordinate in this.savedCoordinate)
         {
             int x;
@@ -22,6 +23,40 @@ internal class FieldFourthMode : FieldThirdMode
         }
     }
 
+    private void CoordinateSort()
+    {
+        for (int i = 1; i < this.savedCoordinate.Count; i++)
+        {
+            int n = i;
+            while (n > 0 && savedCoordinate[n - 1].x <= savedCoordinate[n].x)
+            {
+                if(savedCoordinate[n - 1].x == savedCoordinate[n].x)
+                {
+                    int k = n;
+                    while(n > 0 && savedCoordinate[n - 1].x == savedCoordinate[n].x && savedCoordinate[n - 1].y < savedCoordinate[n].y )
+                    {
+                        Vector2 tmpY = savedCoordinate[n - 1];
+                        Vector2 leftCoord = savedCoordinate[n - 1];
+                        leftCoord.y = savedCoordinate[n].y;
+                        savedCoordinate[n - 1] = leftCoord;
+                        savedCoordinate[n] = tmpY;
+                        n--;
+                    }
+                    if(n==k)
+                        n--;
+                }
+                else
+                {
+                    Vector2 tmpX = savedCoordinate[n - 1];
+                    Vector2 leftCoord = savedCoordinate[n - 1];
+                    leftCoord.x = savedCoordinate[n].x;
+                    savedCoordinate[n - 1] = leftCoord;
+                    savedCoordinate[n] = tmpX;
+                    n--;
+                }
+            }
+        }
+    }
     private void SaveCoordinate(List<Transform> detectedObjects)
     {
         savedCoordinate = new();
