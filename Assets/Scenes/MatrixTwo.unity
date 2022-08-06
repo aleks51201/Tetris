@@ -1879,6 +1879,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetrominoCollection:
   - {fileID: 2858567995961930034, guid: 7e6e02edc9d2ecc428fa8d7118c13264, type: 3}
+  - {fileID: 7679411815608855384, guid: c144b90b2f908324ab22d141cf181a57, type: 3}
+  - {fileID: 7679411815608855384, guid: 359bb85a83b5411468d63161e5f7f6d1, type: 3}
+  - {fileID: 7679411815608855384, guid: 9e19512d5a1598e4b9673699b208d784, type: 3}
+  - {fileID: 7679411815608855384, guid: c7c8c4c37096cae4abb4943bcfbda024, type: 3}
+  - {fileID: 7679411815608855384, guid: c8f1bcbb0d9c9f345bf40f8554be7491, type: 3}
+  - {fileID: 7679411815608855384, guid: 4930140e40700594eb28041ccc1dfa95, type: 3}
   fieldWidth: 10
   fieldHeight: 20
   spawnPosition: {x: 5, y: 21}

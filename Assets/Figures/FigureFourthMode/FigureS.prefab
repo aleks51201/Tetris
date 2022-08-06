@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7697075306255104856}
   - component: {fileID: 1801996128216235409}
   m_Layer: 0
-  m_Name: FigureZ
+  m_Name: FigureS
   m_TagString: Figure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 858b9ec7109284c41be3e4be63fc8575, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 858b9ec7109284c41be3e4be63fc8575, type: 3}
       propertyPath: m_LocalPosition.y
@@ -132,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 858b9ec7109284c41be3e4be63fc8575, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 858b9ec7109284c41be3e4be63fc8575, type: 3}
       propertyPath: m_LocalPosition.y
