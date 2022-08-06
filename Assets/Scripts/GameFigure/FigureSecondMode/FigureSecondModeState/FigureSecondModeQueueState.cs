@@ -4,6 +4,7 @@ internal class FigureSecondModeQueueState : FigureSecondModeBaseState
 {
     private GameObject figure;
     private FigureSecondMode tetr;
+
     public override void EnterState(FigureSecondMode tetromino)
     {
         StartTetrominoSettigs(tetromino);
@@ -17,10 +18,8 @@ internal class FigureSecondModeQueueState : FigureSecondModeBaseState
         BusEvent.OnSpawnTetrominoEvent -= ToBoard;
     }
 
-
     public override void OnCollisionStay2DState(FigureSecondMode tetromino, Collision2D collision)
     {
-
     }
 
     public override void OnDisableState(FigureSecondMode tetromino)
@@ -30,8 +29,8 @@ internal class FigureSecondModeQueueState : FigureSecondModeBaseState
 
     public override void UpdateState(FigureSecondMode tetromino)
     {
-
     }
+
     private void StartTetrominoSettigs(FigureSecondMode tetromino)
     {
         tetromino.tetromino.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;

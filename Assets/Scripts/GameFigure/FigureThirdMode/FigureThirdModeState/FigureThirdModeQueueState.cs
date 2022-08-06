@@ -25,6 +25,7 @@ internal class FigureThirdModeQueueState : FigureThirdModeBaseState
     public override void UpdateState(FigureThirdMode tetromino)
     {
     }
+
     private void ToBoard(GameObject fig)
     {
         if (fig == this.figure)

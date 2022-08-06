@@ -44,7 +44,18 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     private protected LineDetector gameLineDetector;
     private protected Score gameScore;
 
+    public int FieldWidth
+    {
+        get { return fieldWidth; }
+    }
+
+    public int FieldHeigh
+    {
+        get { return fieldHeight; }
+    }
+
     private protected abstract void SpawnTetromino();
+    //private protected abstract void IsPaused(bool isPaused);
 
     public void Create()
     {
@@ -80,40 +91,41 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
         }
     }
 
-    private protected void StartDestroyAnimation(RaycastHit2D[] detectedObject)
+    public void StartDestroyAnimation(RaycastHit2D[] detectedObject)
     {
         foreach (RaycastHit2D cell in detectedObject)
         {
             cell.transform.GetComponent<Animator>().SetTrigger("Break");
         }
     }
-    private protected void StartDestroyAnimation(List<Transform> detectedObject)
+
+    public void StartDestroyAnimation(List<Transform> detectedObject)
     {
         foreach (Transform cell in detectedObject)
         {
             cell.GetComponent<Animator>().SetTrigger("Break");
         }
-
     }
 
     private protected void OnDeleteTetromino(GameObject fig)
     {
         SpawnTetromino();
     }
+
     private protected void OnLoseGame()
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         losePanel.SetActive(true);
         loseScorePanel.text = $"{gameScore.Point}";
     }
+
     public bool IsLose(Collider2D collider)
     {
         return collider.CompareTag("Figure");
     }
-    private protected abstract void IsPaused(bool isPaused);
+
     private protected void OnAddScore(int point)
     {
         scorePanel.text = $"{point}";
     }
-
 }

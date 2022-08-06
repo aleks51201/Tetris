@@ -21,6 +21,7 @@
     public override void UpdateState(FigureThirdMode tetromino)
     {
     }
+
     private void OnSwitchTetromino()
     {
         FigureThirdModeBaseState state = this.tetr.GetState<FigureThirdModeBoardState>();

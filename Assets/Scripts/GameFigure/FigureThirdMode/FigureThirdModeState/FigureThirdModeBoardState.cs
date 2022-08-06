@@ -4,6 +4,7 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
 {
     private FigureThirdMode tetr;
     private GameObject figure;
+
     public override void EnterState(FigureThirdMode tetromino)
     {
         tetr = tetromino;
@@ -13,7 +14,9 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         BusEvent.OnCollisionEnterEvent += OnCollision;
         BusEvent.OnKeyDownEvent += tetr.Move;
         BusEvent.OnKeyDownEvent += tetr.Rotate;
-        BusEvent.OnKeyDownEvent += tetr.Acceleration;
+        BusEvent.OnKeyDownEvent += tetr.Accelerate;
+        BusEvent.OnKeyUpEvent += tetr.NormalAccelerate;
+        BusEvent.OnPauseEvent += tetr.IsPaused;
     }
 
     public override void ExitState(FigureThirdMode tetromino)
@@ -24,8 +27,10 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
+        BusEvent.OnKeyDownEvent += tetr.Accelerate;
+        BusEvent.OnKeyUpEvent += tetr.NormalAccelerate;
+        BusEvent.OnPauseEvent += tetr.IsPaused;
     }
-
     public override void OnDisableState(FigureThirdMode tetromino)
     {
         BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
@@ -34,6 +39,9 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
+        BusEvent.OnKeyDownEvent -= tetr.Accelerate;
+        BusEvent.OnKeyUpEvent -= tetr.NormalAccelerate;
+        BusEvent.OnPauseEvent -= tetr.IsPaused;
     }
 
     public override void UpdateState(FigureThirdMode tetromino)
@@ -45,6 +53,7 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         FigureThirdModeBaseState state = this.tetr.GetState<FigureThirdModeStashState>();
         tetr.SetState(state);
     }
+
     private void OnDeleteTetromino(GameObject figure)
     {
         if (figure == this.figure)
@@ -53,6 +62,7 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         }
     }
+
     private void OnCollision()
     {
         tetr.Remove();

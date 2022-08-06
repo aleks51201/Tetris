@@ -90,12 +90,14 @@ public class FigureSecondMode : FigureBase
             cell.GetComponent<SpriteRenderer>().color = hue;
         }
     }
+
     private protected override Color RandomColorFigureGame()
     {
         System.Random random = new();
         Color[] colorArray = ColorDataHolder.colorInGameFigure;
         return colorArray[random.Next(0, colorArray.Length)];
     }
+
     private protected override void Dissolve()
     {
         if (isDelete)
@@ -107,6 +109,7 @@ public class FigureSecondMode : FigureBase
             Destroy(this.tetromino);
         }
     }
+
     public void DeletingAStopped()
     {
         if (this.tetromino.GetComponent<Rigidbody2D>().velocity.y > -0.5f && this.tetromino != null)
@@ -128,12 +131,12 @@ public class FigureSecondMode : FigureBase
         return coordinates;
     }
 
-
     private void Awake()
     {
         InitState();
         SetStateByDefault();
     }
+
     private void Update()
     {
         currentState.UpdateState(this);
@@ -143,6 +146,7 @@ public class FigureSecondMode : FigureBase
     {
         currentState.OnCollisionStay2DState(this, collision);
     }
+
     private void OnDisable()
     {
         currentState.OnDisableState(this);

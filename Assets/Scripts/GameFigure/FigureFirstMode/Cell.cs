@@ -14,6 +14,7 @@ public class Cell : MonoBehaviour
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
     }
+
     private void OnDeleteTetromino(GameObject tetromino)
     {
         if (childCell.transform.IsChildOf(tetromino.transform))
@@ -29,10 +30,12 @@ public class Cell : MonoBehaviour
     {
         this.childCell.GetComponent<Rigidbody2D>().isKinematic = isKinematic;
     }
+
     public void IsColider2DEnaled(bool isEnabled)
     {
         this.childCell.GetComponent<Collider2D>().enabled = isEnabled;
     }
+
     public void SetLayer(int nummerateLayer)
     {
         this.childCell.layer = nummerateLayer;
@@ -42,6 +45,7 @@ public class Cell : MonoBehaviour
     {
         Destroy(this.childCell);
     }
+
     private void ChangeLayerDependingOnVelocity()
     {
         bool cellKinematic = this.childCell.GetComponent<Rigidbody2D>().isKinematic;
@@ -54,6 +58,7 @@ public class Cell : MonoBehaviour
                 this.childCell.layer = LayerMask.NameToLayer("Detection");
         }
     }
+
     private void FixedUpdate()
     {
         ChangeLayerDependingOnVelocity();
