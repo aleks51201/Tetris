@@ -93,7 +93,7 @@ public class FieldThirdMode : FieldBase
         return detectedObject.Count / this.fieldWidth;
     }
 
-    private protected virtual void MatrixShift()
+    public virtual void MatrixShift()
     {
         List<List<Transform>> newList = CreateMatrix(this.fieldWidth, this.fieldHeight);
         int j = 0;

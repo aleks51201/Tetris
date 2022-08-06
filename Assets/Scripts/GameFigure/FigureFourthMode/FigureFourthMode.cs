@@ -16,5 +16,19 @@ class FigureFourthMode: FigureThirdMode
             cell.GetComponent<SpriteRenderer>().color = hue;
         }
     }
+    private protected override void EndContolTetromino()
+    {
+        field.AddMatrixTetromino(GetAllChildObject());
+        field.MatrixShift();
+        field.detectedObjects = field.LineDetector();
+        //field.PrintMatrixField();
+        if (field.IsFullDetectedList(field.detectedObjects))
+        {
+            field.StartDestroyAnimation(field.detectedObjects);
+            field.RemoveMatrixTetromino(field.detectedObjects);
+            field.StartAfterDestroyAnimation();
+        }
+        BusEvent.OnCollisionEnterEvent?.Invoke();
+    }
 
 }

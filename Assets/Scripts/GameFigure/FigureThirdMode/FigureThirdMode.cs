@@ -173,7 +173,7 @@ public class FigureThirdMode : FigureBase
         return true;
     }
 
-    private protected void EndContolTetromino()
+    private protected virtual void EndContolTetromino()
     {
         field.AddMatrixTetromino(GetAllChildObject());
         field.detectedObjects = field.LineDetector();
