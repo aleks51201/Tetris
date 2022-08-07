@@ -5185,7 +5185,6 @@ GameObject:
   - component: {fileID: 1371018199}
   - component: {fileID: 1371018198}
   - component: {fileID: 1371018201}
-  - component: {fileID: 1371018200}
   m_Layer: 0
   m_Name: Sounds UI
   m_TagString: Untagged
@@ -5304,22 +5303,6 @@ Transform:
   m_Father: {fileID: 618926072}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1371018200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371018197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50b17cd8b1c714c4aa1726bb1e86445a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lose: {fileID: 8300000, guid: c07660c7849511642bf376251acc9aa8, type: 3}
-  falled: {fileID: 8300000, guid: 5f20d6f23f34c3f499fb287ec6f1d7cf, type: 3}
-  destroing: {fileID: 8300000, guid: 8e369a42edf7c8549ba64b42161714ac, type: 3}
-  switching: {fileID: 8300000, guid: 0904d14fa10c1c14196afa445f7395f6, type: 3}
 --- !u!114 &1371018201
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7079155609278052514}
   - component: {fileID: 3566683213189898662}
   m_Layer: 0
-  m_Name: FigureZ
+  m_Name: FigureS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2944621786190280042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1920501595630775761}
@@ -239,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8393194977585850586, guid: c2731651c4aa2374983fbd0ccb73342c, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8393194977585850586, guid: c2731651c4aa2374983fbd0ccb73342c, type: 3}
       propertyPath: m_ConnectedAnchor.y

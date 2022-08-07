@@ -378,13 +378,14 @@ GameObject:
   - component: {fileID: 195395429}
   - component: {fileID: 195395428}
   - component: {fileID: 195395430}
+  - component: {fileID: 195395431}
   m_Layer: 0
   m_Name: Sounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &195395428
 AudioSource:
   m_ObjectHideFlags: 0
@@ -511,6 +512,22 @@ MonoBehaviour:
   Group: {fileID: 24300002, guid: 0b8a762b6e1ec4640b0d74df97adfe95, type: 2}
   Music: {fileID: 195395427}
   BackMusic: {fileID: 815073424}
+--- !u!114 &195395431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195395427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b17cd8b1c714c4aa1726bb1e86445a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lose: {fileID: 8300000, guid: c07660c7849511642bf376251acc9aa8, type: 3}
+  falled: {fileID: 8300000, guid: 5f20d6f23f34c3f499fb287ec6f1d7cf, type: 3}
+  destroing: {fileID: 8300000, guid: 8e369a42edf7c8549ba64b42161714ac, type: 3}
+  switching: {fileID: 8300000, guid: 0904d14fa10c1c14196afa445f7395f6, type: 3}
 --- !u!1 &280128159
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,8 +620,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299390501}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0138, y: 0, z: 0}
-  m_LocalScale: {x: 1.0263484, y: 1, z: 1}
+  m_LocalPosition: {x: 0.2843, y: -0.6656, z: 0}
+  m_LocalScale: {x: 1.0248853, y: 0.9033995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1528745697}
@@ -650,7 +667,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8bfae6ca3fbecb24bbaa65d87a39ce8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -878,7 +895,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 11.506206
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -902,7 +919,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 11, z: -10}
+  m_LocalPosition: {x: 5, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1822,11 +1839,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetrominoCollection:
   - {fileID: 2944621786190280042, guid: f0b7326da311c3f409355a63ff7fe32b, type: 3}
+  - {fileID: 2944621786190280042, guid: 95039ac1d5896414ca530273c1d8b98a, type: 3}
+  - {fileID: 2944621786190280042, guid: 26e0a677d42365c43a59afcfeb7efb33, type: 3}
+  - {fileID: 2944621786190280042, guid: e72d4ee9a39273e44a288abca5835da8, type: 3}
+  - {fileID: 2944621786190280042, guid: 04db3c77276cfad49ba30cde105aadee, type: 3}
+  - {fileID: 2944621786190280042, guid: 237d355f4becab54b96ed5ad35278f64, type: 3}
+  - {fileID: 2944621786190280042, guid: 5ba92f9d54cb268478d79208b41e9494, type: 3}
   fieldWidth: 10
   fieldHeight: 20
-  spawnPosition: {x: 5, y: 20}
-  stashPosition: {x: -5, y: 15}
-  queuePosition: {x: 15, y: 5}
+  spawnPosition: {x: 5, y: 21}
+  stashPosition: {x: -5.5, y: 13.5}
+  queuePosition: {x: 15, y: 4.5}
   queueSize: 3
   queueShift: 5
   scorePanel: {fileID: 1623751935}
@@ -2757,8 +2780,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470122195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.3346, y: 1.7771435, z: 34.428448}
-  m_LocalScale: {x: 10.49249, y: 25, z: 1}
+  m_LocalPosition: {x: -4.7509, y: 0.0679, z: 34.428448}
+  m_LocalScale: {x: 11.660304, y: 21.5825, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 843668812}
@@ -3476,7 +3499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HELLO
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4501,7 +4524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2073939095
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,6 +51,8 @@ MonoBehaviour:
   tetromino: {fileID: 2944621786190280042}
   particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
   field: {fileID: 0}
+  fallingDelay: 0.5
+  accelerateFallinDelay: 0.1
 --- !u!1001 &1569648520206930910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 04d221e6e72c5904a861c51566064ffd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 04d221e6e72c5904a861c51566064ffd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -134,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 04d221e6e72c5904a861c51566064ffd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 04d221e6e72c5904a861c51566064ffd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -196,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 04d221e6e72c5904a861c51566064ffd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 04d221e6e72c5904a861c51566064ffd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -258,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 04d221e6e72c5904a861c51566064ffd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 287936419875912270, guid: 04d221e6e72c5904a861c51566064ffd, type: 3}
       propertyPath: m_LocalPosition.z
