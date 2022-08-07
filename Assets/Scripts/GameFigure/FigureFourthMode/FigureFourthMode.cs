@@ -21,7 +21,6 @@ class FigureFourthMode: FigureThirdMode
         field.AddMatrixTetromino(GetAllChildObject());
         field.MatrixShift();
         field.detectedObjects = field.LineDetector();
-        //field.PrintMatrixField();
         if (field.IsFullDetectedList(field.detectedObjects))
         {
             field.StartDestroyAnimation(field.detectedObjects);
@@ -30,5 +29,4 @@ class FigureFourthMode: FigureThirdMode
         }
         BusEvent.OnCollisionEnterEvent?.Invoke();
     }
-
 }

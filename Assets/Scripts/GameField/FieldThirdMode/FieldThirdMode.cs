@@ -57,20 +57,6 @@ public class FieldThirdMode : FieldBase
         }
     }
 
-    private Vector2[] GetTetrominoCoordinates
-    {
-        get
-        {
-            Vector2[] newArray = new Vector2[4];
-            List<Vector2> oldList = this.currentTetrominoInGame.GetComponent<FigureThirdMode>().GetChildCoordinate();
-            for (int i = 0; i < oldList.Count; i++)
-            {
-                newArray[i] = oldList[i];
-            }
-            return newArray;
-        }
-    }
-
     private protected Transform[] GetChildObject => this.currentTetrominoInGame.GetComponent<FigureThirdMode>().GetAllChildObject();
 
     public virtual List<Transform> LineDetector()
@@ -173,7 +159,6 @@ public class FieldThirdMode : FieldBase
         BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
         this.currentTetrominoInGame.GetComponent<FigureThirdMode>().field = this;
         this.currentTetrominoInGame.transform.position = spawnPosition;
-        StartCoroutine(this.currentTetrominoInGame.GetComponent<FigureThirdMode>().Falling());
     }
 
     private void Start()

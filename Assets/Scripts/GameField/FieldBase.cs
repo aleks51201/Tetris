@@ -101,6 +101,7 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
 
     public void StartDestroyAnimation(List<Transform> detectedObject)
     {
+        BusEvent.OnStartDestroyAnimationEvent?.Invoke();
         foreach (Transform cell in detectedObject)
         {
             cell.GetComponent<Animator>().SetTrigger("Break");

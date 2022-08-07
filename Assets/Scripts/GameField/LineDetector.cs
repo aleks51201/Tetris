@@ -13,6 +13,13 @@ class LineDetector
     private LayerMask maskName;
     private int numLine = 0;
 
+    enum Mode
+    {
+        Physics,
+        MatrixOne,
+        MatrixTwo,
+    }
+
     public LineDetector(int heightField,int widthField,LayerMask detectorMaskName,int objectOnLine)
     {
         this.heightField = heightField;

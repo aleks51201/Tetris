@@ -9,7 +9,7 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
         tetr = tetromino;
         figure = tetromino.tetromino;
         StartTetrominoSettigs(tetromino);
-        BusEvent.OnSwitchTerominoEvent += OnSwitchTeromino;
+        BusEvent.OnSwitchTetrominoEvent += OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnKeyHoldEvent += tetr.Move;
         BusEvent.OnKeyHoldEvent += tetr.Rotate;
@@ -18,7 +18,7 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
 
     public override void ExitState(FigureSecondMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnKeyHoldEvent -= tetr.Move;
         BusEvent.OnKeyHoldEvent -= tetr.Rotate;
         BusEvent.OnKeyHoldEvent -= tetr.Acceleration;
@@ -31,7 +31,7 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
 
     public override void OnDisableState(FigureSecondMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnKeyHoldEvent -= tetr.Move;
         BusEvent.OnKeyHoldEvent -= tetr.Rotate;
@@ -58,7 +58,7 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
     {
         if (figure == this.figure)
         {
-            BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+            BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         }
     }

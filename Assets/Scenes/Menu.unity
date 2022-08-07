@@ -658,7 +658,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1371018200}
+      - m_Target: {fileID: 1371018201}
         m_TargetAssemblyTypeName: SoundControll, Assembly-CSharp
         m_MethodName: MasterVolume
         m_Mode: 0
@@ -988,7 +988,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936370974}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnModeChangeThirdClisk
+        m_MethodName: OnModeChangeThirdClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1156,13 +1156,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265973297}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 964.4721, y: 547.7672, z: -15.144318}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 962.24, y: 537.0718, z: -14.901895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 618926072}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &268731389
 GameObject:
@@ -2803,6 +2803,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561992974}
   m_CullTransparentMesh: 1
+--- !u!1 &618926071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 618926072}
+  - component: {fileID: 618926073}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &618926072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618926071}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.2321317, y: 10.69542, z: -0.24242264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 265973299}
+  - {fileID: 1371018199}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &618926073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618926071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1454e77afea38e14faccaedb8667d9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &623466793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3450,7 +3496,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1371018200}
+      - m_Target: {fileID: 1371018201}
         m_TargetAssemblyTypeName: SoundControll, Assembly-CSharp
         m_MethodName: MusicOn
         m_Mode: 0
@@ -3976,7 +4022,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936370974}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnModeChangeFirstClisk
+        m_MethodName: OnModeChangeFirstClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5104,6 +5150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371018199}
   - component: {fileID: 1371018198}
+  - component: {fileID: 1371018201}
   - component: {fileID: 1371018200}
   m_Layer: 0
   m_Name: Sounds UI
@@ -5215,13 +5262,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371018197}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 964.4721, y: 547.7672, z: -15.144318}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 962.24, y: 537.0718, z: -14.901895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 618926072}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1371018200
 MonoBehaviour:
@@ -5232,7 +5279,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371018197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 505623f7673fcf5479c64e04a3329c37, type: 3}
+  m_Script: {fileID: 11500000, guid: 50b17cd8b1c714c4aa1726bb1e86445a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lose: {fileID: 8300000, guid: c07660c7849511642bf376251acc9aa8, type: 3}
+  falled: {fileID: 8300000, guid: 5f20d6f23f34c3f499fb287ec6f1d7cf, type: 3}
+  destroing: {fileID: 8300000, guid: 8e369a42edf7c8549ba64b42161714ac, type: 3}
+  switching: {fileID: 8300000, guid: 0904d14fa10c1c14196afa445f7395f6, type: 3}
+--- !u!114 &1371018201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371018197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64255d0cb1d800045a982346892e91ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Group: {fileID: 24300002, guid: 0b8a762b6e1ec4640b0d74df97adfe95, type: 2}
@@ -5733,9 +5796,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 936370974}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnModebuttonClick
+        m_MethodName: OnModeChangeFourthClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6735,7 +6798,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936370974}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnModeChangeSecondClisk
+        m_MethodName: OnModeChangeSecondClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

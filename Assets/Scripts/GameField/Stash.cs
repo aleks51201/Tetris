@@ -37,7 +37,7 @@ public class Stash
             BusEvent.OnSpawnTetrominoEvent?.Invoke(outputFigure);
         }
         SetStashItem(tetromino);
-        BusEvent.OnSwitchTerominoEvent?.Invoke();
+        BusEvent.OnSwitchTetrominoEvent?.Invoke();
         return outputFigure;
     }
     

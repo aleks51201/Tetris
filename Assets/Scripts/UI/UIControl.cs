@@ -9,7 +9,7 @@ public class UIControl : MonoBehaviour
     private IPauseable pauseGane;
     private string currentSceneName;
 
-    public void OnPlayButtonPressed() //начинает игровой цикл после попадания на сцену
+    public void OnPlayButtonPressed()
     {
         StartCoroutine(TurnOff(startGame, 0.55f));
         startGame.GetComponent<Animator>().SetTrigger("StartDisappear");
@@ -18,7 +18,7 @@ public class UIControl : MonoBehaviour
             createFigure.Create();
     }
 
-    public void OnPauseButtonPressed() //приостанавливает текущие процессы до возобновления по кнопке придолжить
+    public void OnPauseButtonPressed()
     {
         StartCoroutine(TurnOff(inGame, 0.75f));
         inGame.GetComponent<Animator>().SetTrigger("InGameDisappear");
@@ -26,21 +26,21 @@ public class UIControl : MonoBehaviour
         OnButtonClicked(true);
     }
 
-    public void OnRestartButtonPressed() //перезапуск сцены
+    public void OnRestartButtonPressed()
     {
         SceneTransition.SwitchScene(currentSceneName);
         if (pauseGane != null)
             pauseGane.ContinueGame();
     }
 
-    public void OnMenuButtonPressed() //загрузка сцены меню
+    public void OnMenuButtonPressed()
     {
-        SceneTransition.SwitchScene("Menu");  //дёргать после анимации 0.75f секунды
+        SceneTransition.SwitchScene("Menu");
         if (pauseGane != null)
             pauseGane.ContinueGame();
     }
 
-    public void OnContinueButtonPressed() // возобновление процесса игры 
+    public void OnContinueButtonPressed()
     {
         StartCoroutine(TurnOff(pause, 0.75f));
         pause.GetComponent<Animator>().SetTrigger("PauseDisappear");
@@ -50,7 +50,6 @@ public class UIControl : MonoBehaviour
 
     private void OnButtonClicked(bool isPaused)
     {
-        //ProjectContext.Instance.PauseManager.SetPaused(isPaused);
         BusEvent.OnPauseEvent?.Invoke(isPaused);
     }
 

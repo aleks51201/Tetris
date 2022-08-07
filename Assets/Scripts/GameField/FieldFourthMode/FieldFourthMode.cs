@@ -6,24 +6,6 @@ internal class FieldFourthMode : FieldThirdMode
 {
     private List<Vector2> savedCoordinate;
 
-    /*    private protected override void MatrixShift()
-        {
-            CoordinateSort();
-            foreach(Vector2 coordinate in this.savedCoordinate)
-            {
-                int x;
-                for (int y = (int)coordinate.y + 1; y < this.fieldHeight; y++)
-                {
-                    x = (int)coordinate.x;
-                    Transform cell = this.matrixField[y][x];
-                    this.matrixField[y - 1][x] = cell;
-                    this.matrixField[y][x] = null;
-                    if(cell!=null)
-                        cell.position = new Vector2(x, y - 1);
-                }
-            }
-        }
-    */
     public override void MatrixShift()
     {
         List<Transform> detectedObjects = new();
@@ -50,40 +32,6 @@ internal class FieldFourthMode : FieldThirdMode
             StartAfterDestroyAnimation();
         }
 
-    }
-    private void CoordinateSort()//conver to class
-    {
-        for (int i = 1; i < this.savedCoordinate.Count; i++)
-        {
-            int n = i;
-            while (n > 0 && savedCoordinate[n - 1].x <= savedCoordinate[n].x)
-            {
-                if (savedCoordinate[n - 1].x == savedCoordinate[n].x)
-                {
-                    int k = n;
-                    while (n > 0 && savedCoordinate[n - 1].x == savedCoordinate[n].x && savedCoordinate[n - 1].y < savedCoordinate[n].y)
-                    {
-                        Vector2 tmpY = savedCoordinate[n - 1];
-                        Vector2 leftCoord = savedCoordinate[n - 1];
-                        leftCoord.y = savedCoordinate[n].y;
-                        savedCoordinate[n - 1] = leftCoord;
-                        savedCoordinate[n] = tmpY;
-                        n--;
-                    }
-                    if (n == k)
-                        n--;
-                }
-                else
-                {
-                    Vector2 tmpX = savedCoordinate[n - 1];
-                    Vector2 leftCoord = savedCoordinate[n - 1];
-                    leftCoord.x = savedCoordinate[n].x;
-                    savedCoordinate[n - 1] = leftCoord;
-                    savedCoordinate[n] = tmpX;
-                    n--;
-                }
-            }
-        }
     }
 
     private void SaveCoordinate(List<Transform> detectedObjects)
@@ -201,17 +149,6 @@ internal class FieldFourthMode : FieldThirdMode
                 detectedObjects.AddRange(FindChainOnDirections(cell, hue));
             }
         }
-        List<Transform> distinctDetectedObjects = detectedObjects.Distinct().ToList();
-        SaveCoordinate(distinctDetectedObjects);
-        return distinctDetectedObjects;
-    }
-
-    public List<Transform> LineDetector(Transform cell)
-    {
-        Color hue;
-        List<Transform> detectedObjects = new();
-        hue = cell.GetComponent<SpriteRenderer>().color;
-        detectedObjects.AddRange(FindChainOnDirections(cell, hue));
         List<Transform> distinctDetectedObjects = detectedObjects.Distinct().ToList();
         SaveCoordinate(distinctDetectedObjects);
         return distinctDetectedObjects;

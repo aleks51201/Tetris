@@ -5,17 +5,18 @@
     public override void EnterState(FigureThirdMode tetromino)
     {
         tetr = tetromino;
-        BusEvent.OnSwitchTerominoEvent += OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent += OnSwitchTetromino;
+        tetr.StopCoroutine(tetr.falling);
     }
 
     public override void ExitState(FigureThirdMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTetromino;
     }
 
     public override void OnDisableState(FigureThirdMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTetromino;
     }
 
     public override void UpdateState(FigureThirdMode tetromino)

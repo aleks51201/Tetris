@@ -6,13 +6,13 @@ class FigureSecondModeStashState : FigureSecondModeBaseState
     public override void EnterState(FigureSecondMode tetromino)
     {
         StartTetrominoSettigs(tetromino);
-        BusEvent.OnSwitchTerominoEvent += OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent += OnSwitchTetromino;
         tetr = tetromino;
     }
 
     public override void ExitState(FigureSecondMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTetromino;
     }
 
 
@@ -39,7 +39,7 @@ class FigureSecondModeStashState : FigureSecondModeBaseState
 
     public override void OnDisableState(FigureSecondMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTetromino;
     }
 }
 

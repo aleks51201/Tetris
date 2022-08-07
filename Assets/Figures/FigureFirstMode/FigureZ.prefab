@@ -185,10 +185,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetromino: {fileID: 7282206318598379046}
+  particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  Particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
 --- !u!1001 &616666355041846313
 PrefabInstance:
   m_ObjectHideFlags: 0
