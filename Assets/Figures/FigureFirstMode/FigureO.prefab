@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetromino: {fileID: 1033829597125089875}
+  particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  Particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
 --- !u!1 &6442983905369695032
 GameObject:
   m_ObjectHideFlags: 0

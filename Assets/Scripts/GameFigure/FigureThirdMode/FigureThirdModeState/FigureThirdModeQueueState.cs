@@ -4,6 +4,7 @@ internal class FigureThirdModeQueueState : FigureThirdModeBaseState
 {
     private GameObject figure;
     private FigureThirdMode tetr;
+
     public override void EnterState(FigureThirdMode tetromino)
     {
         figure = tetromino.tetromino;

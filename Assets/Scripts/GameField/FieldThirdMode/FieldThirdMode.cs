@@ -5,7 +5,7 @@ using UnityEngine;
 public class FieldThirdMode : FieldBase
 {
     private protected List<List<Transform>> matrixField = new();
-    private int spawnSpace = 2;
+    private int spawnSpace = 6;
     [HideInInspector]
     public List<Transform> detectedObjects;
 
@@ -40,7 +40,10 @@ public class FieldThirdMode : FieldBase
             x = (int)figures[i].position.x;
             y = (int)figures[i].position.y;
             if (y > this.fieldHeight)
+            {
+                BusEvent.OnLoseGameEvent?.Invoke();
                 OnLoseGame();
+            }
             matrixField[y][x] = figures[i];
         }
     }
@@ -54,20 +57,6 @@ public class FieldThirdMode : FieldBase
             x = (int)oldFigurePosition[i].position.x;
             y = (int)oldFigurePosition[i].position.y;
             matrixField[y][x] = null;
-        }
-    }
-
-    private Vector2[] GetTetrominoCoordinates
-    {
-        get
-        {
-            Vector2[] newArray = new Vector2[4];
-            List<Vector2> oldList = this.currentTetrominoInGame.GetComponent<FigureThirdMode>().GetChildCoordinate();
-            for (int i = 0; i < oldList.Count; i++)
-            {
-                newArray[i] = oldList[i];
-            }
-            return newArray;
         }
     }
 
@@ -173,7 +162,6 @@ public class FieldThirdMode : FieldBase
         BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
         this.currentTetrominoInGame.GetComponent<FigureThirdMode>().field = this;
         this.currentTetrominoInGame.transform.position = spawnPosition;
-        StartCoroutine(this.currentTetrominoInGame.GetComponent<FigureThirdMode>().Falling());
     }
 
     private void Start()

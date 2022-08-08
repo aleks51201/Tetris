@@ -443,7 +443,6 @@ RectTransform:
   - {fileID: 49660424}
   - {fileID: 1763152801}
   - {fileID: 1779264300}
-  - {fileID: 500890329}
   - {fileID: 1056603284}
   - {fileID: 971501134}
   m_Father: {fileID: 1235424613}
@@ -659,7 +658,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1371018200}
+      - m_Target: {fileID: 1371018201}
         m_TargetAssemblyTypeName: SoundControll, Assembly-CSharp
         m_MethodName: MasterVolume
         m_Mode: 0
@@ -1128,7 +1127,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936370974}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnModeChangeThirdClisk
+        m_MethodName: OnModeChangeThirdClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1384,13 +1383,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265973297}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 964.4721, y: 547.7672, z: -15.144318}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 962.24, y: 537.0718, z: -14.901895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 618926072}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &268731389
 GameObject:
@@ -2915,80 +2914,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499832788}
   m_CullTransparentMesh: 1
---- !u!1 &500890328
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 500890329}
-  - component: {fileID: 500890331}
-  - component: {fileID: 500890330}
-  m_Layer: 0
-  m_Name: RawImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &500890329
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500890328}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 970464275}
-  m_Father: {fileID: 73843091}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 98}
-  m_SizeDelta: {x: 400, y: 700}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &500890330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500890328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 6b6404c755c1ad44a9b40b1c686f61cb, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &500890331
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500890328}
-  m_CullTransparentMesh: 1
 --- !u!1 &516173201
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,7 +2972,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Touch of Physics
+  m_text: Classic
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
   m_sharedMaterial: {fileID: 375649247793154422, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
@@ -3321,7 +3246,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Well-known tetris but with a little use of phisics!
+  m_text: Physics are controlling everything!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
   m_sharedMaterial: {fileID: 375649247793154422, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
@@ -3474,6 +3399,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593352532}
   m_CullTransparentMesh: 1
+--- !u!1 &618926071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 618926072}
+  - component: {fileID: 618926073}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &618926072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618926071}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.2321317, y: 10.69542, z: -0.24242264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 265973299}
+  - {fileID: 1371018199}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &618926073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618926071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1454e77afea38e14faccaedb8667d9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &623466793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3819,7 +3790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Touch of Physics
+  m_text: Hell of Physics
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
   m_sharedMaterial: {fileID: 375649247793154422, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
@@ -4274,7 +4245,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1371018200}
+      - m_Target: {fileID: 1371018201}
         m_TargetAssemblyTypeName: SoundControll, Assembly-CSharp
         m_MethodName: MusicOn
         m_Mode: 0
@@ -4644,76 +4615,6 @@ MonoBehaviour:
   Settings: {fileID: 732682216}
   Play: {fileID: 1235424610}
   Loading: {fileID: 131874408}
---- !u!1 &970464274
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 970464275}
-  - component: {fileID: 970464276}
-  m_Layer: 0
-  m_Name: Video Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &970464275
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970464274}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 500890329}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1616, y: -98}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!328 &970464276
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970464274}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: d0487ad1bd956d64a9d9578f598a8ba3, type: 3}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 6b6404c755c1ad44a9b40b1c686f61cb, type: 2}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 2
-  m_AspectRatio: 5
-  m_DataSource: 0
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
-  m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
-  m_SkipOnDrop: 1
-  m_Looping: 1
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
 --- !u!1 &971501133
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,7 +4648,7 @@ RectTransform:
   m_Children:
   - {fileID: 1973667137}
   m_Father: {fileID: 73843091}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4800,7 +4701,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936370974}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnModeChangeFirstClisk
+        m_MethodName: OnModeChangeFirstClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5043,7 +4944,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 73843091}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5070,7 +4971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Well-known tetris but with a little use of phisics!
+  m_text: Well-known tetris but with a little use of physics!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
   m_sharedMaterial: {fileID: 375649247793154422, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
@@ -5519,7 +5420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1205758558
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5933,6 +5834,7 @@ GameObject:
   - component: {fileID: 1296806761}
   - component: {fileID: 1296806760}
   - component: {fileID: 1296806759}
+  - component: {fileID: 1296806762}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6006,6 +5908,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1296806762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296806758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1303519426
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,7 +6179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371018199}
   - component: {fileID: 1371018198}
-  - component: {fileID: 1371018200}
+  - component: {fileID: 1371018201}
   m_Layer: 0
   m_Name: Sounds UI
   m_TagString: Untagged
@@ -6355,15 +6290,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371018197}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 964.4721, y: 547.7672, z: -15.144318}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 962.24, y: 537.0718, z: -14.901895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 618926072}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1371018200
+--- !u!114 &1371018201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6372,7 +6307,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371018197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 505623f7673fcf5479c64e04a3329c37, type: 3}
+  m_Script: {fileID: 11500000, guid: 64255d0cb1d800045a982346892e91ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Group: {fileID: 24300002, guid: 0b8a762b6e1ec4640b0d74df97adfe95, type: 2}
@@ -6873,9 +6808,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 936370974}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnModebuttonClick
+        m_MethodName: OnModeChangeFourthClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7805,7 +7740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Well-known tetris but with a little use of phisics!
+  m_text: 'Tree in a row tetris! '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
   m_sharedMaterial: {fileID: 375649247793154422, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
@@ -8179,7 +8114,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 936370974}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnModeChangeSecondClisk
+        m_MethodName: OnModeChangeSecondClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9917,7 +9852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Touch of Physics
+  m_text: Tree in a row
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
   m_sharedMaterial: {fileID: 375649247793154422, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
@@ -10200,7 +10135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Well-known tetris but with a little use of phisics!
+  m_text: Classic rules tetris with some extra stuff!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}
   m_sharedMaterial: {fileID: 375649247793154422, guid: 1647b70936d54b14cbd0383ff8508ea6, type: 2}

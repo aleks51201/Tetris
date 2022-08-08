@@ -19,6 +19,8 @@ public class FigureThirdMode : FigureBase
     private float delay;
     private Dictionary<Type, FigureThirdModeBaseState> statesMap;
     private FigureThirdModeBaseState currentState;
+    [HideInInspector]
+    public Coroutine falling;
 
     private void InitState()
     {
@@ -97,10 +99,6 @@ public class FigureThirdMode : FigureBase
 
     public override void Acceleration(KeyCode keyCode, float direct)
     {
-        /*        if (keyCode != KeyCode.S)
-                    return;
-                this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,acceleratePower * -1), accelerateForceMode);
-        */
     }
 
     public override Vector2 GetCurrentPosition()
@@ -177,7 +175,6 @@ public class FigureThirdMode : FigureBase
     {
         field.AddMatrixTetromino(GetAllChildObject());
         field.detectedObjects = field.LineDetector();
-        field.PrintMatrixField();
         if (field.IsFullDetectedList(field.detectedObjects))
         {
             field.StartDestroyAnimation(field.detectedObjects);
@@ -193,10 +190,10 @@ public class FigureThirdMode : FigureBase
         if (CanTetrominoMove(GetTetrominoCoordinates, new Vector2(0, -1)))
         {
             FallTetromino();
-            StartCoroutine(Falling());
+            falling = StartCoroutine(Falling());
+            yield break;
         }
-        else
-            EndContolTetromino();
+        EndContolTetromino();
     }
 
     public void Accelerate(KeyCode keyCode, float _)
@@ -237,10 +234,6 @@ public class FigureThirdMode : FigureBase
     private void Update()
     {
         currentState.UpdateState(this);
-    }
-
-    private void OnEnable()
-    {
     }
 
     private void OnDisable()

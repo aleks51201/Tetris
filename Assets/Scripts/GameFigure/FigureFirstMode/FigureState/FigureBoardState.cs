@@ -10,7 +10,7 @@ internal class FigureBoardState : FigureBaseState
         figure = tetromino.tetromino;
 
         StartTetrominoSettigs(tetromino);
-        BusEvent.OnSwitchTerominoEvent += OnSwitchTeromino;
+        BusEvent.OnSwitchTetrominoEvent += OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnKeyDownEvent += tetr.Move;
         BusEvent.OnKeyDownEvent += tetr.Rotate;
@@ -19,7 +19,7 @@ internal class FigureBoardState : FigureBaseState
 
     public override void ExitState(FigureFirstMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
@@ -47,7 +47,7 @@ internal class FigureBoardState : FigureBaseState
 
     public override void OnDisableState(FigureFirstMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
@@ -75,7 +75,7 @@ internal class FigureBoardState : FigureBaseState
     {
         if (figure == this.figure)
         {
-            BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+            BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         }
     }

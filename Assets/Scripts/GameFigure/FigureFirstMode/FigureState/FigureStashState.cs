@@ -7,13 +7,13 @@ internal class FigureStashState : FigureBaseState
     public override void EnterState(FigureFirstMode tetromino)
     {
         StartTetrominoSettigs(tetromino);
-        BusEvent.OnSwitchTerominoEvent += OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent += OnSwitchTetromino;
         tetr = tetromino;
     }
 
     public override void ExitState(FigureFirstMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTetromino;
     }
 
     public override void OnCollisionEnter2DState(FigureFirstMode tetromino, Collision2D collision)
@@ -51,7 +51,7 @@ internal class FigureStashState : FigureBaseState
 
     public override void OnDisableState(FigureFirstMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTetromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTetromino;
     }
 }
 

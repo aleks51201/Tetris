@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a21201499a074f438e4e92076635aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetromino: {fileID: 2944621786190280042, guid: c144b90b2f908324ab22d141cf181a57, type: 3}
+  tetromino: {fileID: 2944621786190280042}
   particle: {fileID: 5544007097014822312, guid: 15f26caefc8fd1d4cafb704a9339a5b2, type: 3}
   field: {fileID: 0}
   fallingDelay: 0.5

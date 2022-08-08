@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 public class MenuControls : MonoBehaviour
 {
     public GameObject Settings;
@@ -45,28 +43,32 @@ public class MenuControls : MonoBehaviour
         Loading.SetActive(true);
     }
 
-     public void OnModeChangeFirstClisk()
+    public void OnModeChangeFirstClick()
     {
         SceneTransition.SwitchScene("PhisicOne");
     }
 
-   public void OnModeChangeSecondClisk()
+    public void OnModeChangeSecondClick()
     {
         SceneTransition.SwitchScene("PhisicTwo");
     }
 
-   public void OnModeChangeThirdClisk()
+    public void OnModeChangeThirdClick()
     {
         SceneTransition.SwitchScene("MatrixOne");
     }
+    public void OnModeChangeFourthClick()
+    {
+        SceneTransition.SwitchScene("MatrixTwo");
+    }
 
-    IEnumerator SetUnActive()
+    private IEnumerator SetUnActive()
     {
         yield return new WaitForSeconds(1f);
         Settings.SetActive(false);
     }
 
-    IEnumerator SetUnActive2()
+    private IEnumerator SetUnActive2()
     {
         yield return new WaitForSeconds(1f);
         Play.SetActive(false);

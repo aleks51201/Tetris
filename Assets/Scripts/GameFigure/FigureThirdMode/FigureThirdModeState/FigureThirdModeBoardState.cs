@@ -9,7 +9,8 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
     {
         tetr = tetromino;
         figure = tetromino.tetromino;
-        BusEvent.OnSwitchTerominoEvent += OnSwitchTeromino;
+        tetr.falling = tetr.StartCoroutine(tetr.Falling());
+        BusEvent.OnSwitchTetrominoEvent += OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnCollisionEnterEvent += OnCollision;
         BusEvent.OnKeyDownEvent += tetr.Move;
@@ -21,19 +22,7 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
 
     public override void ExitState(FigureThirdMode tetromino)
     {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
-        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
-        BusEvent.OnCollisionEnterEvent -= OnCollision;
-        BusEvent.OnKeyDownEvent -= tetr.Move;
-        BusEvent.OnKeyDownEvent -= tetr.Rotate;
-        BusEvent.OnKeyDownEvent -= tetr.Acceleration;
-        BusEvent.OnKeyDownEvent += tetr.Accelerate;
-        BusEvent.OnKeyUpEvent += tetr.NormalAccelerate;
-        BusEvent.OnPauseEvent += tetr.IsPaused;
-    }
-    public override void OnDisableState(FigureThirdMode tetromino)
-    {
-        BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnCollisionEnterEvent -= OnCollision;
         BusEvent.OnKeyDownEvent -= tetr.Move;
@@ -42,6 +31,10 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
         BusEvent.OnKeyDownEvent -= tetr.Accelerate;
         BusEvent.OnKeyUpEvent -= tetr.NormalAccelerate;
         BusEvent.OnPauseEvent -= tetr.IsPaused;
+    }
+    public override void OnDisableState(FigureThirdMode tetromino)
+    {
+        ExitState(tetromino);
     }
 
     public override void UpdateState(FigureThirdMode tetromino)
@@ -58,7 +51,7 @@ internal class FigureThirdModeBoardState : FigureThirdModeBaseState
     {
         if (figure == this.figure)
         {
-            BusEvent.OnSwitchTerominoEvent -= OnSwitchTeromino;
+            BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         }
     }

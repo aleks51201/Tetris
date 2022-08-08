@@ -3,17 +3,7 @@
 
 public class Cell : MonoBehaviour
 {
-    public GameObject childCell;
-
-    private void OnEnable()
-    {
-        BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
-    }
-
-    private void OnDisable()
-    {
-        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
-    }
+    private GameObject childCell;
 
     private void OnDeleteTetromino(GameObject tetromino)
     {
@@ -57,6 +47,21 @@ public class Cell : MonoBehaviour
             else if (cellVelocity.y >= -0.5f)
                 this.childCell.layer = LayerMask.NameToLayer("Detection");
         }
+    }
+
+    private void Start()
+    {
+        childCell = this.gameObject;
+    }
+
+    private void OnEnable()
+    {
+        BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
+    }
+
+    private void OnDisable()
+    {
+        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
     }
 
     private void FixedUpdate()
