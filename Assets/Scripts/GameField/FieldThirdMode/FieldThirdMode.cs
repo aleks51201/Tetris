@@ -5,7 +5,7 @@ using UnityEngine;
 public class FieldThirdMode : FieldBase
 {
     private protected List<List<Transform>> matrixField = new();
-    private int spawnSpace = 2;
+    private int spawnSpace = 6;
     [HideInInspector]
     public List<Transform> detectedObjects;
 
@@ -40,7 +40,10 @@ public class FieldThirdMode : FieldBase
             x = (int)figures[i].position.x;
             y = (int)figures[i].position.y;
             if (y > this.fieldHeight)
+            {
+                BusEvent.OnLoseGameEvent?.Invoke();
                 OnLoseGame();
+            }
             matrixField[y][x] = figures[i];
         }
     }
