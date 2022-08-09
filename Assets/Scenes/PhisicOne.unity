@@ -404,8 +404,8 @@ GameObject:
   m_Component:
   - component: {fileID: 195395429}
   - component: {fileID: 195395428}
-  - component: {fileID: 195395430}
   - component: {fileID: 195395431}
+  - component: {fileID: 195395432}
   m_Layer: 0
   m_Name: Sounds
   m_TagString: Untagged
@@ -524,21 +524,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &195395430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195395427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee481d53ff524694a902bea2a99a39ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Group: {fileID: 24300002, guid: 0b8a762b6e1ec4640b0d74df97adfe95, type: 2}
-  Music: {fileID: 195395427}
-  BackMusic: {fileID: 815073424}
 --- !u!114 &195395431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +540,18 @@ MonoBehaviour:
   falled: {fileID: 8300000, guid: 5f20d6f23f34c3f499fb287ec6f1d7cf, type: 3}
   destroing: {fileID: 8300000, guid: 8e369a42edf7c8549ba64b42161714ac, type: 3}
   switching: {fileID: 8300000, guid: 0904d14fa10c1c14196afa445f7395f6, type: 3}
+--- !u!114 &195395432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195395427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde4e964f33bb9e449feedd982d340ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &280128159
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,20 +9,12 @@ public class SoundControll : MonoBehaviour
     [SerializeField]
     private AudioMixerGroup Group;
     [SerializeField]
-    private GameObject Music;
-    [SerializeField]
     private GameObject BackMusic;
 
-    private Scene currentScene;
     private Slider masterVolumeSlider;
     private Toggle masterVolumeToggle;
+    private FindSoundObject findSoundObject;
 
-    private void Start()
-    {
-        OnStartScene();
-        this.masterVolumeToggle.isOn=PlayerPrefs.GetInt("MusicEnabled")==1;
-        this.masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
-    }
 
     public void MusicOn(bool enabled)
     {
@@ -36,48 +28,10 @@ public class SoundControll : MonoBehaviour
     public void MasterVolume(float level)
     {
         this.GetComponent<AudioSource>().volume = level;
-        BackMusic.GetComponent<AudioSource>().volume = level;
+        this.BackMusic.GetComponent<AudioSource>().volume = level;
         PlayerPrefs.SetFloat("MasterVolume", level);
     }
 
-    private void SetScene()
-    {
-        this.currentScene = SceneManager.GetActiveScene();
-    }
-
-    private GameObject TryFindCanvasOnScene()
-    {
-        GameObject[] inSceneObjects;
-        inSceneObjects = this.currentScene.GetRootGameObjects();
-        foreach (GameObject inSceneObject in inSceneObjects)
-        {
-            if (inSceneObject.name == "Canvas")
-                return inSceneObject;
-        }
-        return null;
-    }
-
-    private Slider TryFindMasterVolumeSlider(GameObject canvas)
-    {
-        Slider[] childObjects = canvas.GetComponentsInChildren<Slider>(includeInactive:true);
-        foreach (Slider childObject in childObjects)
-        {
-            if (childObject.name == "Slider")
-                return childObject;
-        }
-        return null;
-    }
-
-    private Toggle TryFindMasterVolumeToggle(GameObject canvas)
-    {
-        Toggle[] childObjects = canvas.GetComponentsInChildren<Toggle>(includeInactive:true);
-        foreach (Toggle childObject in childObjects)
-        {
-            if (childObject.name == "Toggle")
-                return childObject;
-        }
-        return null;
-    }
 
     private void SliderChangeEvent()
     {
@@ -91,30 +45,37 @@ public class SoundControll : MonoBehaviour
 
     private void OnStartScene()
     {
-        SetScene();
-        GameObject canvas = TryFindCanvasOnScene() ;
-        if (canvas == null)
-            return;
-        if (TryFindMasterVolumeSlider(canvas) == null)
-            return; 
-        this.masterVolumeSlider=TryFindMasterVolumeSlider(canvas);
-        if (TryFindMasterVolumeToggle(canvas)==null)
-            return; 
-        this.masterVolumeToggle=TryFindMasterVolumeToggle(canvas);
-        RegisterCallbackEvent();
+        Toggle toggle= findSoundObject.TryFindMasterVolumeToggle();
+        if (toggle != null)
+            this.masterVolumeToggle = toggle;
+        Slider slider = findSoundObject.TryFindMasterVolumeSlider();
+        if (slider!= null)
+            this.masterVolumeSlider= slider;
+        RegisterCallbackEvent(true);
     }
+
     private void OnSceneSwitch()
     {
         OnStartScene();
-        Debug.Log(this.currentScene.name);
-        this.masterVolumeToggle.isOn=PlayerPrefs.GetInt("MusicEnabled")==1;
+        this.masterVolumeToggle.isOn = PlayerPrefs.GetInt("MusicEnabled") == 1;
         this.masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
     }
 
-    private void RegisterCallbackEvent()
+    private void RegisterCallbackEvent(bool register)
     {
-        this.masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
-        this.masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
+        if (register)
+        {
+            this.masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
+            this.masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
+            return;
+        }
+        this.masterVolumeToggle.onValueChanged.RemoveListener(delegate { ToggleChangeEvent(); });
+        this.masterVolumeSlider.onValueChanged.RemoveListener(delegate { SliderChangeEvent(); });
+    }
+    private void Start()
+    {
+        findSoundObject = new();
+        OnSceneSwitch();
     }
 
     private void OnEnable()
@@ -125,5 +86,6 @@ public class SoundControll : MonoBehaviour
     private void OnDisable()
     {
         BusEvent.OnSceneSwitchEvent -= OnSceneSwitch;
+        RegisterCallbackEvent(false);
     }
 }
