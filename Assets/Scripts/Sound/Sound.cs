@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 internal class Sound : MonoBehaviour
 {
     private static bool isLoaded = false;
 
     private void Awake()
+    {
+        StatusCheck();
+    }
+
+    private void StatusCheck()
     {
         if (isLoaded)
         {
@@ -14,4 +20,5 @@ internal class Sound : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         isLoaded = true;
     }
+    
 }

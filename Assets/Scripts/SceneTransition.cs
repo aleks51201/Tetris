@@ -24,6 +24,11 @@ public class SceneTransition : MonoBehaviour
 
     public void OnAnimationOver()
     {
-        loadingSceneOperation.allowSceneActivation = true; 
+        loadingSceneOperation.allowSceneActivation = true;
+        loadingSceneOperation.completed+=OnSceneLoadCompleted;
+    }
+    private void OnSceneLoadCompleted(AsyncOperation value)
+    {
+        BusEvent.OnSceneSwitchEvent?.Invoke();
     }
 }

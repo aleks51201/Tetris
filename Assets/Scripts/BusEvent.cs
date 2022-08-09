@@ -19,6 +19,7 @@ public static class BusEvent
     public static Action OnCollisionEnterEvent;
     public static Action OnCellDestroyEvent;
     public static Action OnStartDestroyAnimationEvent;
+    public static Action OnSceneSwitchEvent;
 
     //input system
     public static Action<KeyCode,float> OnKeyDownEvent;
