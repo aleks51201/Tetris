@@ -55,5 +55,6 @@ class SoundTrigger: MonoBehaviour
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnLoseGameEvent-=OnLoseGame;
         BusEvent.OnSwitchTetrominoEvent-=OnSwitchTeromino;
+        BusEvent.OnStartDestroyAnimationEvent -= OnStartDestroyAnimation;
     }
 }
