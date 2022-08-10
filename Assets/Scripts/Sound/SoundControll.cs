@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
+[RequireComponent(typeof(AudioSource))]
 public class SoundControll : MonoBehaviour
 {
     [SerializeField]
@@ -21,7 +20,7 @@ public class SoundControll : MonoBehaviour
         if (enabled)
             Group.audioMixer.SetFloat("Music", 0);
         else
-           Group.audioMixer.SetFloat("Music", -80);
+            Group.audioMixer.SetFloat("Music", -80);
         PlayerPrefs.SetInt("MusicEnabled", enabled ? 1 : 0);
     }
 
@@ -45,12 +44,12 @@ public class SoundControll : MonoBehaviour
 
     private void OnStartScene()
     {
-        Toggle toggle= findSoundObject.TryFindMasterVolumeToggle();
+        Toggle toggle = findSoundObject.TryFindMasterVolumeToggle();
         if (toggle != null)
             this.masterVolumeToggle = toggle;
         Slider slider = findSoundObject.TryFindMasterVolumeSlider();
-        if (slider!= null)
-            this.masterVolumeSlider= slider;
+        if (slider != null)
+            this.masterVolumeSlider = slider;
         RegisterCallbackEvent();
     }
 
@@ -66,10 +65,6 @@ public class SoundControll : MonoBehaviour
     {
         this.masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
         this.masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
-    }
-
-    private void Awake()
-    {
     }
 
     private void Start()

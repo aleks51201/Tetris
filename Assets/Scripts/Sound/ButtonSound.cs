@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 internal class ButtonSound : MonoBehaviour
 {
     private AudioSource audioSource;
@@ -9,7 +9,7 @@ internal class ButtonSound : MonoBehaviour
 
     public void OnStartSound()
     {
-        coroutine=StartCoroutine(Unmute());
+        coroutine = StartCoroutine(Unmute());
     }
     private IEnumerator Unmute()
     {
