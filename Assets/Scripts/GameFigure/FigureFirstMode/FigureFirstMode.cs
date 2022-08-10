@@ -7,6 +7,13 @@ public class FigureFirstMode : FigureBase
 {
     [SerializeField] private LayerMask layerMask;
 
+    [Header("Acceleration")]
+    [SerializeField]
+    private ForceMode2D accelerateForceMode;
+    [SerializeField]
+    [Min(0)]
+    private float acceleratePower;
+
     private List<GameObject> rightNeighbours = new();
     private List<GameObject> leftNeighbours = new();
 
@@ -62,7 +69,7 @@ public class FigureFirstMode : FigureBase
     {
         if (keyCode != KeyCode.S)
             return;
-        this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -0.001f), ForceMode2D.Impulse);
+        this.tetromino.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, acceleratePower*-1), accelerateForceMode);
     }
 
     public override void Rotate(KeyCode keyCode, float direct)

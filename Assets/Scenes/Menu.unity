@@ -4246,7 +4246,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &830871309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4356,7 +4356,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -6322,7 +6322,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 559565920742764522, guid: 0b8a762b6e1ec4640b0d74df97adfe95, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0

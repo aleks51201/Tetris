@@ -21,7 +21,7 @@ public class SoundControll : MonoBehaviour
         if (enabled)
             Group.audioMixer.SetFloat("Music", 0);
         else
-            Group.audioMixer.SetFloat("Music", -80);
+           Group.audioMixer.SetFloat("Music", -80);
         PlayerPrefs.SetInt("MusicEnabled", enabled ? 1 : 0);
     }
 
@@ -51,7 +51,7 @@ public class SoundControll : MonoBehaviour
         Slider slider = findSoundObject.TryFindMasterVolumeSlider();
         if (slider!= null)
             this.masterVolumeSlider= slider;
-        RegisterCallbackEvent(true);
+        RegisterCallbackEvent();
     }
 
     private void OnSceneSwitch()
@@ -59,19 +59,19 @@ public class SoundControll : MonoBehaviour
         OnStartScene();
         this.masterVolumeToggle.isOn = PlayerPrefs.GetInt("MusicEnabled") == 1;
         this.masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+        BusEvent.OnStartSoundEvent?.Invoke();
     }
 
-    private void RegisterCallbackEvent(bool register)
+    private void RegisterCallbackEvent()
     {
-        if (register)
-        {
-            this.masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
-            this.masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
-            return;
-        }
-        this.masterVolumeToggle.onValueChanged.RemoveListener(delegate { ToggleChangeEvent(); });
-        this.masterVolumeSlider.onValueChanged.RemoveListener(delegate { SliderChangeEvent(); });
+        this.masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
+        this.masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
     }
+
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
         findSoundObject = new();
@@ -86,6 +86,5 @@ public class SoundControll : MonoBehaviour
     private void OnDisable()
     {
         BusEvent.OnSceneSwitchEvent -= OnSceneSwitch;
-        RegisterCallbackEvent(false);
     }
 }
