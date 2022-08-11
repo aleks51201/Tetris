@@ -11,6 +11,7 @@ internal class ButtonSound : MonoBehaviour
     {
         coroutine = StartCoroutine(Unmute());
     }
+
     private IEnumerator Unmute()
     {
         yield return new WaitForSeconds(0.01f);
@@ -22,14 +23,10 @@ internal class ButtonSound : MonoBehaviour
         audioSource.volume = PlayerPrefs.GetFloat("MasterVolume");
     }
 
-    private void Awake()
-    {
-        audioSource = this.GetComponent<AudioSource>();
-        BusEvent.OnStartSoundEvent += OnStartSound;
-    }
-
     private void OnEnable()
     {
+        audioSource = GetComponent<AudioSource>();
+        BusEvent.OnStartSoundEvent += OnStartSound;
     }
 
     private void OnDisable()

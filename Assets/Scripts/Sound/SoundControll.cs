@@ -14,7 +14,6 @@ public class SoundControll : MonoBehaviour
     private Toggle masterVolumeToggle;
     private FindSoundObject findSoundObject;
 
-
     public void MusicOn(bool enabled)
     {
         if (enabled)
@@ -27,44 +26,44 @@ public class SoundControll : MonoBehaviour
     public void MasterVolume(float level)
     {
         this.GetComponent<AudioSource>().volume = level;
-        this.BackMusic.GetComponent<AudioSource>().volume = level;
+        BackMusic.GetComponent<AudioSource>().volume = level;
         PlayerPrefs.SetFloat("MasterVolume", level);
     }
 
 
     private void SliderChangeEvent()
     {
-        MasterVolume(this.masterVolumeSlider.value);
+        MasterVolume(masterVolumeSlider.value);
     }
 
     private void ToggleChangeEvent()
     {
-        MusicOn(this.masterVolumeToggle.isOn);
+        MusicOn(masterVolumeToggle.isOn);
     }
 
     private void OnStartScene()
     {
         Toggle toggle = findSoundObject.TryFindMasterVolumeToggle();
         if (toggle != null)
-            this.masterVolumeToggle = toggle;
+            masterVolumeToggle = toggle;
         Slider slider = findSoundObject.TryFindMasterVolumeSlider();
         if (slider != null)
-            this.masterVolumeSlider = slider;
+            masterVolumeSlider = slider;
         RegisterCallbackEvent();
     }
 
     private void OnSceneSwitch()
     {
         OnStartScene();
-        this.masterVolumeToggle.isOn = PlayerPrefs.GetInt("MusicEnabled") == 1;
-        this.masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+        masterVolumeToggle.isOn = PlayerPrefs.GetInt("MusicEnabled") == 1;
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
         BusEvent.OnStartSoundEvent?.Invoke();
     }
 
     private void RegisterCallbackEvent()
     {
-        this.masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
-        this.masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
+        masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
+        masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
     }
 
     private void Start()

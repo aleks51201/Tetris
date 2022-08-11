@@ -17,6 +17,7 @@ internal class Mode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         previewAnimator.SetTrigger("Stop");
     }
+
     private void Start()
     {
         previewAnimator = preview.GetComponent<Animator>();

@@ -21,6 +21,7 @@ internal class ButtonWithDelay : MonoBehaviour, IPointerClickHandler
         onClick.Invoke();
         StartCoroutine(ClickTimeout());
     }
+
     private IEnumerator ClickTimeout()
     {
         isPressed = true;

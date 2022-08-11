@@ -3502,7 +3502,7 @@ MonoBehaviour:
   scorePanel: {fileID: 679622109}
   loseScorePanel: {fileID: 1766441188}
   losePanel: {fileID: 1814854352}
-  lineDetectorPosition: {x: -0.8, y: -0.2}
+  lineDetectorPosition: {x: -0.8, y: 1.5}
   maskName:
     serializedVersion: 2
     m_Bits: 64

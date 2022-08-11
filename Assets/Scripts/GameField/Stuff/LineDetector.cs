@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 class LineDetector
 {
-    private int heightField=0;
+    private int heightField = 0;
     private int widthField = 0;
     private int numObjectOnLine;
     private LayerMask maskName;
@@ -20,40 +15,44 @@ class LineDetector
         MatrixTwo,
     }
 
-    public LineDetector(int heightField,int widthField,LayerMask detectorMaskName,int objectOnLine)
+    public LineDetector(int heightField, int widthField, LayerMask detectorMaskName, int objectOnLine)
     {
         this.heightField = heightField;
         this.widthField = widthField;
-        this.maskName = detectorMaskName;
-        this.numObjectOnLine = objectOnLine;
+        maskName = detectorMaskName;
+        numObjectOnLine = objectOnLine;
     }
     private RaycastHit2D[] GetDetectionObject(Vector3 detectorPosition)
     {
-        return Physics2D.RaycastAll(detectorPosition, Vector2.right, this.widthField, maskName);
+        Debug.Log(Physics2D.RaycastAll(detectorPosition, Vector2.right, widthField, maskName));
+        Debug.DrawRay(detectorPosition, Vector2.right, Color.red);
+        return Physics2D.RaycastAll(detectorPosition, Vector2.right, widthField, maskName);
     }
 
-   public void PatrolDetector(Vector2 detectorStartPosition)
+    public void PatrolDetector(Vector2 detectorStartPosition)
     {
         Vector2 newPosition;
-        this.numLine = 0;
-        for (int i = 0; i < this.heightField; i++)
+        numLine = 0;
+        for (int i = 0; i < heightField; i++)
         {
             newPosition = detectorStartPosition + new Vector2(0, i);
-            if (GetDetectionObject(newPosition).Length == 0)
+            RaycastHit2D[] detectedObjects = GetDetectionObject(newPosition);
+            if (detectedObjects.Length == 0)
                 break;
-            RaycastHit2D[] detectedObject = GetDetectionObject(newPosition);
-             if (isLineFull(detectedObject))
-                this.numLine++;
-           StartDestroyObject(detectedObject);
+            if (isLineFull(detectedObjects))
+            {
+                numLine++;
+                StartDestroyObject(detectedObjects);
+            }
         }
     }
     private bool isLineFull(RaycastHit2D[] detectedObject)
     {
-        return (detectedObject.Length == numObjectOnLine);
+        Debug.Log(detectedObject.Length);
+        return detectedObject.Length == numObjectOnLine;
     }
     private void StartDestroyObject(RaycastHit2D[] detectedObject)
     {
-        if (isLineFull(detectedObject))
-            BusEvent.OnLineIsFullEvent?.Invoke(detectedObject);
+        BusEvent.OnLineIsFullEvent?.Invoke(detectedObject);
     }
 }

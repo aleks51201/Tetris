@@ -103,6 +103,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  accelerateForceMode: 1
+  acceleratePower: 0.001
 --- !u!1 &6442983905369695032
 GameObject:
   m_ObjectHideFlags: 0

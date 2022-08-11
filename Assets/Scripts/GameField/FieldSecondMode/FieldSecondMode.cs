@@ -20,7 +20,7 @@ internal class FieldSecondMode : FieldBase
 
     private protected void Scoring(RaycastHit2D[] detectedObjects)
     {
-        gameScore.AddPoint(detectedObjects.Length / numObjectOnLine * 100);
+        gameScore.AddPointPhysicsMode(detectedObjects);
     }
 
     private protected void IsPaused(bool isPaused)
@@ -37,20 +37,19 @@ internal class FieldSecondMode : FieldBase
         tetromino.velocity = currentVelocity;
     }
 
-    private void Update()
-    {
-    }
-
-    private void FixedUpdate()
+    private void ondelete(GameObject _)
     {
         gameLineDetector.PatrolDetector(lineDetectorPosition);
+    }
+    private void FixedUpdate()
+    {
     }
 
     private void Start()
     {
         gameStash = new(stashPosition, spawnPosition);
         gameQueue = new(queueSize, queueShift);
-        gameScore = new();
+        gameScore = new(this.fieldWidth, numObjectOnLine);
         gameLineDetector = new(this.fieldHeight, this.fieldWidth, this.maskName, this.numObjectOnLine);
     }
 
@@ -61,6 +60,7 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnAddScoreEvent += OnAddScore;
         BusEvent.OnLoseGameEvent += OnLoseGame;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
+        BusEvent.OnDeleteTetrominoEvent += ondelete;
         BusEvent.OnPauseEvent += IsPaused;
         BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
         BusEvent.OnLineIsFullEvent += Scoring;

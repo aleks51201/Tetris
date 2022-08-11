@@ -55,7 +55,6 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     }
 
     private protected abstract void SpawnTetromino();
-    //private protected abstract void IsPaused(bool isPaused);
 
     public void Create()
     {

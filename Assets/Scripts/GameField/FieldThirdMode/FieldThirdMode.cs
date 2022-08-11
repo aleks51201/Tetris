@@ -110,7 +110,7 @@ public class FieldThirdMode : FieldBase
 
     private void AddScore()
     {
-        gameScore.AddPoint(NumLine(detectedObjects) * 100);
+        //gameScore.AddPoint(NumLine(detectedObjects) * 100);
     }
     private bool IsLineFull(List<Transform> lineForCheck)
     {
@@ -169,7 +169,7 @@ public class FieldThirdMode : FieldBase
         CreateMatixField();
         gameStash = new(stashPosition, spawnPosition);
         gameQueue = new(queueSize, queueShift);
-        gameScore = new();
+        //gameScore = new();
     }
 
     private void OnEnable()
