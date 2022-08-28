@@ -25,7 +25,7 @@ class FigureFourthMode: FigureThirdMode
         {
             field.StartDestroyAnimation(field.detectedObjects);
             field.RemoveMatrixTetromino(field.detectedObjects);
-            field.StartAfterDestroyAnimation();
+            field.StartAfterDestroyAnimation(field.detectedObjects,field.GameScore);
         }
         BusEvent.OnCollisionEnterEvent?.Invoke();
     }

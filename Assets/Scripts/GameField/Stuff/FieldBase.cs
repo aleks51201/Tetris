@@ -42,23 +42,16 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     private protected Stash gameStash;
     private protected QueueField gameQueue;
     private protected LineDetector gameLineDetector;
-    private protected Score gameScore;
 
-    public int FieldWidth
-    {
-        get { return fieldWidth; }
-    }
+    public int FieldWidth => fieldWidth;
 
-    public int FieldHeigh
-    {
-        get { return fieldHeight; }
-    }
+    public int FieldHeigh => fieldHeight;
 
     private protected abstract void SpawnTetromino();
 
     public void Create()
     {
-        GameObject currentTetromino = Instantiate(RandomFigureSelection(this.tetrominoCollection), queuePosition, Quaternion.identity);
+        GameObject currentTetromino = Instantiate(RandomFigureSelection(tetrominoCollection), queuePosition, Quaternion.identity);
         gameQueue.AddObject(currentTetromino);
         BusEvent.OnCreateTetrominoEvent?.Invoke(currentTetromino);
     }
@@ -83,8 +76,8 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
             return;
         if (gameStash.isItSwithcable)
         {
-            GameObject newTetromino = gameStash.SwitchTetromino(this.currentTetrominoInGame);
-            this.currentTetrominoInGame = newTetromino;
+            GameObject newTetromino = gameStash.SwitchTetromino(currentTetrominoInGame);
+            currentTetrominoInGame = newTetromino;
             if (newTetromino == null)
                 SpawnTetromino();
         }
@@ -110,13 +103,6 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     private protected void OnDeleteTetromino(GameObject fig)
     {
         SpawnTetromino();
-    }
-
-    private protected void OnLoseGame()
-    {
-        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
-        losePanel.SetActive(true);
-        loseScorePanel.text = $"{gameScore.Point}";
     }
 
     public bool IsLose(Collider2D collider)

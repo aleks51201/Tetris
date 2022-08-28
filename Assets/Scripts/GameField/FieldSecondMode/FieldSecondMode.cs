@@ -10,6 +10,8 @@ internal class FieldSecondMode : FieldBase
     [SerializeField]
     private protected int numObjectOnLine;
 
+    private protected ScorePhysics gameScore;
+
     private protected override void SpawnTetromino()
     {
         Create();
@@ -20,7 +22,7 @@ internal class FieldSecondMode : FieldBase
 
     private protected void Scoring(RaycastHit2D[] detectedObjects)
     {
-        gameScore.AddPointPhysicsMode(detectedObjects);
+        gameScore.CalcPoint(detectedObjects);
     }
 
     private protected void IsPaused(bool isPaused)
@@ -41,6 +43,14 @@ internal class FieldSecondMode : FieldBase
     {
         gameLineDetector.PatrolDetector(lineDetectorPosition);
     }
+
+    private void OnLoseGame()
+    {
+        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        losePanel.SetActive(true);
+        loseScorePanel.text = $"{gameScore.Point}";
+    }
+
     private void FixedUpdate()
     {
     }
@@ -49,8 +59,8 @@ internal class FieldSecondMode : FieldBase
     {
         gameStash = new(stashPosition, spawnPosition);
         gameQueue = new(queueSize, queueShift);
-        gameScore = new(this.fieldWidth, numObjectOnLine);
-        gameLineDetector = new(this.fieldHeight, this.fieldWidth, this.maskName, this.numObjectOnLine);
+        gameScore = new(fieldWidth, numObjectOnLine);
+        gameLineDetector = new(fieldHeight, fieldWidth, maskName, numObjectOnLine);
     }
 
     private void OnEnable()

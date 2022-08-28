@@ -24,7 +24,7 @@ public class FigureThirdMode : FigureBase
 
     private void InitState()
     {
-        this.statesMap = new Dictionary<Type, FigureThirdModeBaseState>
+        statesMap = new Dictionary<Type, FigureThirdModeBaseState>
         {
             [typeof(FigureThirdModeQueueState)] = new FigureThirdModeQueueState(),
             [typeof(FigureThirdModeBoardState)] = new FigureThirdModeBoardState(),
@@ -34,21 +34,21 @@ public class FigureThirdMode : FigureBase
 
     public void SetState(FigureThirdModeBaseState newBehaviour)
     {
-        if (this.currentState != null)
-            this.currentState.ExitState(this);
-        this.currentState = newBehaviour;
-        this.currentState.EnterState(this);
+        if (currentState != null)
+            currentState.ExitState(this);
+        currentState = newBehaviour;
+        currentState.EnterState(this);
     }
 
     public FigureThirdModeBaseState GetState<T>() where T : FigureThirdModeBaseState
     {
         Type type = typeof(T);
-        return this.statesMap[type];
+        return statesMap[type];
     }
 
     private void SetStateByDefault()
     {
-        FigureThirdModeBaseState stateByDefault = this.GetState<FigureThirdModeQueueState>();
+        FigureThirdModeBaseState stateByDefault = GetState<FigureThirdModeQueueState>();
         SetState(stateByDefault);
     }
 
@@ -72,7 +72,7 @@ public class FigureThirdMode : FigureBase
             return;
         Vector2 positionOffset = new Vector2(direct, 0);
         Vector2 newPosition = GetCurrentPosition() + positionOffset;
-        this.tetromino.transform.position = newPosition;
+        tetromino.transform.position = newPosition;
     }
 
     public override void Rotate(KeyCode keyCode, float direct)
@@ -103,7 +103,7 @@ public class FigureThirdMode : FigureBase
 
     public override Vector2 GetCurrentPosition()
     {
-        return this.tetromino.transform.position;
+        return tetromino.transform.position;
     }
 
     public override void ColorationCell()
@@ -135,9 +135,9 @@ public class FigureThirdMode : FigureBase
     private protected override void Dissolve()
     {
         ParticleStart();
-        BusEvent.OnDeleteTetrominoEvent?.Invoke(this.tetromino);
-        this.tetromino.transform.DetachChildren();
-        Destroy(this.tetromino);
+        BusEvent.OnDeleteTetrominoEvent?.Invoke(tetromino);
+        tetromino.transform.DetachChildren();
+        Destroy(tetromino);
     }
 
     public void Remove()
@@ -148,9 +148,9 @@ public class FigureThirdMode : FigureBase
     private void FallTetromino()
     {
         Vector2 fallDisplacement = new Vector2(0, -1);
-        Vector2 oldPosition = this.tetromino.transform.position;
+        Vector2 oldPosition = tetromino.transform.position;
         Vector2 newPosition = oldPosition + fallDisplacement;
-        this.tetromino.transform.position = newPosition;
+        tetromino.transform.position = newPosition;
     }
 
     public bool CanTetrominoMove(Vector2[] currentFigurePositions, Vector2 direction)
@@ -179,7 +179,7 @@ public class FigureThirdMode : FigureBase
         {
             field.StartDestroyAnimation(field.detectedObjects);
             field.RemoveMatrixTetromino(field.detectedObjects);
-            field.StartAfterDestroyAnimation();
+            field.StartAfterDestroyAnimation(field.detectedObjects,field.GameScore);
         }
         BusEvent.OnCollisionEnterEvent?.Invoke();
     }
@@ -200,14 +200,14 @@ public class FigureThirdMode : FigureBase
     {
         if (keyCode != KeyCode.S)
             return;
-        this.delay = this.accelerateFallinDelay;
+        delay = accelerateFallinDelay;
     }
 
     public void NormalAccelerate(KeyCode keyCode, float _)
     {
         if (keyCode != KeyCode.S)
             return;
-        this.delay = this.fallingDelay;
+        delay = fallingDelay;
     }
 
     public void IsPaused(bool isPaused)
