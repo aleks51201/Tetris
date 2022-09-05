@@ -70,6 +70,7 @@ public class SoundControll : MonoBehaviour
     {
         findSoundObject = new();
         OnSceneSwitch();
+        MusicOn(masterVolumeToggle.isOn);
     }
 
     private void OnEnable()
