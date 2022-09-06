@@ -6,30 +6,37 @@ using UnityEngine.UI;
 public class SoundControll : MonoBehaviour
 {
     [SerializeField]
-    private AudioMixerGroup Group;
+    private AudioMixerGroup audioMixer;
     [SerializeField]
-    private GameObject BackMusic;
+    private GameObject backMusic;
 
     private Slider masterVolumeSlider;
     private Toggle masterVolumeToggle;
     private FindSoundObject findSoundObject;
 
-    public void MusicOn(bool enabled)
+    public void SaveVolumeStateBackgroundMusic(bool enabled)
+    {
+        PlayerPrefs.SetInt("MusicEnabled", enabled ? 1 : 0);
+    }
+    private bool GetSavedVolumeStateBackgroundMusic()
+    {
+        return PlayerPrefs.GetInt("MusicEnabled")==1;
+    }
+
+    private void SwitchBackgroundMusicVolume(bool enabled)
     {
         if (enabled)
-            Group.audioMixer.SetFloat("Music", 0);
+            audioMixer.audioMixer.SetFloat("Music", 0);
         else
-            Group.audioMixer.SetFloat("Music", -80);
-        PlayerPrefs.SetInt("MusicEnabled", enabled ? 1 : 0);
+            audioMixer.audioMixer.SetFloat("Music", -80);
     }
 
     public void MasterVolume(float level)
     {
         this.GetComponent<AudioSource>().volume = level;
-        BackMusic.GetComponent<AudioSource>().volume = level;
+        backMusic.GetComponent<AudioSource>().volume = level;
         PlayerPrefs.SetFloat("MasterVolume", level);
     }
-
 
     private void SliderChangeEvent()
     {
@@ -38,7 +45,8 @@ public class SoundControll : MonoBehaviour
 
     private void ToggleChangeEvent()
     {
-        MusicOn(masterVolumeToggle.isOn);
+        SwitchBackgroundMusicVolume(masterVolumeToggle.isOn);
+        SaveVolumeStateBackgroundMusic(masterVolumeToggle.isOn);
     }
 
     private void OnStartScene()
@@ -66,20 +74,28 @@ public class SoundControll : MonoBehaviour
         masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
     }
 
+    private void OnLoseGame()
+    {
+        SwitchBackgroundMusicVolume(false);
+    }
+
     private void Start()
     {
         findSoundObject = new();
         OnSceneSwitch();
-        MusicOn(masterVolumeToggle.isOn);
+        SwitchBackgroundMusicVolume(masterVolumeToggle.isOn);
+        SaveVolumeStateBackgroundMusic(masterVolumeToggle.isOn);
     }
 
     private void OnEnable()
     {
         BusEvent.OnSceneSwitchEvent += OnSceneSwitch;
+        BusEvent.OnLoseGameEvent += OnLoseGame;
     }
 
     private void OnDisable()
     {
         BusEvent.OnSceneSwitchEvent -= OnSceneSwitch;
+        BusEvent.OnLoseGameEvent -= OnLoseGame;
     }
 }

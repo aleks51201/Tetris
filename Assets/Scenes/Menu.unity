@@ -6477,8 +6477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64255d0cb1d800045a982346892e91ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Group: {fileID: 24300002, guid: 0b8a762b6e1ec4640b0d74df97adfe95, type: 2}
-  BackMusic: {fileID: 265973297}
+  audioMixer: {fileID: 1791222457783384498, guid: 0b8a762b6e1ec4640b0d74df97adfe95, type: 2}
+  backMusic: {fileID: 265973297}
 --- !u!1 &1395286066
 GameObject:
   m_ObjectHideFlags: 0
