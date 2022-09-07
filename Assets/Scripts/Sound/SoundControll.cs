@@ -18,6 +18,7 @@ public class SoundControll : MonoBehaviour
     {
         PlayerPrefs.SetInt("MusicEnabled", enabled ? 1 : 0);
     }
+
     private bool GetSavedVolumeStateBackgroundMusic()
     {
         return PlayerPrefs.GetInt("MusicEnabled")==1;
@@ -78,6 +79,10 @@ public class SoundControll : MonoBehaviour
     {
         SwitchBackgroundMusicVolume(false);
     }
+    private void OnRestartButtonClick()
+    {
+        SwitchBackgroundMusicVolume(GetSavedVolumeStateBackgroundMusic());
+    }
 
     private void Start()
     {
@@ -91,11 +96,13 @@ public class SoundControll : MonoBehaviour
     {
         BusEvent.OnSceneSwitchEvent += OnSceneSwitch;
         BusEvent.OnLoseGameEvent += OnLoseGame;
+        BusEvent.OnRestartButtonClickEvent += OnRestartButtonClick;
     }
 
     private void OnDisable()
     {
         BusEvent.OnSceneSwitchEvent -= OnSceneSwitch;
         BusEvent.OnLoseGameEvent -= OnLoseGame;
+        BusEvent.OnRestartButtonClickEvent -= OnRestartButtonClick;
     }
 }

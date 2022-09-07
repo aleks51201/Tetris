@@ -6,7 +6,7 @@ public class UIControl : MonoBehaviour
 {
     public GameObject welcomePanel, inGame, pause, lose, startGame, gameField;
     private ICreatable createFigure;
-    private IPauseable pauseGane;
+    private IPauseable pauseGame;
     private string currentSceneName;
 
     public void OnPlayButtonPressed()
@@ -29,15 +29,16 @@ public class UIControl : MonoBehaviour
     public void OnRestartButtonPressed()
     {
         SceneTransition.SwitchScene(currentSceneName);
-        if (pauseGane != null)
-            pauseGane.ContinueGame();
+        if (pauseGame != null)
+            pauseGame.ContinueGame();
+        BusEvent.OnRestartButtonClickEvent?.Invoke();
     }
 
     public void OnMenuButtonPressed()
     {
         SceneTransition.SwitchScene("Menu");
-        if (pauseGane != null)
-            pauseGane.ContinueGame();
+        if (pauseGame != null)
+            pauseGame.ContinueGame();
     }
 
     public void OnContinueButtonPressed()
@@ -74,7 +75,7 @@ public class UIControl : MonoBehaviour
     private void Start()
     {
         createFigure = gameField.GetComponent<ICreatable>();
-        pauseGane = gameField.GetComponent<IPauseable>();
+        pauseGame = gameField.GetComponent<IPauseable>();
         welcomePanel.GetComponent<Animator>().SetTrigger("AfterLoad");
         currentSceneName = SceneManager.GetActiveScene().name;
     }
