@@ -28,3 +28,5 @@
 
 💥 Геймплей
 ![image](https://user-images.githubusercontent.com/88888852/189525806-baf1735f-c131-4e93-bd72-48b5940780ea.png)
+
+![image](https://user-images.githubusercontent.com/88888852/189528542-6d76f92a-7747-464a-9ba5-94e98ca16773.png)
