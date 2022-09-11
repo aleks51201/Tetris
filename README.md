@@ -32,5 +32,5 @@ https://drive.google.com/uc?export=download&id=1rdcnXSpeC4GEucGwQlQGHY4DCTq6U-Ia
 💥 Геймплей
 ![image](https://user-images.githubusercontent.com/88888852/189525806-baf1735f-c131-4e93-bd72-48b5940780ea.png)
 
-Геймплей фирменного режима три в ряд
+💥Геймплей фирменного режима три в ряд
 ![image](https://user-images.githubusercontent.com/88888852/189528542-6d76f92a-7747-464a-9ba5-94e98ca16773.png)
