@@ -41,7 +41,6 @@ internal class FieldSecondMode : FieldBase
 
     private void ondelete(GameObject _)
     {
-        gameLineDetector.PatrolDetector(lineDetectorPosition);
     }
 
     private void OnLoseGame()
@@ -53,6 +52,7 @@ internal class FieldSecondMode : FieldBase
 
     private void FixedUpdate()
     {
+        gameLineDetector.LinePatrol(lineDetectorPosition);
     }
 
     private void Start()

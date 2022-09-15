@@ -1909,11 +1909,11 @@ MonoBehaviour:
   scorePanel: {fileID: 1623751935}
   loseScorePanel: {fileID: 1631277050}
   losePanel: {fileID: 1650030867}
-  lineDetectorPosition: {x: -0.8, y: -0.2}
+  lineDetectorPosition: {x: -0.5, y: 0}
   maskName:
     serializedVersion: 2
     m_Bits: 64
-  numObjectOnLine: 10
+  numObjectOnLine: 20
 --- !u!1 &898163379
 GameObject:
   m_ObjectHideFlags: 0

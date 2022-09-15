@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 public class Cell : MonoBehaviour
@@ -18,50 +19,59 @@ public class Cell : MonoBehaviour
 
     public void IsRigidBody2DKinematic(bool isKinematic)
     {
-        this.childCell.GetComponent<Rigidbody2D>().isKinematic = isKinematic;
+        childCell.GetComponent<Rigidbody2D>().isKinematic = isKinematic;
     }
 
     public void IsColider2DEnaled(bool isEnabled)
     {
-        this.childCell.GetComponent<Collider2D>().enabled = isEnabled;
+        childCell.GetComponent<Collider2D>().enabled = isEnabled;
     }
 
     public void SetLayer(int nummerateLayer)
     {
-        this.childCell.layer = nummerateLayer;
+        childCell.layer = nummerateLayer;
     }
 
     public void DestoyCell()
     {
-        Destroy(this.childCell);
+        Destroy(childCell);
     }
 
     private void ChangeLayerDependingOnVelocity()
     {
-        bool cellKinematic = this.childCell.GetComponent<Rigidbody2D>().isKinematic;
-        if (!cellKinematic)
+        bool isCellKinematic = childCell.GetComponent<Rigidbody2D>().isKinematic;
+        if (isCellKinematic)
+            return;
+        Vector2 cellVelocity = childCell.GetComponent<Rigidbody2D>().velocity;
+        if (cellVelocity.y < -0.5f)
+            childCell.layer = LayerMask.NameToLayer("Neon");
+        else if (cellVelocity.y >= -0.5f)
+            childCell.layer = LayerMask.NameToLayer("Detection");
+    }
+    private void OnLineIsFull(RaycastHit2D[] detectedObjects)
+    {
+        foreach(RaycastHit2D detectedObject in detectedObjects)
         {
-            Vector2 cellVelocity = this.childCell.GetComponent<Rigidbody2D>().velocity;
-            if (cellVelocity.y < -0.5f)
-                this.childCell.layer = LayerMask.NameToLayer("Neon");
-            else if (cellVelocity.y >= -0.5f)
-                this.childCell.layer = LayerMask.NameToLayer("Detection");
+            if (detectedObject.transform == childCell.transform)
+                childCell.layer = LayerMask.NameToLayer("Neon"); 
         }
     }
 
     private void Start()
     {
-        childCell = this.gameObject;
+        childCell = gameObject;
     }
 
     private void OnEnable()
     {
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
+        BusEvent.OnLineIsFullEvent +=OnLineIsFull;
     }
 
     private void OnDisable()
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        BusEvent.OnLineIsFullEvent -=OnLineIsFull;
     }
 
     private void FixedUpdate()

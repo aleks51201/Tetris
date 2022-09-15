@@ -3,7 +3,7 @@
 public class ScorePhysics : Score
 {
     private bool tetris;
-    int raycastOnLine = 0;
+    private int raycastOnLine = 0;
 
     public ScorePhysics(int cellCombinations, int raycastOnLine)
     {
