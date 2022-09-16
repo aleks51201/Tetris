@@ -1914,6 +1914,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   numObjectOnLine: 20
+  scorePhysicsMode: 1
 --- !u!1 &898163379
 GameObject:
   m_ObjectHideFlags: 0

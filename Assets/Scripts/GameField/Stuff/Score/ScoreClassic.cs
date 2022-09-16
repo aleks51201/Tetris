@@ -16,10 +16,12 @@ public class ScoreClassic:Score
 
     private protected override void SaveScore()
     {
+        if (Point < GetSavedScore())
+            return;
         PlayerPrefs.SetInt("ClassicScore", Point);
     }
 
-    private protected override int GetSavedScore()
+    public static int GetSavedScore()
     {
         return PlayerPrefs.GetInt("ClassicScore");
     }

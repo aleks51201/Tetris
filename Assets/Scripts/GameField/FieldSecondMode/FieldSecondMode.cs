@@ -9,6 +9,9 @@ internal class FieldSecondMode : FieldBase
     private protected LayerMask maskName;
     [SerializeField]
     private protected int numObjectOnLine;
+    [Header("Save score")]
+    [SerializeField]
+    private ScorePhysics.PhysicsMode scorePhysicsMode;
 
     private protected ScorePhysics gameScore;
 
@@ -59,7 +62,7 @@ internal class FieldSecondMode : FieldBase
     {
         gameStash = new(stashPosition, spawnPosition);
         gameQueue = new(queueSize, queueShift);
-        gameScore = new(fieldWidth, numObjectOnLine);
+        gameScore = new(fieldWidth, numObjectOnLine, scorePhysicsMode);
         gameLineDetector = new(fieldHeight, fieldWidth, maskName, numObjectOnLine);
     }
 

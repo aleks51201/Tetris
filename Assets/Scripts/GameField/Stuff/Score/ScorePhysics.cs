@@ -1,24 +1,43 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ScorePhysics : Score
 {
     private bool tetris;
     private int raycastOnLine = 0;
+    private PhysicsMode currentMode;
 
-    public ScorePhysics(int cellCombinations, int raycastOnLine)
+    public enum PhysicsMode
+    {
+        PhysicsOne = 1,
+        PhysicsTwo = 2,
+    }
+
+    public ScorePhysics(int cellCombinations, int raycastOnLine, PhysicsMode mode)
     {
         this.cellCombinations = cellCombinations;
         this.raycastOnLine = raycastOnLine;
+        currentMode = mode;
     }
 
     private protected override void SaveScore()
     {
-        PlayerPrefs.SetInt("PhysicsScore", Point);
+        if (Point < GetSavedScore(currentMode))
+            return;
+        if(currentMode == PhysicsMode.PhysicsOne)
+            PlayerPrefs.SetInt("PhysicsOneScore", Point);
+        if(currentMode == PhysicsMode.PhysicsTwo)
+            PlayerPrefs.SetInt("PhysicsTwoScore", Point);
     }
 
-    private protected override int GetSavedScore()
+    public static int GetSavedScore(PhysicsMode mode)
     {
-        return PlayerPrefs.GetInt("PhysicsScore");
+        if(mode == PhysicsMode.PhysicsOne)
+            return PlayerPrefs.GetInt("PhysicsOneScore");
+        else if(mode == PhysicsMode.PhysicsTwo)
+            return PlayerPrefs.GetInt("PhysicsTwoScore");
+        else
+            throw new Exception("no such mod exists.");
     }
 
     private void TetrisCheck(int lines)
