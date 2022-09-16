@@ -85,6 +85,7 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
 
     public void StartDestroyAnimation(RaycastHit2D[] detectedObject)
     {
+        BusEvent.OnStartDestroyAnimationEvent?.Invoke();
         foreach (RaycastHit2D cell in detectedObject)
         {
             cell.transform.GetComponent<Animator>().SetTrigger("Break");
