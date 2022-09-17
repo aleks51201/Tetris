@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(TextMeshPro))]
+[RequireComponent(typeof(TextMeshProUGUI))]
 class ScoreRecord: MonoBehaviour
 {
     [SerializeField]
     private GameMode gameMode;
     [SerializeField]
-    private TextMeshPro text;
+    private TextMeshProUGUI text;
 
     enum GameMode 
     {
@@ -26,11 +26,11 @@ class ScoreRecord: MonoBehaviour
     {
         if(gameMode==GameMode.PhysicsOne)
             return ScorePhysics.GetSavedScore(ScorePhysics.PhysicsMode.PhysicsOne);
-        if(gameMode==GameMode.PhysicsTwo)
+        else if(gameMode==GameMode.PhysicsTwo)
             return ScorePhysics.GetSavedScore(ScorePhysics.PhysicsMode.PhysicsTwo);
-        if(gameMode==GameMode.Classic)
+        else if(gameMode==GameMode.Classic)
             return ScoreClassic.GetSavedScore();
-        if(gameMode==GameMode.TreeInRow)
+        else if(gameMode==GameMode.TreeInRow)
             return ScoreTreeInRow.GetSavedScore();
         throw new Exception("no mode exists");
     }
