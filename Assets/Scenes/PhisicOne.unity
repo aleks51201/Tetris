@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lose: {fileID: 8300000, guid: c07660c7849511642bf376251acc9aa8, type: 3}
   falled: {fileID: 8300000, guid: 5f20d6f23f34c3f499fb287ec6f1d7cf, type: 3}
-  destroing: {fileID: 8300000, guid: 8e369a42edf7c8549ba64b42161714ac, type: 3}
+  destroing: {fileID: 8300000, guid: 01d655222ee6a244281d9b288fa244a6, type: 3}
   switching: {fileID: 8300000, guid: 0904d14fa10c1c14196afa445f7395f6, type: 3}
 --- !u!114 &195395432
 MonoBehaviour:
