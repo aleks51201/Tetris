@@ -10,12 +10,12 @@ internal class Mode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        previewAnimator.SetTrigger("Start");
+        previewAnimator.SetBool("Active", true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        previewAnimator.SetTrigger("Stop");
+        previewAnimator.SetBool("Active", false);
     }
 
     private void Start()

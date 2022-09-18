@@ -24,7 +24,7 @@ public class ScorePhysics : Score
     {
         if (Point < GetSavedScore(currentMode))
             return;
-        if(currentMode == PhysicsMode.PhysicsOne)
+        if (currentMode == PhysicsMode.PhysicsOne)
             PlayerPrefs.SetInt("PhysicsOneScore", Point);
         if(currentMode == PhysicsMode.PhysicsTwo)
             PlayerPrefs.SetInt("PhysicsTwoScore", Point);

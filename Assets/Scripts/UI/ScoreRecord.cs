@@ -7,12 +7,12 @@ using UnityEngine;
 using TMPro;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-class ScoreRecord: MonoBehaviour
+class ScoreRecord : MonoBehaviour
 {
     [SerializeField]
     private GameMode gameMode;
     [SerializeField]
-    private TextMeshProUGUI text;
+    private TextMeshProUGUI recordTextBox;
 
     enum GameMode 
     {
@@ -37,7 +37,9 @@ class ScoreRecord: MonoBehaviour
 
     private void Start()
     {
-        int salkdj = GetSavedScore(gameMode);
-        text.text =$"{GetSavedScore(gameMode)}";
+        int record= GetSavedScore(gameMode);
+        if (record == 0)
+            this.gameObject.SetActive(false);
+        recordTextBox.text =$"{record}";
     }
 }
