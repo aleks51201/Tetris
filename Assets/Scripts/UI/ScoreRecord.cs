@@ -26,11 +26,11 @@ class ScoreRecord: MonoBehaviour
     {
         if(gameMode==GameMode.PhysicsOne)
             return ScorePhysics.GetSavedScore(ScorePhysics.PhysicsMode.PhysicsOne);
-        else if(gameMode==GameMode.PhysicsTwo)
+        if(gameMode==GameMode.PhysicsTwo)
             return ScorePhysics.GetSavedScore(ScorePhysics.PhysicsMode.PhysicsTwo);
-        else if(gameMode==GameMode.Classic)
+        if(gameMode==GameMode.Classic)
             return ScoreClassic.GetSavedScore();
-        else if(gameMode==GameMode.TreeInRow)
+        if(gameMode==GameMode.TreeInRow)
             return ScoreTreeInRow.GetSavedScore();
         throw new Exception("no mode exists");
     }
