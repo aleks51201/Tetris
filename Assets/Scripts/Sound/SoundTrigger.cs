@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-class SoundTrigger: MonoBehaviour
+internal class SoundTrigger : MonoBehaviour
 {
     [Header("Sounds")]
     [SerializeField]
@@ -46,15 +41,15 @@ class SoundTrigger: MonoBehaviour
     private void OnEnable()
     {
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
-        BusEvent.OnLoseGameEvent+=OnLoseGame;
-        BusEvent.OnSwitchTetrominoEvent+=OnSwitchTeromino;
+        BusEvent.OnLoseGameEvent += OnLoseGame;
+        BusEvent.OnSwitchTetrominoEvent += OnSwitchTeromino;
         BusEvent.OnStartDestroyAnimationEvent += OnStartDestroyAnimation;
     }
     private void OnDisable()
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
-        BusEvent.OnLoseGameEvent-=OnLoseGame;
-        BusEvent.OnSwitchTetrominoEvent-=OnSwitchTeromino;
+        BusEvent.OnLoseGameEvent -= OnLoseGame;
+        BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnStartDestroyAnimationEvent -= OnStartDestroyAnimation;
     }
 }

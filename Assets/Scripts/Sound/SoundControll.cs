@@ -21,7 +21,7 @@ public class SoundControll : MonoBehaviour
 
     private bool GetSavedVolumeStateBackgroundMusic()
     {
-        return PlayerPrefs.GetInt("MusicEnabled")==1;
+        return PlayerPrefs.GetInt("MusicEnabled") == 1;
     }
 
     private void SwitchBackgroundMusicVolume(bool enabled)

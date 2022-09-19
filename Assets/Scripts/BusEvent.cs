@@ -24,8 +24,8 @@ public static class BusEvent
     public static Action OnRestartButtonClickEvent;
 
     //input system
-    public static Action<KeyCode,float> OnKeyDownEvent;
-    public static Action<KeyCode,float> OnKeyUpEvent;
+    public static Action<KeyCode, float> OnKeyDownEvent;
+    public static Action<KeyCode, float> OnKeyUpEvent;
     public static Action<KeyCode, float> OnKeyHoldEvent;
 }
 

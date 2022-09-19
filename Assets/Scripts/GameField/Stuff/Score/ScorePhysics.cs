@@ -26,18 +26,17 @@ public class ScorePhysics : Score
             return;
         if (currentMode == PhysicsMode.PhysicsOne)
             PlayerPrefs.SetInt("PhysicsOneScore", Point);
-        if(currentMode == PhysicsMode.PhysicsTwo)
+        if (currentMode == PhysicsMode.PhysicsTwo)
             PlayerPrefs.SetInt("PhysicsTwoScore", Point);
     }
 
     public static int GetSavedScore(PhysicsMode mode)
     {
-        if(mode == PhysicsMode.PhysicsOne)
+        if (mode == PhysicsMode.PhysicsOne)
             return PlayerPrefs.GetInt("PhysicsOneScore");
-        else if(mode == PhysicsMode.PhysicsTwo)
+        if (mode == PhysicsMode.PhysicsTwo)
             return PlayerPrefs.GetInt("PhysicsTwoScore");
-        else
-            throw new Exception("no such mod exists.");
+        throw new Exception("no such mod exists.");
     }
 
     private void TetrisCheck(int lines)

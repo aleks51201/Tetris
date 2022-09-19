@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreTreeInRow : Score
@@ -41,10 +37,10 @@ public class ScoreTreeInRow : Score
     public void CalcPoint(List<Transform> detectionLines)
     {
         int scoreSystem = 30;
-        int cells= detectionLines.Count;
+        int cells = detectionLines.Count;
         int lines = cells / cellCombinations;
         TetrisCheck(lines);
-        int combo = lines*GetCombo();
+        int combo = lines * GetCombo();
         int points = scoreSystem ^ combo;
         AddPoint(points);
         SaveScore();

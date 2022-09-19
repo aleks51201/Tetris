@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class Score
+﻿public abstract class Score
 {
     public int Point { get; private set; }
     private protected int cellCombinations;

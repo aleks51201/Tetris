@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 internal class Sound : MonoBehaviour
 {
@@ -20,5 +19,5 @@ internal class Sound : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         isLoaded = true;
     }
-    
+
 }
