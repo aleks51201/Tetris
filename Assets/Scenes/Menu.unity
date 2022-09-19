@@ -7099,6 +7099,7 @@ GameObject:
   - component: {fileID: 1282469164}
   - component: {fileID: 1282469163}
   - component: {fileID: 1282469162}
+  - component: {fileID: 1282469165}
   m_Layer: 0
   m_Name: LinkToGitHub
   m_TagString: Untagged
@@ -7169,19 +7170,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2101872108}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 936370974}
-        m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: OnLinkButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1282469163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7220,6 +7209,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282469160}
   m_CullTransparentMesh: 1
+--- !u!114 &1282469165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282469160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19d6ce5fe1af70499399fcf7dcd7564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 936370974}
+        m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
+        m_MethodName: OnLinkButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1288357672
 GameObject:
   m_ObjectHideFlags: 0
