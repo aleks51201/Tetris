@@ -9,6 +9,11 @@ internal class FieldSecondMode : FieldBase
     private protected LayerMask maskName;
     [SerializeField]
     private protected int numObjectOnLine;
+    [Header("Save score")]
+    [SerializeField]
+    private ScorePhysics.PhysicsMode scorePhysicsMode;
+
+    private protected ScorePhysics gameScore;
 
     private protected override void SpawnTetromino()
     {
@@ -20,7 +25,7 @@ internal class FieldSecondMode : FieldBase
 
     private protected void Scoring(RaycastHit2D[] detectedObjects)
     {
-        gameScore.AddPoint(detectedObjects.Length / numObjectOnLine * 100);
+        gameScore.CalcPoint(detectedObjects);
     }
 
     private protected void IsPaused(bool isPaused)
@@ -37,21 +42,28 @@ internal class FieldSecondMode : FieldBase
         tetromino.velocity = currentVelocity;
     }
 
-    private void Update()
+    private void ondelete(GameObject _)
     {
+    }
+
+    private void OnLoseGame()
+    {
+        BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        losePanel.SetActive(true);
+        loseScorePanel.text = $"{gameScore.Point}";
     }
 
     private void FixedUpdate()
     {
-        gameLineDetector.PatrolDetector(lineDetectorPosition);
+        gameLineDetector.LinePatrol(lineDetectorPosition);
     }
 
     private void Start()
     {
         gameStash = new(stashPosition, spawnPosition);
         gameQueue = new(queueSize, queueShift);
-        gameScore = new();
-        gameLineDetector = new(this.fieldHeight, this.fieldWidth, this.maskName, this.numObjectOnLine);
+        gameScore = new(fieldWidth, numObjectOnLine, scorePhysicsMode);
+        gameLineDetector = new(fieldHeight, fieldWidth, maskName, numObjectOnLine);
     }
 
     private void OnEnable()
@@ -61,6 +73,7 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnAddScoreEvent += OnAddScore;
         BusEvent.OnLoseGameEvent += OnLoseGame;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
+        BusEvent.OnDeleteTetrominoEvent += ondelete;
         BusEvent.OnPauseEvent += IsPaused;
         BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
         BusEvent.OnLineIsFullEvent += Scoring;

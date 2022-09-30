@@ -1,91 +1,108 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
+[RequireComponent(typeof(AudioSource))]
 public class SoundControll : MonoBehaviour
 {
     [SerializeField]
-    private AudioMixerGroup Group;
+    private AudioMixerGroup audioMixer;
     [SerializeField]
-    private GameObject BackMusic;
+    private GameObject backMusic;
 
     private Slider masterVolumeSlider;
     private Toggle masterVolumeToggle;
     private FindSoundObject findSoundObject;
 
+    public void SaveVolumeStateBackgroundMusic(bool enabled)
+    {
+        PlayerPrefs.SetInt("MusicEnabled", enabled ? 1 : 0);
+    }
 
-    public void MusicOn(bool enabled)
+    private bool GetSavedVolumeStateBackgroundMusic()
+    {
+        return PlayerPrefs.GetInt("MusicEnabled") == 1;
+    }
+
+    private void SwitchBackgroundMusicVolume(bool enabled)
     {
         if (enabled)
-            Group.audioMixer.SetFloat("Music", 0);
+            audioMixer.audioMixer.SetFloat("Music", 0);
         else
-            Group.audioMixer.SetFloat("Music", -80);
-        PlayerPrefs.SetInt("MusicEnabled", enabled ? 1 : 0);
+            audioMixer.audioMixer.SetFloat("Music", -80);
     }
 
     public void MasterVolume(float level)
     {
         this.GetComponent<AudioSource>().volume = level;
-        this.BackMusic.GetComponent<AudioSource>().volume = level;
+        backMusic.GetComponent<AudioSource>().volume = level;
         PlayerPrefs.SetFloat("MasterVolume", level);
     }
 
-
     private void SliderChangeEvent()
     {
-        MasterVolume(this.masterVolumeSlider.value);
+        MasterVolume(masterVolumeSlider.value);
     }
 
     private void ToggleChangeEvent()
     {
-        MusicOn(this.masterVolumeToggle.isOn);
+        SwitchBackgroundMusicVolume(masterVolumeToggle.isOn);
+        SaveVolumeStateBackgroundMusic(masterVolumeToggle.isOn);
     }
 
     private void OnStartScene()
     {
-        Toggle toggle= findSoundObject.TryFindMasterVolumeToggle();
+        Toggle toggle = findSoundObject.TryFindMasterVolumeToggle();
         if (toggle != null)
-            this.masterVolumeToggle = toggle;
+            masterVolumeToggle = toggle;
         Slider slider = findSoundObject.TryFindMasterVolumeSlider();
-        if (slider!= null)
-            this.masterVolumeSlider= slider;
-        RegisterCallbackEvent(true);
+        if (slider != null)
+            masterVolumeSlider = slider;
+        RegisterCallbackEvent();
     }
 
     private void OnSceneSwitch()
     {
         OnStartScene();
-        this.masterVolumeToggle.isOn = PlayerPrefs.GetInt("MusicEnabled") == 1;
-        this.masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+        masterVolumeToggle.isOn = PlayerPrefs.GetInt("MusicEnabled") == 1;
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+        BusEvent.OnStartSoundEvent?.Invoke();
     }
 
-    private void RegisterCallbackEvent(bool register)
+    private void RegisterCallbackEvent()
     {
-        if (register)
-        {
-            this.masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
-            this.masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
-            return;
-        }
-        this.masterVolumeToggle.onValueChanged.RemoveListener(delegate { ToggleChangeEvent(); });
-        this.masterVolumeSlider.onValueChanged.RemoveListener(delegate { SliderChangeEvent(); });
+        masterVolumeToggle.onValueChanged.AddListener(delegate { ToggleChangeEvent(); });
+        masterVolumeSlider.onValueChanged.AddListener(delegate { SliderChangeEvent(); });
     }
+
+    private void OnLoseGame()
+    {
+        SwitchBackgroundMusicVolume(false);
+    }
+    private void OnRestartButtonClick()
+    {
+        SwitchBackgroundMusicVolume(GetSavedVolumeStateBackgroundMusic());
+    }
+
     private void Start()
     {
         findSoundObject = new();
         OnSceneSwitch();
+        SwitchBackgroundMusicVolume(masterVolumeToggle.isOn);
+        SaveVolumeStateBackgroundMusic(masterVolumeToggle.isOn);
     }
 
     private void OnEnable()
     {
         BusEvent.OnSceneSwitchEvent += OnSceneSwitch;
+        BusEvent.OnLoseGameEvent += OnLoseGame;
+        BusEvent.OnRestartButtonClickEvent += OnRestartButtonClick;
     }
 
     private void OnDisable()
     {
         BusEvent.OnSceneSwitchEvent -= OnSceneSwitch;
-        RegisterCallbackEvent(false);
+        BusEvent.OnLoseGameEvent -= OnLoseGame;
+        BusEvent.OnRestartButtonClickEvent -= OnRestartButtonClick;
     }
 }

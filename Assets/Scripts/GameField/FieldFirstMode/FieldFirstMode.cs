@@ -1,4 +1,4 @@
-using TMPro;
+/*using TMPro;
 using UnityEngine;
 
 
@@ -196,3 +196,4 @@ public class FieldFirstMode : MonoBehaviour, ICreatable, ISwitchTetromino
     }
 
 }
+*/

@@ -8,14 +8,14 @@ public class FindSoundObject
 
     private void SetScene()
     {
-        this.currentScene = SceneManager.GetActiveScene();
+        currentScene = SceneManager.GetActiveScene();
     }
 
     private GameObject TryFindCanvasOnScene()
     {
         SetScene();
         GameObject[] inSceneObjects;
-        inSceneObjects = this.currentScene.GetRootGameObjects();
+        inSceneObjects = currentScene.GetRootGameObjects();
         foreach (GameObject inSceneObject in inSceneObjects)
         {
             if (inSceneObject.name == "Canvas")

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,13 +5,12 @@ public class UIControl : MonoBehaviour
 {
     public GameObject welcomePanel, inGame, pause, lose, startGame, gameField;
     private ICreatable createFigure;
-    private IPauseable pauseGane;
+    private IPauseable pauseGame;
     private string currentSceneName;
 
     public void OnPlayButtonPressed()
     {
-        StartCoroutine(TurnOff(startGame, 0.55f));
-        startGame.GetComponent<Animator>().SetTrigger("StartDisappear");
+        startGame.GetComponent<Animator>().SetBool("Next", true);
         inGame.SetActive(true);
         if (createFigure != null)
             createFigure.Create();
@@ -20,31 +18,34 @@ public class UIControl : MonoBehaviour
 
     public void OnPauseButtonPressed()
     {
-        StartCoroutine(TurnOff(inGame, 0.75f));
-        inGame.GetComponent<Animator>().SetTrigger("InGameDisappear");
+        Animator inGameAnimator = inGame.GetComponent<Animator>();
+        inGameAnimator.SetBool("Next", true);
         pause.SetActive(true);
+        pause.GetComponent<Animator>().SetBool("Next", false);
         OnButtonClicked(true);
     }
 
     public void OnRestartButtonPressed()
     {
         SceneTransition.SwitchScene(currentSceneName);
-        if (pauseGane != null)
-            pauseGane.ContinueGame();
+        if (pauseGame != null)
+            pauseGame.ContinueGame();
+        BusEvent.OnRestartButtonClickEvent?.Invoke();
     }
 
     public void OnMenuButtonPressed()
     {
         SceneTransition.SwitchScene("Menu");
-        if (pauseGane != null)
-            pauseGane.ContinueGame();
+        if (pauseGame != null)
+            pauseGame.ContinueGame();
     }
 
     public void OnContinueButtonPressed()
     {
-        StartCoroutine(TurnOff(pause, 0.75f));
-        pause.GetComponent<Animator>().SetTrigger("PauseDisappear");
+        Animator inPauseAnimator = pause.GetComponent<Animator>();
+        inPauseAnimator.SetBool("Next", true);
         inGame.SetActive(true);
+        inGame.GetComponent<Animator>().SetBool("Next", false);
         OnButtonClicked(false);
     }
 
@@ -65,16 +66,10 @@ public class UIControl : MonoBehaviour
         OnPauseButtonPressed();
     }
 
-    private IEnumerator TurnOff(GameObject Who, float Time)
-    {
-        yield return new WaitForSeconds(Time);
-        Who.SetActive(false);
-    }
-
     private void Start()
     {
         createFigure = gameField.GetComponent<ICreatable>();
-        pauseGane = gameField.GetComponent<IPauseable>();
+        pauseGame = gameField.GetComponent<IPauseable>();
         welcomePanel.GetComponent<Animator>().SetTrigger("AfterLoad");
         currentSceneName = SceneManager.GetActiveScene().name;
     }

@@ -183,6 +183,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  accelerateForceMode: 1
+  acceleratePower: 0.001
 --- !u!1001 &616666355041846313
 PrefabInstance:
   m_ObjectHideFlags: 0

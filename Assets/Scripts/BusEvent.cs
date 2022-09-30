@@ -20,10 +20,12 @@ public static class BusEvent
     public static Action OnCellDestroyEvent;
     public static Action OnStartDestroyAnimationEvent;
     public static Action OnSceneSwitchEvent;
+    public static Action OnStartSoundEvent;
+    public static Action OnRestartButtonClickEvent;
 
     //input system
-    public static Action<KeyCode,float> OnKeyDownEvent;
-    public static Action<KeyCode,float> OnKeyUpEvent;
+    public static Action<KeyCode, float> OnKeyDownEvent;
+    public static Action<KeyCode, float> OnKeyUpEvent;
     public static Action<KeyCode, float> OnKeyHoldEvent;
 }
 

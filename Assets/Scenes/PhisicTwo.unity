@@ -1798,7 +1798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lose: {fileID: 8300000, guid: c07660c7849511642bf376251acc9aa8, type: 3}
   falled: {fileID: 8300000, guid: 5f20d6f23f34c3f499fb287ec6f1d7cf, type: 3}
-  destroing: {fileID: 8300000, guid: 8e369a42edf7c8549ba64b42161714ac, type: 3}
+  destroing: {fileID: 8300000, guid: 01d655222ee6a244281d9b288fa244a6, type: 3}
   switching: {fileID: 8300000, guid: 0904d14fa10c1c14196afa445f7395f6, type: 3}
 --- !u!82 &803640554
 AudioSource:
@@ -2554,6 +2554,7 @@ GameObject:
   - component: {fileID: 1423147656}
   - component: {fileID: 1423147655}
   - component: {fileID: 1423147654}
+  - component: {fileID: 1423147658}
   m_Layer: 5
   m_Name: StartGame
   m_TagString: Untagged
@@ -2641,6 +2642,18 @@ RectTransform:
   m_AnchoredPosition: {x: 21, y: 0}
   m_SizeDelta: {x: -42, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1423147658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423147653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986d61c53617ad440b77b801af31501a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1460075637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,6 +2750,7 @@ GameObject:
   - component: {fileID: 1465218114}
   - component: {fileID: 1465218113}
   - component: {fileID: 1465218112}
+  - component: {fileID: 1465218115}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -2826,6 +2840,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465218110}
   m_CullTransparentMesh: 1
+--- !u!114 &1465218115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465218110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986d61c53617ad440b77b801af31501a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1465913261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3502,11 +3528,12 @@ MonoBehaviour:
   scorePanel: {fileID: 679622109}
   loseScorePanel: {fileID: 1766441188}
   losePanel: {fileID: 1814854352}
-  lineDetectorPosition: {x: -0.8, y: -0.2}
+  lineDetectorPosition: {x: -0.8, y: 1.5}
   maskName:
     serializedVersion: 2
     m_Bits: 64
   numObjectOnLine: 10
+  scorePhysicsMode: 2
 --- !u!1 &1692146663
 GameObject:
   m_ObjectHideFlags: 0
@@ -3519,6 +3546,7 @@ GameObject:
   - component: {fileID: 1692146667}
   - component: {fileID: 1692146666}
   - component: {fileID: 1692146665}
+  - component: {fileID: 1692146668}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -3590,18 +3618,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50531492}
-        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
-        m_MethodName: OnMenuButtonPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 803640554}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -3652,6 +3668,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692146663}
   m_CullTransparentMesh: 1
+--- !u!114 &1692146668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692146663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19d6ce5fe1af70499399fcf7dcd7564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 50531492}
+        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+        m_MethodName: OnMenuButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1766441186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3799,6 +3842,7 @@ GameObject:
   - component: {fileID: 1790494064}
   - component: {fileID: 1790494063}
   - component: {fileID: 1790494062}
+  - component: {fileID: 1790494065}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -3870,18 +3914,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50531492}
-        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
-        m_MethodName: OnMenuButtonPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 803640554}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -3932,6 +3964,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790494060}
   m_CullTransparentMesh: 1
+--- !u!114 &1790494065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790494060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19d6ce5fe1af70499399fcf7dcd7564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 50531492}
+        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+        m_MethodName: OnMenuButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1798162082
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,6 +4104,7 @@ GameObject:
   - component: {fileID: 1814854355}
   - component: {fileID: 1814854354}
   - component: {fileID: 1814854353}
+  - component: {fileID: 1814854357}
   m_Layer: 5
   m_Name: Lose
   m_TagString: Untagged
@@ -4131,6 +4191,18 @@ RectTransform:
   m_AnchoredPosition: {x: 21, y: 0}
   m_SizeDelta: {x: -42, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1814854357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814854352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986d61c53617ad440b77b801af31501a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1885834112
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,6 +4215,7 @@ GameObject:
   - component: {fileID: 1885834115}
   - component: {fileID: 1885834114}
   - component: {fileID: 1885834113}
+  - component: {fileID: 1885834117}
   m_Layer: 5
   m_Name: InGame
   m_TagString: Untagged
@@ -4230,6 +4303,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1885834117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885834112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986d61c53617ad440b77b801af31501a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1959176268
 GameObject:
   m_ObjectHideFlags: 0
