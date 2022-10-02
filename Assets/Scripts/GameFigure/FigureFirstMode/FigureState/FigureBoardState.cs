@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 internal class FigureBoardState : FigureBaseState
 {
@@ -12,6 +13,7 @@ internal class FigureBoardState : FigureBaseState
         StartTetrominoSettigs(tetromino);
         BusEvent.OnSwitchTetrominoEvent += OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
+        BusEvent.OnPauseEvent += OnPause;
         BusEvent.OnKeyDownEvent += tetr.Move;
         BusEvent.OnKeyDownEvent += tetr.Rotate;
         BusEvent.OnKeyDownEvent += tetr.Acceleration;
@@ -20,6 +22,7 @@ internal class FigureBoardState : FigureBaseState
     public override void ExitState(FigureFirstMode tetromino)
     {
         BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
+        BusEvent.OnPauseEvent -= OnPause;
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
@@ -49,6 +52,7 @@ internal class FigureBoardState : FigureBaseState
     {
         BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        BusEvent.OnPauseEvent -= OnPause;
         BusEvent.OnKeyDownEvent -= tetr.Move;
         BusEvent.OnKeyDownEvent -= tetr.Rotate;
         BusEvent.OnKeyDownEvent -= tetr.Acceleration;
@@ -77,6 +81,19 @@ internal class FigureBoardState : FigureBaseState
         {
             BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
             BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
+        }
+    }
+
+    private void OnPause(bool isPause)
+    {
+        List<Transform> objects = tetr.GetAllChildCell();
+        objects.Add(figure.transform);
+        foreach (Transform obj in objects)
+        {
+            if (isPause) 
+                PauseObject.Pause(obj);
+            else
+                PauseObject.UnPause(obj);
         }
     }
 }

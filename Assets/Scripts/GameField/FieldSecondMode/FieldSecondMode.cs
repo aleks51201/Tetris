@@ -18,9 +18,9 @@ internal class FieldSecondMode : FieldBase
     private protected override void SpawnTetromino()
     {
         Create();
-        this.currentTetrominoInGame = gameQueue.queueOfTetromino.Dequeue();
-        BusEvent.OnSpawnTetrominoEvent?.Invoke(this.currentTetrominoInGame);
-        this.currentTetrominoInGame.transform.position = spawnPosition;
+        currentTetrominoInGame = gameQueue.queueOfTetromino.Dequeue();
+        BusEvent.OnSpawnTetrominoEvent?.Invoke(currentTetrominoInGame);
+        currentTetrominoInGame.transform.position = spawnPosition;
     }
 
     private protected void Scoring(RaycastHit2D[] detectedObjects)
@@ -30,7 +30,7 @@ internal class FieldSecondMode : FieldBase
 
     private protected void IsPaused(bool isPaused)
     {
-        Rigidbody2D tetromino = this.currentTetrominoInGame.GetComponent<Rigidbody2D>();
+        Rigidbody2D tetromino = currentTetrominoInGame.GetComponent<Rigidbody2D>();
         Vector2 currentVelocity = tetromino.velocity;
         if (isPaused)
         {
@@ -40,10 +40,6 @@ internal class FieldSecondMode : FieldBase
         }
         tetromino.isKinematic = false;
         tetromino.velocity = currentVelocity;
-    }
-
-    private void ondelete(GameObject _)
-    {
     }
 
     private void OnLoseGame()
@@ -73,8 +69,7 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnAddScoreEvent += OnAddScore;
         BusEvent.OnLoseGameEvent += OnLoseGame;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
-        BusEvent.OnDeleteTetrominoEvent += ondelete;
-        BusEvent.OnPauseEvent += IsPaused;
+        //BusEvent.OnPauseEvent += IsPaused;
         BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
         BusEvent.OnLineIsFullEvent += Scoring;
         BusEvent.OnKeyDownEvent += SwitchTetromino;
@@ -88,7 +83,7 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnAddScoreEvent -= OnAddScore;
         BusEvent.OnLoseGameEvent -= OnLoseGame;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
-        BusEvent.OnPauseEvent -= IsPaused;
+        //BusEvent.OnPauseEvent -= IsPaused;
         BusEvent.OnLineIsFullEvent -= StartDestroyAnimation;
         BusEvent.OnLineIsFullEvent -= Scoring;
         BusEvent.OnKeyDownEvent -= SwitchTetromino;
