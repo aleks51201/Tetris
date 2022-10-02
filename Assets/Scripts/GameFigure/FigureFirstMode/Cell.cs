@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Cell : MonoBehaviour
@@ -50,11 +49,18 @@ public class Cell : MonoBehaviour
     }
     private void OnLineIsFull(RaycastHit2D[] detectedObjects)
     {
-        foreach(RaycastHit2D detectedObject in detectedObjects)
+        foreach (RaycastHit2D detectedObject in detectedObjects)
         {
             if (detectedObject.transform == childCell.transform)
-                childCell.layer = LayerMask.NameToLayer("Neon"); 
+                childCell.layer = LayerMask.NameToLayer("Neon");
         }
+    }
+    private void OnPause(bool isPause)
+    {
+        if (isPause)
+            PauseObject.Pause(transform);
+        else
+            PauseObject.UnPause(transform);
     }
 
     private void Start()
@@ -65,13 +71,15 @@ public class Cell : MonoBehaviour
     private void OnEnable()
     {
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
-        BusEvent.OnLineIsFullEvent +=OnLineIsFull;
+        BusEvent.OnLineIsFullEvent += OnLineIsFull;
+        BusEvent.OnPauseEvent += OnPause;
     }
 
     private void OnDisable()
     {
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
-        BusEvent.OnLineIsFullEvent -=OnLineIsFull;
+        BusEvent.OnLineIsFullEvent -= OnLineIsFull;
+        BusEvent.OnPauseEvent -= OnPause;
     }
 
     private void FixedUpdate()

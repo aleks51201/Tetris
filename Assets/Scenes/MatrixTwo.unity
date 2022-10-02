@@ -1744,7 +1744,7 @@ MonoBehaviour:
   - {fileID: 7679411815608855384, guid: c8f1bcbb0d9c9f345bf40f8554be7491, type: 3}
   - {fileID: 7679411815608855384, guid: 4930140e40700594eb28041ccc1dfa95, type: 3}
   fieldWidth: 10
-  fieldHeight: 20
+  fieldHeight: 21
   spawnPosition: {x: 5, y: 21}
   stashPosition: {x: -5.5, y: 13.5}
   queuePosition: {x: 14.5, y: 4.5}
