@@ -28,7 +28,7 @@ internal class FieldSecondMode : FieldBase
         gameScore.CalcPoint(detectedObjects);
     }
 
-    private protected void IsPaused(bool isPaused)
+/*    private protected void IsPaused(bool isPaused)
     {
         Rigidbody2D tetromino = currentTetrominoInGame.GetComponent<Rigidbody2D>();
         Vector2 currentVelocity = tetromino.velocity;
@@ -40,7 +40,7 @@ internal class FieldSecondMode : FieldBase
         }
         tetromino.isKinematic = false;
         tetromino.velocity = currentVelocity;
-    }
+    }*/
 
     private void OnLoseGame()
     {
