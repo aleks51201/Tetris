@@ -52,6 +52,8 @@ public class FieldThirdMode : FieldBase
 
     public void RemoveMatrixTetromino(List<Transform> oldFigurePosition)
     {
+            while (detectedObjects[0].GetComponent<Animator>().speed == 0)
+                Debug.Log("waiting");
         int x;
         int y;
         for (int i = 0; i < oldFigurePosition.Count; i++)

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-class FigureFourthMode: FigureThirdMode
+class FigureFourthMode : FigureThirdMode
 {
     public override void ColorationCell()
     {
@@ -25,7 +20,7 @@ class FigureFourthMode: FigureThirdMode
         {
             field.StartDestroyAnimation(field.detectedObjects);
             field.RemoveMatrixTetromino(field.detectedObjects);
-            field.StartAfterDestroyAnimation(field.detectedObjects,field.GameScore);
+            field.StartAfterDestroyAnimation(field.detectedObjects, field.GameScore);
         }
         BusEvent.OnCollisionEnterEvent?.Invoke();
     }

@@ -19,28 +19,14 @@ internal class FieldSecondMode : FieldBase
     {
         Create();
         currentTetrominoInGame = gameQueue.queueOfTetromino.Dequeue();
-        BusEvent.OnSpawnTetrominoEvent?.Invoke(currentTetrominoInGame);
         currentTetrominoInGame.transform.position = spawnPosition;
+        BusEvent.OnSpawnTetrominoEvent?.Invoke(currentTetrominoInGame);
     }
 
     private protected void Scoring(RaycastHit2D[] detectedObjects)
     {
         gameScore.CalcPoint(detectedObjects);
     }
-
-/*    private protected void IsPaused(bool isPaused)
-    {
-        Rigidbody2D tetromino = currentTetrominoInGame.GetComponent<Rigidbody2D>();
-        Vector2 currentVelocity = tetromino.velocity;
-        if (isPaused)
-        {
-            tetromino.isKinematic = true;
-            tetromino.velocity = new Vector2(0, 0);
-            return;
-        }
-        tetromino.isKinematic = false;
-        tetromino.velocity = currentVelocity;
-    }*/
 
     private void OnLoseGame()
     {

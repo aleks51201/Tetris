@@ -5,8 +5,8 @@ using UnityEngine;
 
 internal class FieldFourthMode : FieldThirdMode
 {
-    private ScoreTreeInRow gameScore; 
-   private List<Vector2> savedCoordinate;
+    private ScoreTreeInRow gameScore;
+    private List<Vector2> savedCoordinate;
     private int cellCombo = 3;
     public new ScoreTreeInRow GameScore => gameScore;
 
@@ -34,7 +34,7 @@ internal class FieldFourthMode : FieldThirdMode
         {
             StartDestroyAnimation(detectedObjects);
             RemoveMatrixTetromino(detectedObjects);
-            StartAfterDestroyAnimation(detectedObjects,GameScore);
+            StartAfterDestroyAnimation(detectedObjects, GameScore);
         }
     }
 
@@ -198,21 +198,21 @@ internal class FieldFourthMode : FieldThirdMode
     {
         return detectedObjects.Count >= 3;
     }
-    private void AddScore(List<Transform> detectedObjects,ScoreTreeInRow scoreObject )
+    private void AddScore(List<Transform> detectedObjects, ScoreTreeInRow scoreObject)
     {
         scoreObject.CalcPoint(detectedObjects);
     }
 
 
-    public void StartAfterDestroyAnimation(List<Transform> detectedObjects,ScoreTreeInRow scoreObject)
+    public void StartAfterDestroyAnimation(List<Transform> detectedObjects, ScoreTreeInRow scoreObject)
     {
-        StartCoroutine(AfterDestroyAnimation(detectedObjects,scoreObject));
+        StartCoroutine(AfterDestroyAnimation(detectedObjects, scoreObject));
     }
 
-    private IEnumerator AfterDestroyAnimation(List<Transform> detectedObjects,ScoreTreeInRow scoreObject)
+    private IEnumerator AfterDestroyAnimation(List<Transform> detectedObjects, ScoreTreeInRow scoreObject)
     {
         yield return new WaitForSeconds(0.9f);
-        AddScore(detectedObjects,scoreObject);
+        AddScore(detectedObjects, scoreObject);
         MatrixShift();
     }
 

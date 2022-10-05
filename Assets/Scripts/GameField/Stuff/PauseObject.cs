@@ -2,14 +2,6 @@
 
 class PauseObject
 {
-    public static void Pause(GameObject gameObject)
-    {
-        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-    }
-    public static void UnPause(GameObject gameObject)
-    {
-        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-    }
     public static void Pause(Transform gameObject)
     {
         Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
@@ -19,6 +11,7 @@ class PauseObject
              rb.bodyType = RigidbodyType2D.Static;
         }
     }
+
     public static void UnPause(Transform gameObject)
     {
         Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();

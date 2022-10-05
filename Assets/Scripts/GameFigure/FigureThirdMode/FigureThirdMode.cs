@@ -179,7 +179,7 @@ public class FigureThirdMode : FigureBase
         {
             field.StartDestroyAnimation(field.detectedObjects);
             field.RemoveMatrixTetromino(field.detectedObjects);
-            field.StartAfterDestroyAnimation(field.detectedObjects,field.GameScore);
+            field.StartAfterDestroyAnimation(field.detectedObjects, field.GameScore);
         }
         BusEvent.OnCollisionEnterEvent?.Invoke();
     }

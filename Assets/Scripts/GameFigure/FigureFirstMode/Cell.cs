@@ -5,7 +5,7 @@ public class Cell : MonoBehaviour
 {
     private GameObject childCell;
 
-    private void OnDeleteTetromino(GameObject tetromino)
+    public void OnDeleteTetromino(GameObject tetromino)
     {
         if (childCell.transform.IsChildOf(tetromino.transform))
         {
