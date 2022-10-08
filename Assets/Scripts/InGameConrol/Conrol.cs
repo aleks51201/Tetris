@@ -9,6 +9,7 @@ public class Conrol : MonoBehaviour
     private void OnEnable()
     {
         BusEvent.OnPauseEvent += OnPause;
+        BusEvent.OnLoseGameEvent += OnLose;
     }
 
     private void OnDisable()
