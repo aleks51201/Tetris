@@ -22,6 +22,7 @@ public static class BusEvent
     public static Action OnSceneSwitchEvent;
     public static Action OnStartSoundEvent;
     public static Action OnRestartButtonClickEvent;
+    public static Action OnStartAfterDestoyAnimation;
 
     //input system
     public static Action<KeyCode, float> OnKeyDownEvent;
