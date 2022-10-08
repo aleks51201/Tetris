@@ -173,17 +173,8 @@ public class FigureThirdMode : FigureBase
 
     private protected virtual void EndContolTetromino()
     {
-        field.AddMatrixTetromino(GetAllChildObject());
-        field.detectedObjects = field.LineDetector();
-        if (field.IsFullDetectedList(field.detectedObjects))
-        {
-            field.StartDestroyAnimation(field.detectedObjects);
-            field.RemoveMatrixTetromino(field.detectedObjects);
-            field.StartAfterDestroyAnimation(field.detectedObjects,field.GameScore);
-        }
         BusEvent.OnCollisionEnterEvent?.Invoke();
     }
-
     public IEnumerator Falling()
     {
         yield return new WaitForSeconds(delay);

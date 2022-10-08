@@ -68,9 +68,9 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
     private void OnPause(bool isPause)
     {
         if (isPause)
-            PauseObject.Pause(figure);
+            PauseObject.Pause(figure.transform);
         else
-            PauseObject.UnPause(figure);
+            PauseObject.UnPause(figure.transform);
     }
 }
 

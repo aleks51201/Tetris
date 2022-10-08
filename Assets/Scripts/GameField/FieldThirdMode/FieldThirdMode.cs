@@ -165,6 +165,22 @@ public class FieldThirdMode : FieldBase
         }
         Debug.Log(line);
     }
+    private void OnCollision()
+    {
+        AddMatrixTetromino(currentTetrominoInGame.GetComponent<FigureThirdMode>().GetAllChildObject());
+        detectedObjects = LineDetector();
+        if (IsFullDetectedList(detectedObjects))
+        {
+            StartDestroyAnimation(detectedObjects);
+        RemoveMatrixTetromino(detectedObjects);
+        }
+    }
+    private void AfterDestroyAnimation()
+    {
+        AddScore(detectedObjects,GameScore);
+        MatrixShift();
+    }
+
 
     private protected override void SpawnTetromino()
     {
@@ -192,6 +208,8 @@ public class FieldThirdMode : FieldBase
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
         BusEvent.OnKeyDownEvent += SwitchTetromino;
+        BusEvent.OnCollisionEnterEvent += OnCollision;
+        BusEvent.OnStartAfterDestoyAnimation += AfterDestroyAnimation;
     }
 
     private void OnDisable()
@@ -203,6 +221,8 @@ public class FieldThirdMode : FieldBase
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnLineIsFullEvent -= StartDestroyAnimation;
         BusEvent.OnKeyDownEvent -= SwitchTetromino;
+        BusEvent.OnCollisionEnterEvent -= OnCollision;
+        BusEvent.OnStartAfterDestoyAnimation -= AfterDestroyAnimation;
     }
 }
 

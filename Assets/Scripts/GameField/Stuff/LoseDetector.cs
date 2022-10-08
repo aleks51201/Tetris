@@ -1,12 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-class LoseDetector : MonoBehaviour
+class LoseDetector 
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public static bool IsLose(List<Vector2> coordinates, float endFieldYCoordinate)
     {
-        if (collision.CompareTag("Figure"))
+        foreach (float coordinate in ConvertListVector2ToArrayFloatYCoordinate(coordinates))
         {
-            BusEvent.OnLoseGameEvent?.Invoke();
+            if (coordinate >= endFieldYCoordinate - 0.5)
+                return true;
         }
+        return false;
     }
+
+    private static float[] ConvertListVector2ToArrayFloatYCoordinate(List<Vector2> coordinates)
+    {
+        float[] Ycoordinates = new float[4];
+        for (int i = 0; i < coordinates.Count; i++)
+        {
+            Ycoordinates[i] = coordinates[i].y;
+        }
+        return Ycoordinates;
+    }
+
 }

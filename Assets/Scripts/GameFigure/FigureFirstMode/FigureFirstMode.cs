@@ -109,8 +109,12 @@ public class FigureFirstMode : FigureBase
             isDelete = false;
             ParticleStart();
             DestroyGhost();
-            BusEvent.OnDeleteTetrominoEvent?.Invoke(this.tetromino);
+            foreach(Transform c in GetAllChildCell())
+            {
+                c.GetComponent<Cell>().OnDeleteTetromino(this.tetromino);
+            }
             this.tetromino.transform.DetachChildren();
+            BusEvent.OnDeleteTetrominoEvent?.Invoke(this.tetromino);
             Destroy(this.tetromino);
         }
     }
@@ -118,7 +122,11 @@ public class FigureFirstMode : FigureBase
     public void DeletingAStopped()
     {
         if (this.tetromino.GetComponent<Rigidbody2D>().velocity.y > -0.5f && this.tetromino != null)
+        {
+            if (LoseDetector.IsLose(GetChildCoordinate(), 20))
+                BusEvent.OnLoseGameEvent?.Invoke();
             Dissolve();
+        }
     }
 
     private void DestroyGhost()

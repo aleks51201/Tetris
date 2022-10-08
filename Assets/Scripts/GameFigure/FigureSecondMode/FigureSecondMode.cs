@@ -113,7 +113,11 @@ public class FigureSecondMode : FigureBase
     public void DeletingAStopped()
     {
         if (this.tetromino.GetComponent<Rigidbody2D>().velocity.y > -0.5f && this.tetromino != null)
+        {
+            if (LoseDetector.IsLose(GetChildCoordinate(), 20))
+                BusEvent.OnLoseGameEvent?.Invoke();
             Dissolve();
+        }
     }
 
     public override Vector2 GetCurrentPosition()

@@ -7,12 +7,31 @@ public class CellThirdMode : MonoBehaviour
 
     public void DestoyCell()
     {
-        Destroy(this.childCell);
         BusEvent.OnCellDestroyEvent?.Invoke();
+        Destroy(childCell);
+    }
+
+    private void OnPause(bool isPause)
+    {
+        Animator cellAnimator = gameObject.GetComponent<Animator>();
+        if (isPause)
+            cellAnimator.speed = 0;
+        else
+            cellAnimator.speed = 1;
     }
 
     private void Start()
     {
         childCell = this.gameObject;
+    }
+
+    private void OnEnable()
+    {
+        BusEvent.OnPauseEvent += OnPause;
+    }
+
+    private void OnDisable()
+    {
+        BusEvent.OnPauseEvent -= OnPause;
     }
 }
