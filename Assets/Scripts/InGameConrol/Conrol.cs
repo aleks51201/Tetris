@@ -4,7 +4,7 @@
 public class Conrol : MonoBehaviour
 {
     public GameObject gameField;
-    private bool isPaused = false;
+    private bool isPaused = true;
 
     private void OnEnable()
     {
@@ -14,11 +14,16 @@ public class Conrol : MonoBehaviour
     private void OnDisable()
     {
         BusEvent.OnPauseEvent -= OnPause;
+        BusEvent.OnLoseGameEvent -= OnLose;
     }
 
     private void OnPause(bool isPaused)
     {
         this.isPaused = isPaused;
+    }
+    private void OnLose()
+    {
+        OnPause(true);
     }
 
     private void FixedUpdate()
