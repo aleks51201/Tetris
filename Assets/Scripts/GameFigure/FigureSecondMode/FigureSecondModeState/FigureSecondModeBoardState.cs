@@ -77,10 +77,6 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
     }
     private void OnLose()
     {
-        foreach(Transform cell in tetr.GetAllChildObject())
-        {
-            cell.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        }
         OnPause(true);
     }
 }
