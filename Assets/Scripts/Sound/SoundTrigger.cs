@@ -32,6 +32,13 @@ internal class SoundTrigger : MonoBehaviour
     {
         audioSource.PlayOneShot(destroing);
     }
+    private void OnPause(bool isPause)
+    {
+        if (isPause)
+            audioSource.Pause();
+        else
+            audioSource.UnPause();
+    }
 
     private void Start()
     {
@@ -44,6 +51,7 @@ internal class SoundTrigger : MonoBehaviour
         BusEvent.OnLoseGameEvent += OnLoseGame;
         BusEvent.OnSwitchTetrominoEvent += OnSwitchTeromino;
         BusEvent.OnStartDestroyAnimationEvent += OnStartDestroyAnimation;
+        BusEvent.OnPauseEvent += OnPause;
     }
     private void OnDisable()
     {
@@ -51,5 +59,6 @@ internal class SoundTrigger : MonoBehaviour
         BusEvent.OnLoseGameEvent -= OnLoseGame;
         BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnStartDestroyAnimationEvent -= OnStartDestroyAnimation;
+        BusEvent.OnPauseEvent -= OnPause;
     }
 }
