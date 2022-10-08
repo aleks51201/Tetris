@@ -12,6 +12,7 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
         BusEvent.OnSwitchTetrominoEvent += OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnPauseEvent += OnPause;
+        BusEvent.OnLoseGameEvent += OnLose;
         BusEvent.OnKeyHoldEvent += tetr.Move;
         BusEvent.OnKeyHoldEvent += tetr.Rotate;
         BusEvent.OnKeyHoldEvent += tetr.Acceleration;
@@ -21,6 +22,7 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
     {
         BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnPauseEvent -= OnPause;
+        BusEvent.OnLoseGameEvent -= OnLose;
         BusEvent.OnKeyHoldEvent -= tetr.Move;
         BusEvent.OnKeyHoldEvent -= tetr.Rotate;
         BusEvent.OnKeyHoldEvent -= tetr.Acceleration;
@@ -36,6 +38,7 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
         BusEvent.OnSwitchTetrominoEvent -= OnSwitchTeromino;
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnPauseEvent -= OnPause;
+        BusEvent.OnLoseGameEvent -= OnLose;
         BusEvent.OnKeyHoldEvent -= tetr.Move;
         BusEvent.OnKeyHoldEvent -= tetr.Rotate;
         BusEvent.OnKeyHoldEvent -= tetr.Acceleration;
@@ -71,6 +74,10 @@ internal class FigureSecondModeBoardState : FigureSecondModeBaseState
             PauseObject.Pause(figure.transform);
         else
             PauseObject.UnPause(figure.transform);
+    }
+    private void OnLose()
+    {
+        OnPause(true);
     }
 }
 

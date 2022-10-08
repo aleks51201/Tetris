@@ -12,6 +12,7 @@ public class UIControl : MonoBehaviour
     {
         startGame.GetComponent<Animator>().SetBool("Next", true);
         inGame.SetActive(true);
+        BusEvent.OnPauseEvent?.Invoke(false);
         if (createFigure != null)
             createFigure.Create();
     }
