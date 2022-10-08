@@ -53,7 +53,6 @@ public abstract class FieldBase : MonoBehaviour, ICreatable, ISwitchTetromino
     {
         GameObject currentTetromino = Instantiate(RandomFigureSelection(tetrominoCollection), queuePosition, Quaternion.identity);
         gameQueue.AddObject(currentTetromino);
-        //BusEvent.OnCreateTetrominoEvent?.Invoke(currentTetromino);
     }
 
     private GameObject RandomFigureSelection(GameObject[] tetrominoCollection)

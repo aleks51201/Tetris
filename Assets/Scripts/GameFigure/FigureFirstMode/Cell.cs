@@ -33,6 +33,7 @@ public class Cell : MonoBehaviour
 
     public void DestoyCell()
     {
+        BusEvent.OnCellDestroyEvent?.Invoke();
         Destroy(childCell);
     }
 
@@ -50,10 +51,17 @@ public class Cell : MonoBehaviour
 
     private void OnPause(bool isPause)
     {
+        Animator cellAnimator = gameObject.GetComponent<Animator>();
         if (isPause)
+        {
             PauseObject.Pause(transform);
+            cellAnimator.speed = 0;
+        }
         else
+        {
             PauseObject.UnPause(transform);
+            cellAnimator.speed = 1;
+        }
     }
 
     private void OnLoseGame()
