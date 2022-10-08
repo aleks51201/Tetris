@@ -124,7 +124,10 @@ public class FigureFirstMode : FigureBase
         if (this.tetromino.GetComponent<Rigidbody2D>().velocity.y > -0.5f && this.tetromino != null)
         {
             if (LoseDetector.IsLose(GetChildCoordinate(), 20))
+            {
                 BusEvent.OnLoseGameEvent?.Invoke();
+                return;
+            }
             Dissolve();
         }
     }
