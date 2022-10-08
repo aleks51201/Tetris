@@ -110,7 +110,7 @@ public class FieldThirdMode : FieldBase
         matrixField = newList;
     }
 
-    private void AddScore(List<Transform> detectedObjects,ScoreClassic scoreObject )
+    private void AddScore(List<Transform> detectedObjects, ScoreClassic scoreObject)
     {
         scoreObject.CalcPoint(detectedObjects);
     }
@@ -130,15 +130,15 @@ public class FieldThirdMode : FieldBase
         return detectedObjects.Count >= fieldWidth && detectedObjects.Count % fieldWidth == 0;
     }
 
-    public void StartAfterDestroyAnimation(List<Transform> detectedObjects,ScoreClassic scoreObject)
+    public void StartAfterDestroyAnimation(List<Transform> detectedObjects, ScoreClassic scoreObject)
     {
-        StartCoroutine(AfterDestroyAnimation(detectedObjects,scoreObject));
+        StartCoroutine(AfterDestroyAnimation(detectedObjects, scoreObject));
     }
 
-    private IEnumerator AfterDestroyAnimation(List<Transform> detectedObjects,ScoreClassic scoreObject)
+    private IEnumerator AfterDestroyAnimation(List<Transform> detectedObjects, ScoreClassic scoreObject)
     {
         yield return new WaitForSeconds(0.9f);
-        AddScore(detectedObjects,scoreObject);
+        AddScore(detectedObjects, scoreObject);
         MatrixShift();
     }
 
@@ -172,12 +172,13 @@ public class FieldThirdMode : FieldBase
         if (IsFullDetectedList(detectedObjects))
         {
             StartDestroyAnimation(detectedObjects);
-        RemoveMatrixTetromino(detectedObjects);
+            RemoveMatrixTetromino(detectedObjects);
         }
     }
-    private void AfterDestroyAnimation()
+
+    private protected virtual void AfterDestroyAnimation()
     {
-        AddScore(detectedObjects,GameScore);
+        AddScore(detectedObjects, GameScore);
         MatrixShift();
     }
 
@@ -187,7 +188,7 @@ public class FieldThirdMode : FieldBase
         Create();
         currentTetrominoInGame = gameQueue.queueOfTetromino.Dequeue();
         BusEvent.OnSpawnTetrominoEvent?.Invoke(currentTetrominoInGame);
-        currentTetrominoInGame.GetComponent<FigureThirdMode>().field = this; 
+        currentTetrominoInGame.GetComponent<FigureThirdMode>().field = this;
         currentTetrominoInGame.transform.position = spawnPosition;
     }
 

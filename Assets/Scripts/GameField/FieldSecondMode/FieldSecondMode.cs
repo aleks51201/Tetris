@@ -14,6 +14,7 @@ internal class FieldSecondMode : FieldBase
     private ScorePhysics.PhysicsMode scorePhysicsMode;
 
     private protected ScorePhysics gameScore;
+    private RaycastHit2D[] rcobj;
 
     private protected override void SpawnTetromino()
     {
@@ -23,9 +24,9 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnSpawnTetrominoEvent?.Invoke(currentTetrominoInGame);
     }
 
-    private protected void Scoring(RaycastHit2D[] detectedObjects)
+    private protected void Scoring()
     {
-        gameScore.CalcPoint(detectedObjects);
+        gameScore.CalcPoint(rcobj);
     }
 
     private void OnLoseGame()
@@ -33,6 +34,10 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         losePanel.SetActive(true);
         loseScorePanel.text = $"{gameScore.Point}";
+    }
+    private void OnLineIsFull(RaycastHit2D[] raycastHit2Ds)
+    {
+        rcobj = raycastHit2Ds;
     }
 
     private void FixedUpdate()
@@ -57,8 +62,9 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         //BusEvent.OnPauseEvent += IsPaused;
         BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
-        BusEvent.OnLineIsFullEvent += Scoring;
+        BusEvent.OnLineIsFullEvent += OnLineIsFull;
         BusEvent.OnKeyDownEvent += SwitchTetromino;
+        BusEvent.OnStartAfterDestoyAnimation += Scoring;
 
     }
 
@@ -71,7 +77,8 @@ internal class FieldSecondMode : FieldBase
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         //BusEvent.OnPauseEvent -= IsPaused;
         BusEvent.OnLineIsFullEvent -= StartDestroyAnimation;
-        BusEvent.OnLineIsFullEvent -= Scoring;
+        BusEvent.OnLineIsFullEvent -= OnLineIsFull;
         BusEvent.OnKeyDownEvent -= SwitchTetromino;
+        BusEvent.OnStartAfterDestoyAnimation -= Scoring;
     }
 }

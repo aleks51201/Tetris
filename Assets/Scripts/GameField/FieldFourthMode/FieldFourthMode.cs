@@ -30,11 +30,33 @@ internal class FieldFourthMode : FieldThirdMode
         }
         matrixField = newMatrix;
         detectedObjects = LineDetector(matrixField);
+        OnCollision(detectedObjects, matrixField);
+    }
+
+    private void OnCollision(List<Transform> detectedObjects, List<List<Transform>> matrix)
+    {
         if (IsFullDetectedList(detectedObjects))
         {
             StartDestroyAnimation(detectedObjects);
             RemoveMatrixTetromino(detectedObjects);
-            StartAfterDestroyAnimation(detectedObjects, GameScore);
+        }
+    }
+
+    private protected override void AfterDestroyAnimation()
+    {
+        AddScore(detectedObjects, GameScore);
+        MatrixShift();
+    }
+
+    private void OnCollision()
+    {
+        AddMatrixTetromino(currentTetrominoInGame.GetComponent<FigureFourthMode>().GetAllChildObject());
+        MatrixShift();
+        detectedObjects = LineDetector();
+        if (IsFullDetectedList(detectedObjects))
+        {
+            StartDestroyAnimation(detectedObjects);
+            RemoveMatrixTetromino(detectedObjects);
         }
     }
 
@@ -134,9 +156,6 @@ internal class FieldFourthMode : FieldThirdMode
             hue = cell.GetComponent<SpriteRenderer>().color;
             detectedObjects.AddRange(FindChainOnDirections(cell, hue));
         }
-        /*        List<Transform> distinctDetectedObjects = detectedObjects.Distinct().ToList();
-                SaveCoordinate(distinctDetectedObjects);
-        */
         this.detectedObjects = detectedObjects.Distinct().ToList();
         SaveCoordinate(this.detectedObjects);
         return this.detectedObjects;
@@ -156,9 +175,7 @@ internal class FieldFourthMode : FieldThirdMode
                 detectedObjects.AddRange(FindChainOnDirections(cell, hue));
             }
         }
-        //List<Transform> distinctDetectedObjects = detectedObjects.Distinct().ToList();
         this.detectedObjects = detectedObjects.Distinct().ToList();
-        //SaveCoordinate(distinctDetectedObjects);
         SaveCoordinate(this.detectedObjects);
         return this.detectedObjects;
     }
@@ -240,6 +257,8 @@ internal class FieldFourthMode : FieldThirdMode
         BusEvent.OnDeleteTetrominoEvent += OnDeleteTetromino;
         BusEvent.OnLineIsFullEvent += StartDestroyAnimation;
         BusEvent.OnKeyDownEvent += SwitchTetromino;
+        BusEvent.OnCollisionEnterEvent += OnCollision;
+        BusEvent.OnStartAfterDestoyAnimation += AfterDestroyAnimation;
     }
 
     private void OnDisable()
@@ -251,5 +270,7 @@ internal class FieldFourthMode : FieldThirdMode
         BusEvent.OnDeleteTetrominoEvent -= OnDeleteTetromino;
         BusEvent.OnLineIsFullEvent -= StartDestroyAnimation;
         BusEvent.OnKeyDownEvent -= SwitchTetromino;
+        BusEvent.OnCollisionEnterEvent -= OnCollision;
+        BusEvent.OnStartAfterDestoyAnimation -= AfterDestroyAnimation;
     }
 }
